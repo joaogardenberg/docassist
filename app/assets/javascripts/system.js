@@ -13,10 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require cable
 //= require jquery
 //= require materialize-sprockets
-//= require_tree .
-
-$(document).on('turbolinks:load', () => {
-  Waves.displayEffect();
-});
+//= require_tree ./system

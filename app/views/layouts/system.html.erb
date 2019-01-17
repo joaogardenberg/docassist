@@ -11,13 +11,19 @@
     <%= javascript_pack_tag    'system' %>
   </head>
   <body>
+
     <%= render('/system/common/sidebar') %>
+
     <div class="app-container">
+
       <%= render('/system/common/header') %>
+
       <main class="page-content">
+
         <article class="page">
           <%= yield %>
         </article>
+
         <div class="todo" onclick="toggleTodo(event)">
           <i class="fas fa-times" onclick="toggleTodo(event, true)"></i>
           <h5>TODO</h5>
@@ -27,25 +33,10 @@
           <p>Fazer página das consultas</p>
           <p>Fazer back-end</p>
           <p>Fazer dashboard</p>
-
-          <script>
-            var toggleTodo = (event, close = false) => {
-              const todo = event.target.closest('.todo');
-              event.stopPropagation();
-
-              if (close) {
-                todo.classList.remove('show');
-                todo.classList.add('closed');
-              } else if (todo.classList.contains('show')) {
-                todo.classList.remove('show');
-              } else {
-                todo.classList.add('show');
-              }
-            };
-          </script>
         </div>
-      </div>
-      <%= render('/system/common/footer') %>
+        
+      </main>
+
     </div>
   </body>
 </html>
