@@ -1,0 +1,7 @@
+<% initial_year = 2019 %>
+<% todays_year = Date.today.year %>
+<% years = "#{initial_year}#{todays_year > initial_year ? "-#{todays_year}" : ''}" %>
+
+<footer class="app-footer top-shadow">
+  <p>&copy; <%= years %> DocAssist. <%= t('footer.all_rights_reserved') %>.</p>
+</footer>

@@ -1,0 +1,20 @@
+<header>
+  <h2><%= t('users.index.title') %></h2>
+  <aside class="new">
+    <%= link_to :new_system_user,
+                class: 'btn-floating btn-large waves-effect waves-light tooltiped',
+                'data-position' => 'left',
+                'data-tooltip' => t('users.index.new_patient_label') do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
+  </aside>
+</header>
+<section>
+
+</section>
+
+<script>
+  $(document).ready(() => {
+    $('.tooltiped').tooltip();
+  });
+</script>

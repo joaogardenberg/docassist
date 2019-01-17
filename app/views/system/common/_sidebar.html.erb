@@ -1,0 +1,55 @@
+<div class="app-sidebar">
+  <nav class="right-shadow desktop-only">
+    <ul class="page-links">
+
+      <%=
+        link_to :system_user_edit,
+                class: 'current-user-info waves-effect waves-light',
+                style: "background-image: #{'url(https://placeimg.com/536/129/any'})" do
+      %>
+        <img
+          src=""
+          alt="<%= t('sidebar.user_picture') %>"
+          onerror="onUserPictureError(event)"
+        />
+        <span class="name"><%= 'Nome do usuário' %></span>
+        <span class="new badge"><%= t('sidebar.edit') %></span>
+      <% end %>
+
+      <li class="link">
+        <%= link_to :system_dashboard_index, class: "waves-effect#{controller?('system/dashboard') ? ' active' : ''}" do %>
+          <i class="fas fa-chart-line"></i>
+          <span class="name"><%= t('sidebar.dashboard') %></span>
+        <% end %>
+      </li>
+
+      <li class="link">
+        <%= link_to :system_appointments, class: "waves-effect#{controller?('system/appointments') ? ' active' : ''}" do %>
+          <i class="fas fa-calendar-alt"></i>
+          <span class="name"><%= t('sidebar.appointments') %></span>
+        <% end %>
+      </li>
+
+      <li class="link">
+        <%= link_to :system_patients, class: "waves-effect#{controller?('system/patients') ? ' active' : ''}" do %>
+          <i class="fas fa-address-card"></i>
+          <span class="name"><%= t('sidebar.patients') %></span>
+        <% end %>
+      </li>
+
+      <li class="link">
+        <%= link_to :system_users, class: "waves-effect#{controller?('system/users') ? ' active' : ''}" do %>
+          <i class="fas fa-users"></i>
+          <span class="name"><%= t('sidebar.users') %></span>
+        <% end %>
+      </li>
+
+    </ul>
+  </nav>
+
+  <script>
+    var onUserPictureError = ({ target }) => {
+      target.src = 'https://pixelmator-pro.s3.amazonaws.com/community/avatar_empty@2x.png';
+    };
+  </script>
+</div>

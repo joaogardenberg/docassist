@@ -1,0 +1,44 @@
+<header class="app-header">
+  <nav class="nav-wrapper">
+
+    <button class="waves-effect sidebar-toggler" type="button">
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <%= link_to :system_dashboard_index, class: 'my brand-logo waves-effect waves-light' do %>
+      <!-- <img src="https://via.placeholder.com/350x150" /> -->
+      <h1>DocAssist</h1>
+    <% end %>
+
+    <ul class="header-nav right">
+
+      <li class="nav-item hide-on-small-only">
+        <a class="nav-link waves-effect waves-light" onclick="toggleFullScreen()">
+          <i class="fas fa-expand"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <%= button_to destroy_user_session_path, class: 'nav-link waves-effect waves-light', method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i>
+        <% end %>
+      </li>
+
+    </ul>
+
+  </nav>
+
+  <script>
+    var toggleFullScreen = () => {
+      if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+        if (document.documentElement.requestFullScreen) { document.documentElement.requestFullScreen() }
+        else if (document.documentElement.mozRequestFullScreen) { document.documentElement.mozRequestFullScreen() }
+        else if (document.documentElement.webkitRequestFullScreen) { document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT) }
+      } else {
+        if (document.cancelFullScreen) { document.cancelFullScreen() }
+        else if (document.mozCancelFullScreen) { document.mozCancelFullScreen() }
+        else if (document.webkitCancelFullScreen) { document.webkitCancelFullScreen() }
+      }
+    }
+  </script>
+</header>

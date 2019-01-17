@@ -1,0 +1,16 @@
+@import 'variables';
+
+.app-footer {
+  background-color: $footer-background-color;
+  padding: 25px 0;
+  text-align: center;
+  z-index: $footer-z-index;
+
+  p {
+    color: $footer-color;
+    font-size: .97rem;
+    font-weight: lighter;
+    line-height: .97rem;
+    margin: 0;
+  }
+}

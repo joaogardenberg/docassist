@@ -1,0 +1,105 @@
+@import 'variables';
+
+.app-header {
+  z-index: $header-z-index;
+
+  .sidebar-toggler {
+    background: transparent;
+    border: 0;
+    color: $sidebar-toggler-color;
+    height: 100%;
+    margin-top: -2px;
+    padding: 0 15px;
+
+    &:hover {
+      background-color: $navbar-item-hover-color;
+    }
+
+    i {
+      height: auto;
+    }
+  }
+
+  .nav-wrapper {
+    background-color: $gradient-initial-color;
+    background-image: linear-gradient(to right, $gradient-initial-color, $gradient-end-color);
+    position: relative;
+  }
+
+  .brand-logo {
+    display: flex;
+    height: 100%;
+    padding: 0 15px;
+
+    &:hover {
+      background-color: $navbar-item-hover-color;
+    }
+
+    img {
+      margin: auto 0;
+      max-height: 54px;
+      max-width: 250px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: lighter;
+      line-height: 1rem;
+      margin: auto 0;
+    }
+
+    img + h1 {
+      display: none;
+    }
+  }
+
+  .button_to {
+    align-items: center;
+    display: flex;
+  }
+
+  .header-nav .nav-link {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: white;
+    display: flex;
+    font-weight: bold;
+    padding: 0 20px;
+    line-height: inherit;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    i {
+      box-sizing: border-box;
+      font-size: 1.15rem;
+      height: 100%;
+      line-height: inherit;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .sidebar-toggler {
+    display: none;
+  }
+
+  .my.brand-logo {
+    left: 0;
+    transform: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .my.brand-logo {
+    position: absolute;
+    top: 0;
+  }
+
+  .app-header {
+    position: fixed;
+    width: 100%;
+  }
+}

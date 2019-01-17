@@ -1,0 +1,224 @@
+@import 'variables';
+
+.app-sidebar {
+  z-index: $sidebar-container-z-index;
+
+  nav {
+    background-color: $sidebar-background-color;
+    height: 100vh;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    transition: width .2s, left .2s, box-shadow .2s;
+    width: $sidebar-big-width;
+    z-index: $sidebar-z-index;
+
+    &:hover {
+      overflow-y: auto;
+    }
+  }
+
+  .overlay {
+    background-color: $black;
+    bottom: 0;
+    display: none;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: $sidebar-overlay-z-index;
+  }
+
+  &.open {
+    nav {
+      left: 0;
+    }
+
+    .overlay {
+      animation: overlayOpacity .2s forwards;
+      display: block;
+    }
+
+    @keyframes overlayOpacity {
+      from { opacity: 0; }
+      to { opacity: .7; }
+    }
+  }
+}
+
+.page-links {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 0;
+
+  > .link {
+    a:hover,
+    a.active {
+      background-color: $gradient-initial-color;
+
+      i,
+      .name {
+        color: $sidebar-item-hover-color !important;
+      }
+    }
+
+    a.active {
+      background-image: linear-gradient(to right, $gradient-initial-color, $gradient-end-color);
+    }
+  }
+}
+
+.app-sidebar nav a {
+  align-items: center;
+  display: flex;
+  padding: 12px 10px;
+  position: relative;
+  text-decoration: none;
+  transition: background-color .2s, color .2s;
+  user-select: none;
+
+  &.current-user-info {
+    background-color: $gradient-initial-color;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid $gradient-middle-color;
+    padding: 21px 10px;
+
+    > .name {
+      color: $sidebar-item-hover-color;
+      font-weight: bold;
+      text-shadow: 1px 1px $sidebar-item-color;
+    }
+  }
+
+  > i,
+  > img {
+    flex-shrink: 0;
+    margin-right: 8px;
+    text-align: center;
+    width: 38px;
+    transition: margin .2s, color .2s;
+  }
+
+  > i {
+    color: $gradient-initial-color;
+    font-size: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  > img {
+    background-color: $gradient-middle-color;
+    border-radius: 10px;
+    height: 38px;
+    object-fit: cover;
+    overflow: hidden;
+    padding: 1px;
+  }
+
+  > .name {
+    color: $sidebar-item-color;
+    flex: 1;
+    font-size: 1rem;
+    font-weight: lighter;
+    line-height: 1rem;
+    max-height: 100px;
+    max-width: 159px;
+    min-width: 159px;
+    transition: max-height .3s, opacity .3s;
+    word-break: break-word;
+  }
+
+  > .badge {
+    background-color: $gradient-middle-transp-color;
+    bottom: 2px;
+    box-shadow: 0 0 1px 0 $white;
+    font-size: .8rem;
+    opacity: 0;
+    position: absolute;
+    right: 2px;
+    transition: all .2s;
+
+    &::after {
+      content: '';
+    }
+  }
+
+  &:hover > .badge {
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .app-sidebar nav:not(:hover) {
+    width: $sidebar-small-width;
+
+    a {
+      > i,
+      > img {
+        margin-right: 0;
+      }
+
+      > .name {
+        max-height: 0;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .app-sidebar nav {
+    left: -70%;
+    overflow-y: auto;
+    width: 70%;
+  }
+
+  .app-sidebar nav a {
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    &.current-user-info {
+      padding-bottom: 40px;
+      padding-top: 40px;
+    }
+
+    > i,
+    > img {
+      margin-right: 10px;
+      width: 48px;
+    }
+
+    > i {
+      font-size: 2rem;
+      height: 2rem;
+      line-height: 2rem;
+    }
+
+    > img {
+      height: 48px;
+      padding: 2px;
+    }
+
+    > .name {
+      font-size: 1.3rem;
+      line-height: 1.3rem;
+      max-height: initial;
+      max-width: initial;
+      min-width: initial;
+    }
+
+    > .badge {
+      bottom: 4px;
+      font-size: 1rem;
+      height: 26px;
+      line-height: 26px;
+      opacity: 1;
+      padding: 0 10px;
+      right: 4px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import 'variables';
+
+.app-container {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-left: $sidebar-big-width;
+  min-height: 100vh;
+  transition: margin-left .2s;
+
+  p {
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .app-container {
+    margin-left: $sidebar-small-width;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .app-container {
+    margin-left: 0;
+  }
+}

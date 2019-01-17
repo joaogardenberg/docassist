@@ -1,0 +1,48 @@
+$gradient-initial-color:           #007fff;
+$gradient-middle-color:            #2456e6;
+$gradient-end-color:               #4a00e0;
+$gradient-initial-transp-color:    rgba(0, 127, 255, .5);
+$gradient-middle-transp-color:     rgba(36, 86, 230, .5);
+$gradient-end-transp-color:        rgba(74, 0, 224, .5);
+
+$navbar-item-hover-color:          rgba(0, 0, 0, .1);
+
+$sidebar-big-width:                240px;
+$sidebar-small-width:              58px;
+$sidebar-toggler-background-color: #4e54c8;
+$sidebar-toggler-color:            #fff;
+$sidebar-background-color:         #fff;
+$sidebar-box-shadow-first-color:   rgba(0, 0, 0, .14);
+$sidebar-box-shadow-second-color:  rgba(0, 0, 0, .12);
+$sidebar-box-shadow-third-color:   rgba(0, 0, 0, .2);
+$sidebar-item-color:               #333;
+$sidebar-item-hover-color:         #fff;
+
+$default-color:                    #333;
+$default-color-lighter:            #666;
+$header-line-color:                #dadada;
+$table-hover-color:                #eee;
+$disabled-color:                   #ccc;
+$disabled-color-lighter:           #ddd;
+
+$modal-footer-background-color:    #eee;
+
+$footer-background-color:          #eee;
+$footer-color:                     #666;
+
+$info-color:                       #2e89ed;
+$success-color:                    #22a65c;
+$warning-color:                    #ffb73f;
+$error-color:                      #f23e40;
+
+$white:                            #fff;
+$black:                            #000;
+$black-transparent:                rgba(0, 0, 0, .7);
+
+$sidebar-z-index:                  12000;
+$sidebar-overlay-z-index:          11000;
+$sidebar-container-z-index:        10000;
+$header-z-index:                   5000;
+$footer-z-index:                   5000;
+$page-loader-z-index:              4000;
+$modal-z-index:                    3000;

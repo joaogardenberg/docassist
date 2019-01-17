@@ -1,0 +1,107 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+pt-BR:
+  devise:
+    confirmations:
+      confirmed: "Sua conta foi confirmada com sucesso."
+      send_instructions: "Em alguns minutos você receberá um e-mail com instruções para a confirmação da sua conta."
+      send_paranoid_instructions: "Se o seu e-mail estiver cadastrado, em alguns minutos você receberá uma mensagem nele com instruções para a confirmação da sua conta."
+      resend_confirmation_title: "Não recebeu as instruções de confirmação?"
+      email_label: "E-mail"
+      submit_label: "Reenviar instruções"
+    failure:
+      already_authenticated: "Você já está logado."
+      inactive: "Sua conta ainda não foi ativada."
+      invalid: "E-mail, usuário ou senha inválido(s)."
+      locked: "Sua conta está bloqueada. Dê uma olhada no seu e-mail."
+      last_attempt: "Você só tem mais uma tentativa antes da sua conta ser bloqueada."
+      not_found_in_database: "E-mail, usuário ou senha inválido(s)."
+      timeout: "Sua sessão expirou. Efetue login novamente para continuar."
+      unauthenticated: "Efetue login para continuar."
+      unconfirmed: "Antes de continuar, confirme a sua conta."
+    mailer:
+      confirmation_instructions:
+        subject: "Instruções de confirmação"
+      reset_password_instructions:
+        subject: "Instruções de troca de senha"
+      unlock_instructions:
+        subject: "Instruções de desbloqueio"
+      email_changed:
+        subject: "Seu e-mail foi alterado"
+      password_change:
+        subject: "Sua senha foi alterada"
+    omniauth_callbacks:
+      failure: "Não foi possível autenticá-lo como %{kind} porque \"%{reason}\"."
+      success: "Autenticado com sucesso com uma conta de %{kind}."
+    passwords:
+      no_token: "Você só pode acessar essa página através de um e-mail de troca de senha. Se já estiver acessando por um e-mail, verifique se a URL fornecida está completa."
+      send_instructions: "Em alguns minutos você receberá um e-mail com instruções para a troca da sua senha."
+      send_paranoid_instructions: "Se o seu e-mail estiver cadastrado, em alguns minutos você receberá nele um link de recuperação da senha."
+      updated: "Sua senha foi alterada com sucesso. Você está logado."
+      updated_not_active: "Sua senha foi alterada com sucesso."
+      forgot_password_title: "Esqueceu sua senha?"
+      email_label: "E-mail"
+      new_submit_label: "Enviar instruções de troca de senha"
+      change_password_title: "Mude sua senha"
+      new_password_label: "Nova senha"
+      minimum_length: "Mínimo %{minimum_length} caracteres"
+      confirm_password_label: "Confirmação de senha"
+      edit_submit_label: "Mudar minha senha"
+    registrations:
+      destroyed: "Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve."
+      signed_up: "Seja bem-vindo! Login efetuado com sucesso."
+      signed_up_but_inactive: "Você foi cadastrado com sucesso. No entanto não foi possível efetuar seu login, pois sua conta ainda não foi ativada."
+      signed_up_but_locked: "Você foi cadastrado com sucesso. No entanto não foi possível efetuar seu login, pois sua conta está bloqueada."
+      signed_up_but_unconfirmed: "Uma mensagem com um link de confirmação foi enviada para o seu e-mail. Abra o link para confirmar a sua conta."
+      update_needs_confirmation: "Você atualizou a sua conta com sucesso, mas o seu novo e-mail precisa ser confirmado. Acesse-o e clique no link de confirmação que enviamos."
+      updated: "Sua conta foi atualizada com sucesso."
+      register_title: "Cadastrar"
+      email_label: "E-mail"
+      password_label: "Senha"
+      minimum_length: "Mínimo %{minimum_length} caracteres"
+      confirm_password_label: "Confirmação de senha"
+      new_submit_label: "Cadastrar"
+      edit_title: "Editar %{name}"
+      pending_confirmation: "Esperando a confirmação de %{email}"
+      no_password_change: "deixe em branco se você não quiser mudar"
+      current_password_label: "Senha atual"
+      current_password_text: "precisamos dela para confirmar as mudanças"
+      edit_submit_label: "Salvar"
+      destroy_user_title: "Remover minha conta"
+      unhappy: "Insatisfeito?"
+      destroy_user_button_label: "Remover minha conta"
+      confirm_destruction: "Você tem certeza disso?"
+      back_button_label: "Voltar"
+    sessions:
+      signed_in: "Login efetuado com sucesso."
+      signed_out: "Saiu com sucesso."
+      already_signed_out: "Saiu com sucesso."
+      log_in_title: "Login"
+      email_label: "E-mail ou usuário"
+      password_label: "Senha"
+      remember_me_label: "Lembrar de mim por 24 horas"
+      submit_label: "Login"
+    shared:
+      log_in: "Login"
+      sign_up: "Cadastrar"
+      forgot_password: "Esqueci minha senha"
+      no_confirmation_instructions: "Não recebi as instruções de confirmação"
+      no_unlock_instructions: "Não recebi as instruções de desbloqueio"
+      sign_in_omniauth: ""
+    unlocks:
+      send_instructions: "Em alguns minutos você receberá um e-mail com instruções para o desbloqueio da sua conta."
+      send_paranoid_instructions: "Se sua conta existir, em alguns minutos você receberá um e-mail com instruções para desbloqueá-la."
+      unlocked: "Sua conta foi desbloqueada com sucesso. Efetue login para continuar."
+      resend_unlock_title: "Não recebeu as instruções de desbloqueio?"
+      email_label: "E-mail"
+      submit_label: "Reenviar instruções"
+  errors:
+    messages:
+      already_confirmed: "já foi confirmado. Tente efetuar login"
+      confirmation_period_expired: "precisa ser confirmada em até %{period}. Solicite uma nova"
+      expired: "expirou. Solicite uma nova"
+      not_found: "não encontrado"
+      not_locked: "não foi bloqueado"
+      not_saved:
+        one: "Não foi possível salvar %{resource}: 1 erro"
+        other: "Não foi possível salvar %{resource}: %{count} erros."
