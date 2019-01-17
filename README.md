@@ -41,27 +41,3 @@ Basta então entrar no endereço:
 ```
 http://localhost:3000/
 ```
-
-### Como fazer deploy para o Heroku
-
-Primeiramente você precisa ter o [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) instalado.
-
-Para criar o projeto, basta digitar o seguinte comando num terminal na pasta raiz do projeto:
-
-```sh
-$ heroku create
-```
-
-Uma vez feito isso, não há a necessidade de fazer de novo a cada deploy.
-
-Em seguida, para fazer o deploy, digite:
-
-```sh
-$ git push heroku master
-```
-
-Para abrir o Heroku no seu browser direto na página do projeto, digite:
-
-```sh
-$ heroku open
-```
