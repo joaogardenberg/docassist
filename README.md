@@ -27,6 +27,10 @@ $ yarn
 ```
 
 ```sh
+$ rails db:migrate
+```
+
+```sh
 $ rails s
 ```
 
