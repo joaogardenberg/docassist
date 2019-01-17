@@ -7,6 +7,8 @@
 |        Ruby | 2.6.0                  |
 |     MongoDB | 3.6.3 ou mais recente  |
 |       Redis | 4.0.9 ou mais recente  |
+|      NodeJS | 8.10.0 ou mais recente |
+|        Yarn | 1.10.1 ou mais recente |
 
 ### Como rodar o ambiente de desenvolvimento
 
