@@ -71,3 +71,6 @@ en:
       title: "New user"
     edit:
       title: "Edit user"
+  user:
+    edit:
+      title: "Your account"

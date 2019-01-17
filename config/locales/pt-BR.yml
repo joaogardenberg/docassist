@@ -262,3 +262,6 @@ pt-BR:
       title: "Novo usuário"
     edit:
       title: "Editar usuário"
+  user:
+    edit:
+      title: "Sua conta"
