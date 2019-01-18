@@ -70,7 +70,7 @@ pt-BR:
       destroy_user_title: "Remover minha conta"
       unhappy: "Insatisfeito?"
       destroy_user_button_label: "Remover minha conta"
-      confirm_destruction: "Você tem certeza disso?"
+      confirm_destruction: "Você tem certeza disso?\nEsta ação não pode ser desfeita."
       back_button_label: "Voltar"
     sessions:
       signed_in: "Login efetuado com sucesso."

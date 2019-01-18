@@ -70,7 +70,7 @@ en:
       destroy_user_title: "Cancel my account"
       unhappy: "Unhappy?"
       destroy_user_button_label: "Cancel my account"
-      confirm_destruction: "Are you sure?"
+      confirm_destruction: "Are you sure?\nYou cannot undo that."
       back_button_label: "Back"
     sessions:
       signed_in: "Signed in successfully."
