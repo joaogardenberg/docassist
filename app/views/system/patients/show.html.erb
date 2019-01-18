@@ -1,6 +1,6 @@
 <header>
-  <h2><%= t('patients.show.title') %></h2>
+  <h2><%= t('patients.show.title').html_safe %></h2>
 </header>
 <section>
-
+  <%= @patient.name %>
 </section>

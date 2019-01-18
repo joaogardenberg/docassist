@@ -3,5 +3,5 @@
 <% years = "#{initial_year}#{todays_year > initial_year ? "-#{todays_year}" : ''}" %>
 
 <footer class="app-footer top-shadow">
-  <p>&copy; <%= years %> DocAssist. <%= t('footer.all_rights_reserved') %>.</p>
+  <p>&copy; <%= years %> DocAssist. <%= t('footer.all_rights_reserved').html_safe %>.</p>
 </footer>

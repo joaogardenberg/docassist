@@ -1,15 +1,15 @@
-<h2><%= t('devise.unlocks.resend_unlock_title') %></h2>
+<h2><%= t('devise.unlocks.resend_unlock_title').html_safe %></h2>
 
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email, t('devise.unlocks.email_label') %><br />
+    <%= f.label :email, t('devise.unlocks.email_label').html_safe %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="actions">
-    <%= f.submit t('devise.unlocks.submit_label') %>
+    <%= f.submit t('devise.unlocks.submit_label').html_safe %>
   </div>
 <% end %>
 
