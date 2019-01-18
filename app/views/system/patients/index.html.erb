@@ -1,14 +1,69 @@
 <header>
-  <h2><%= t('patients.index.title') %></h2>
+  <h2><%= t('patients.index.title').html_safe %></h2>
   <aside class="new">
-    <%= link_to :new_system_patient,
-                class: 'btn-floating btn-large waves-effect waves-light tooltiped',
-                'data-position' => 'left',
-                'data-tooltip' => t('patients.index.new_patient_label') do %>
+    <%= link_to :new_system_patient, class: 'btn-floating btn-large waves-effect waves-light tooltiped', 'data-position' => 'left', 'data-tooltip' => t('patients.index.new_patient_label').html_safe do %>
       <i class="fas fa-plus"></i>
     <% end %>
   </aside>
 </header>
 <section>
-
+  <% if @patients.any? || @search %>
+    <nav class="search-bar">
+      <div class="nav-wrapper">
+        <form method="get" action="<%= system_patients_path %>">
+          <div class="input-field">
+            <label for="search" class="label-icon waves-effect tooltiped" onclick="onLabelClick(event)" data-tooltip="<%= t('patients.index.search_tooltip').html_safe %>" data-position="left">
+              <i class="fas fa-search"></i>
+            </label>
+            <input type="search" id="search" name="search" value="<%= @search %>" placeholder="<%= t('patients.index.search_placeholder').html_safe %>">
+          </div>
+        </form>
+      </div>
+    </nav>
+  <% end %>
+  <% if @patients.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th class="photo"></th>
+          <th class="<%= @order && @order[:field] == :name ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_patients_path %>', '<%= @search %>', 'name', '<%= @order && @order[:field] == :name && @order[:direction] == :asc ? 'desc' : 'asc' %>')"><%= t('patients.attributes.name').html_safe %></th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @patients.each do |patient| %>
+          <tr onclick="openUrl('<%= system_patient_path(id: patient.id) %>')">
+            <td class="photo">
+              <img src="<%= patient.picture %>" alt="<%= t('patients.index.photo_alt', name: patient.name).html_safe %>" onerror="onUserPictureError(event)">
+            </td>
+            <td><%= patient.name %></td>
+            <td class="actions">
+              <ul>
+                <li>
+                  <%= link_to edit_system_patient_path(id: patient.id), class: 'btn-floating btn-small bg-warning waves-effect waves-light' do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to system_patient_path(id: patient.id), class: 'btn-floating btn-small bg-error waves-effect waves-light', method: :delete do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col s12 m12 l6">
+        <div class="table-info"><%= page_entries_info @patients, entry_name: t('patients.attributes.patient').html_safe %></div>
+      </div>
+      <div class="col s12 m12 l6">
+        <div class="table-pages"><%= paginate @patients, window: 2, outer_window: 2 %></div>
+      </div>
+    </div>
+    <% else %>
+      <p>Nenhum paciente encontrado.</p>
+    <% end %>
 </section>

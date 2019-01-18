@@ -14,5 +14,6 @@ module Patients::Fields::PersonalInformation
     field :nationality_other,    type: String
     field :place_of_birth,       type: Integer
     field :place_of_birth_other, type: String
+    field :picture,              type: String
   end
 end

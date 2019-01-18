@@ -1,14 +1,73 @@
 <header>
-  <h2><%= t('users.index.title') %></h2>
+  <h2><%= t('users.index.title').html_safe %></h2>
   <aside class="new">
-    <%= link_to :new_system_user,
-                class: 'btn-floating btn-large waves-effect waves-light tooltiped',
-                'data-position' => 'left',
-                'data-tooltip' => t('users.index.new_patient_label') do %>
+    <%= link_to :new_system_user, class: 'btn-floating btn-large waves-effect waves-light tooltiped', 'data-position' => 'left', 'data-tooltip' => t('users.index.new_user_label').html_safe do %>
       <i class="fas fa-plus"></i>
     <% end %>
   </aside>
 </header>
 <section>
-
+  <% if @users.any? || @search %>
+    <nav class="search-bar">
+      <div class="nav-wrapper">
+        <form method="get" action="<%= system_users_path %>">
+          <div class="input-field">
+            <label for="search" class="label-icon waves-effect tooltiped" onclick="onLabelClick(event)" data-tooltip="<%= t('users.index.search_tooltip').html_safe %>" data-position="left">
+              <i class="fas fa-search"></i>
+            </label>
+            <input type="search" id="search" name="search" value="<%= @search %>" placeholder="<%= t('users.index.search_placeholder').html_safe %>">
+          </div>
+        </form>
+      </div>
+    </nav>
+  <% end %>
+  <% if @users.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th class="photo"></th>
+          <th class="<%= @order && @order[:field] == :name ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'name', '<%= @order && @order[:field] == :name && @order[:direction] == :asc ? 'desc' : 'asc' %>')"><%= t('users.attributes.name').html_safe %></th>
+          <th class="<%= @order && @order[:field] == :username ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'username', '<%= @order && @order[:field] == :username && @order[:direction] == :asc ? 'desc' : 'asc' %>')"><%= t('users.attributes.username').html_safe %></th>
+          <th class="<%= @order && @order[:field] == :type ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'type', '<%= @order && @order[:field] == :type && @order[:direction] == :asc ? 'desc' : 'asc' %>')"><%= t('users.attributes.type').html_safe %></th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr onclick="openUrl('<%= system_user_path(id: user.id) %>')">
+            <td class="photo">
+              <img src="<%= user.picture %>" alt="<%= t('users.index.photo_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)">
+            </td>
+            <td><%= user.name %></td>
+            <td><%= user.username %></td>
+            <td><%= user.type_name %></td>
+            <td class="actions">
+              <ul>
+                <li>
+                  <%= link_to edit_system_user_path(id: user.id), class: 'btn-floating btn-small bg-warning waves-effect waves-light' do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to system_user_path(id: user.id), class: 'btn-floating btn-small bg-error waves-effect waves-light', method: :delete do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col s12 m12 l6">
+        <div class="table-info"><%= page_entries_info @users, entry_name: t('users.attributes.user').html_safe %></div>
+      </div>
+      <div class="col s12 m12 l6">
+        <div class="table-pages"><%= paginate @users, window: 2, outer_window: 2 %></div>
+      </div>
+    </div>
+    <% else %>
+      <p>Nenhum usuário encontrado.</p>
+    <% end %>
 </section>

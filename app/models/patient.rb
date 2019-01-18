@@ -1,5 +1,6 @@
 class Patient
   include Mongoid::Document
+  include Patients::Options
   include Patients::Fields::PersonalInformation
   include Patients::Fields::Contact
   include Patients::Fields::Address
