@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DocAssist</title>
+    <title>DocAssist - Sistema</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'system', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'system', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'system', media: 'all' %>
+    <%= javascript_include_tag 'system' %>
     <%= javascript_pack_tag    'system' %>
   </head>
   <body>
@@ -21,21 +21,30 @@
       <main class="page-content">
 
         <article class="page">
+
           <%= yield %>
+
         </article>
 
         <div class="todo" onclick="toggleTodo(event)">
-          <i class="fas fa-times" onclick="toggleTodo(event, true)"></i>
+          <i class="fas fa-times" onclick="closeTodo(event)"></i>
           <h5>TODO</h5>
-          <p>Terminar formulário do paciente</p>
-          <p>Fazer página do paciente</p>
+          <p>Ajeitar 'nenhum paciente encontrado'</p>
+          <p>Fazer páginas dos pacientes</p>
+          <p>Integrar páginas dos pacientes com o back-end</p>
+          <p>Fazer páginas dos usuários</p>
+          <p>Integrar páginas dos usuários com o back-end</p>
           <h5>NEXT</h5>
+          <p>Adicionar permissões</p>
+          <p>Atualizar sidebar com as permissões</p>
           <p>Fazer página das consultas</p>
-          <p>Fazer back-end</p>
           <p>Fazer dashboard</p>
+          <p>Terminar campos dos pacientes</p>
         </div>
-        
+
       </main>
+
+      <%= render('/system/common/footer') %>
 
     </div>
   </body>
