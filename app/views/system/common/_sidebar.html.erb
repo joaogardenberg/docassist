@@ -1,49 +1,45 @@
 <div class="app-sidebar">
+
   <nav class="right-shadow desktop-only">
     <ul class="page-links">
 
-      <%=
-        link_to :system_user_edit,
-                class: 'current-user-info waves-effect waves-light',
-                style: "background-image: #{'url(https://placeimg.com/536/129/any'})" do
-      %>
-        <img
-          src=""
-          alt="<%= t('sidebar.user_picture') %>"
-          onerror="onUserPictureError(event)"
-        />
-        <span class="name"><%= 'Nome do usuário' %></span>
-        <span class="new badge"><%= t('sidebar.edit') %></span>
+      <%= link_to :system_user_edit, class: 'current-user-info waves-effect waves-light', style: "background-image: #{current_user.background.present? ? "url(#{current_user.background})" : 'url(https://placeimg.com/536/129/any)'}" do %>
+        <img src="<%= current_user.picture %>" alt="<%= t('sidebar.user_picture').html_safe %>" onerror="onUserPictureError(event)" />
+        <span class="name"><%= current_user.name || 'Usuário' %></span>
+        <span class="new badge"><%= t('sidebar.edit').html_safe %></span>
       <% end %>
 
       <li class="link">
         <%= link_to :system_dashboard_index, class: "waves-effect#{controller?('system/dashboard') ? ' active' : ''}" do %>
           <i class="fas fa-chart-line"></i>
-          <span class="name"><%= t('sidebar.dashboard') %></span>
+          <span class="name"><%= t('sidebar.dashboard').html_safe %></span>
         <% end %>
       </li>
 
       <li class="link">
         <%= link_to :system_appointments, class: "waves-effect#{controller?('system/appointments') ? ' active' : ''}" do %>
           <i class="fas fa-calendar-alt"></i>
-          <span class="name"><%= t('sidebar.appointments') %></span>
+          <span class="name"><%= t('sidebar.appointments').html_safe %></span>
         <% end %>
       </li>
 
       <li class="link">
         <%= link_to :system_patients, class: "waves-effect#{controller?('system/patients') ? ' active' : ''}" do %>
           <i class="fas fa-address-card"></i>
-          <span class="name"><%= t('sidebar.patients') %></span>
+          <span class="name"><%= t('sidebar.patients').html_safe %></span>
         <% end %>
       </li>
 
       <li class="link">
         <%= link_to :system_users, class: "waves-effect#{controller?('system/users') ? ' active' : ''}" do %>
           <i class="fas fa-users"></i>
-          <span class="name"><%= t('sidebar.users') %></span>
+          <span class="name"><%= t('sidebar.users').html_safe %></span>
         <% end %>
       </li>
 
     </ul>
   </nav>
+
+  <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
 </div>
