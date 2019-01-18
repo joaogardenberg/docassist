@@ -1,13 +1,20 @@
-function toggleTodo (event, close = false) {
+function toggleTodo (event) {
   const todo = event.target.closest('.todo');
+
   event.stopPropagation();
 
-  if (close) {
-    todo.classList.remove('show');
-    todo.classList.add('closed');
-  } else if (todo.classList.contains('show')) {
+  if (todo.classList.contains('show')) {
+    todo.scrollTo(0, 0);
     todo.classList.remove('show');
   } else {
     todo.classList.add('show');
   }
-};
+}
+
+function closeTodo(event) {
+  const todo = event.target.closest('.todo');
+
+  event.stopPropagation();
+  todo.classList.remove('show');
+  todo.classList.add('closed');
+}
