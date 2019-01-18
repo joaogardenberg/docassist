@@ -45,7 +45,7 @@
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to system_patient_path(id: patient.id), class: 'btn-floating btn-small bg-error waves-effect waves-light', method: :delete do %>
+                  <%= link_to system_patient_path(id: patient.id), class: 'btn-floating btn-small bg-error waves-effect waves-light', method: :delete, data: { confirm: t('misc.confirm_destruction') } do %>
                     <i class="fas fa-trash-alt"></i>
                   <% end %>
                 </li>

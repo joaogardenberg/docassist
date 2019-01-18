@@ -116,3 +116,5 @@ en:
   user:
     edit:
       title: "Your account"
+  misc:
+    confirm_destruction: "Are you sure?\nYou cannot undo that."

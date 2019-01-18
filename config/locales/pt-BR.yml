@@ -307,3 +307,5 @@ pt-BR:
   user:
     edit:
       title: "Sua conta"
+  misc:
+    confirm_destruction: "Você tem certeza disso?\nEsta ação não pode ser desfeita."
