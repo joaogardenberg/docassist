@@ -221,6 +221,26 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+  views:
+    pagination:
+      first: "Primeira"
+      last: "Última"
+      previous: "Anterior"
+      next: "Próxima"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      entry:
+        zero: "registros"
+        one: "registro"
+        other: "registros"
+      one_page:
+        display_entries:
+          zero: "Nenhum %{entry_name} encontrado"
+          one: "Mostrando 1 %{entry_name}"
+          other: "Mostrando %{count} %{entry_name}s"
+      more_pages:
+        display_entries: "Mostrando %{first} - %{last} de %{total} %{entry_name}s"
   sidebar:
     user_picture: "Foto do usuário"
     edit: "Editar"
@@ -228,6 +248,10 @@ pt-BR:
     appointments: "Consultas"
     patients: "Pacientes"
     users: "Usuários"
+  header:
+    sidebar_toggle_tooltip: "Abrir o menu"
+    fullscreen_tooltip: "Tela cheia"
+    logout_tooltip: "Deslogar"
   footer:
     all_rights_reserved: "Todos os direitos reservados"
   dashboard:
@@ -246,22 +270,40 @@ pt-BR:
     index:
       title: "Pacientes"
       new_patient_label: "Novo paciente"
+      photo_alt: "Foto de %{name}"
+      search_placeholder: "Procurar paciente..."
+      search_tooltip: "Procurar paciente"
     show:
       title: "Paciente"
     new:
       title: "Novo paciente"
     edit:
       title: "Editar paciente"
+    attributes:
+      patient: "paciente"
+      name: "Nome"
   users:
     index:
       title: "Usuários"
-      new_patient_label: "Novo usuário"
+      new_user_label: "Novo usuário"
+      photo_alt: "Foto de %{name}"
+      search_placeholder: "Procurar usuário..."
+      search_tooltip: "Procurar usuário"
     show:
       title: "Usuário"
     new:
       title: "Novo usuário"
     edit:
       title: "Editar usuário"
+    attributes:
+      user: "usuário"
+      name: "Nome"
+      username: "Usuário"
+      type: "Tipo"
+    types:
+      secretary: "Secretário(a)"
+      doctor: "Médico(a)"
+      undefined: "Não definido"
   user:
     edit:
       title: "Sua conta"

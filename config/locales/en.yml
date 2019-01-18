@@ -30,6 +30,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  views:
+    pagination:
+      first: "First"
+      last: "Last"
+      previous: "Previous"
+      next: "Next"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      entry:
+        zero: "entries"
+        one: "entry"
+        other: "entries"
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying 1 %{entry_name}"
+          other: "Displaying %{count} %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} %{first} - %{last} of %{total}"
   sidebar:
     user_picture: "User picture"
     edit: "Edit"
@@ -37,6 +57,10 @@ en:
     appointments: "Appointments"
     patients: "Patients"
     users: "Users"
+  header:
+    sidebar_toggle_tooltip: "Open menu"
+    fullscreen_tooltip: "Fullscreen"
+    logout_tooltip: "Log out"
   footer:
     all_rights_reserved: "All rights reserved"
   dashboard:
@@ -55,22 +79,40 @@ en:
     index:
       title: "Patients"
       new_patient_label: "New patient"
+      photo_alt: "Photo of %{name}"
+      search_placeholder: "Search patient..."
+      search_tooltip: "Search patient"
     show:
       title: "Patient"
     new:
       title: "New patient"
     edit:
       title: "Edit patient"
+    attributes:
+      patient: "patient"
+      name: "Name"
   users:
     index:
       title: "Users"
-      new_patient_label: "New user"
+      new_user_label: "New user"
+      photo_alt: "Photo of %{name}"
+      search_placeholder: "Search user..."
+      search_tooltip: "Search user"
     show:
       title: "User"
     new:
       title: "New user"
     edit:
       title: "Edit user"
+    attributes:
+      user: "user"
+      name: "Name"
+      username: "Username"
+      type: "Type"
+    types:
+      secretary: "Secretary"
+      doctor: "Doctor"
+      undefined: "Undefined"
   user:
     edit:
       title: "Your account"
