@@ -1,0 +1,22 @@
+<%# Link to the "Next" page
+  - available local variables
+    url:           url to the next page
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+-%>
+
+<% if current_page.last? %>
+  <li class="next-page disabled">
+    <a>
+      <i class="fas fa-chevron-right"></i>
+    </a>
+  </li>
+<% else %>
+  <li class="next-page waves-effect">
+    <%= link_to url, class: 'tooltiped', 'data-tooltip' => t('views.pagination.next').html_safe, 'data-position' => 'top', rel: 'next', remote: remote do %>
+      <i class="fas fa-chevron-right"></i>
+    <% end %>
+  </li>
+<% end %>
