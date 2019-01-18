@@ -6,19 +6,19 @@ ruby '2.6.0'
 
 # Back-end main gems
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'bson_ext'
+gem 'bson_ext', '~> 1.5'
 gem 'mongoid', '~> 7.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 gem 'redis', '~> 4.0'
 gem 'redis-objects', '~> 1.4'
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3'
 
 # Front-end main gems
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'sass-rails', '~> 5.0'
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
 # Security gems
@@ -26,11 +26,13 @@ gem 'devise', '~> 4.5'
 
 # Misc gems
 gem 'figaro', '~> 1.1'
-gem 'font-awesome-sass'
-gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.6.1'
+gem 'jquery-rails', '~> 4.3'
+gem 'kaminari-actionview'
+gem 'kaminari-mongoid'
 gem 'materialize-sass', '~> 1.0.0'
-gem 'react-rails'
-gem 'webpacker'
+gem 'react-rails', '~> 2.4'
+gem 'webpacker', '~> 3.5'
 
 # Development environment gems
 group :development do
