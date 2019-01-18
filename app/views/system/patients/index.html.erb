@@ -32,7 +32,7 @@
       </thead>
       <tbody>
         <% @patients.each do |patient| %>
-          <tr onclick="openUrl('<%= system_patient_path(id: patient.id) %>')">
+          <tr onclick="openUrl('<%= system_patient_path(id: patient.id) %>', event)">
             <td class="photo">
               <img src="<%= patient.picture %>" alt="<%= t('patients.index.photo_alt', name: patient.name).html_safe %>" onerror="onUserPictureError(event)">
             </td>

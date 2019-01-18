@@ -34,7 +34,7 @@
       </thead>
       <tbody>
         <% @users.each do |user| %>
-          <tr onclick="openUrl('<%= system_user_path(id: user.id) %>')">
+          <tr onclick="openUrl('<%= system_user_path(id: user.id) %>', event)">
             <td class="photo">
               <img src="<%= user.picture %>" alt="<%= t('users.index.photo_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)">
             </td>
