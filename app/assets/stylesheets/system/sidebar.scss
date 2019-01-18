@@ -19,7 +19,7 @@
     }
   }
 
-  .overlay {
+  .sidebar-overlay {
     background-color: $black;
     bottom: 0;
     display: none;
@@ -36,7 +36,7 @@
       left: 0;
     }
 
-    .overlay {
+    .sidebar-overlay {
       animation: overlayOpacity .2s forwards;
       display: block;
     }
@@ -84,13 +84,18 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border-bottom: 1px solid $gradient-middle-color;
+    border-bottom: 1px solid $sidebar-item-color;
     padding: 21px 10px;
 
     > .name {
       color: $sidebar-item-hover-color;
       font-weight: bold;
-      text-shadow: 1px 1px $sidebar-item-color;
+      text-shadow:
+                   1px 1px $sidebar-item-color,
+                   2px 2px $sidebar-item-color,
+                   1px -1px #999,
+                   -1px 1px #999,
+                   -1px -1px #999;
     }
   }
 
@@ -111,7 +116,7 @@
   }
 
   > img {
-    background-color: $gradient-middle-color;
+    background-color: $sidebar-item-color;
     border-radius: 10px;
     height: 38px;
     object-fit: cover;
@@ -133,7 +138,7 @@
   }
 
   > .badge {
-    background-color: $gradient-middle-transp-color;
+    background-color: $black-transparent-lighter;
     bottom: 2px;
     box-shadow: 0 0 1px 0 $white;
     font-size: .8rem;

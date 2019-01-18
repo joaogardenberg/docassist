@@ -91,7 +91,7 @@ body {
               -1px 0 5px 0 $sidebar-box-shadow-third-color;
 }
 
-*.test {
+.test {
   &, * {
     background: rgba(0, 0, 0, 0.2) !important;
     box-shadow: 0 0 0 1px rgba(0, 255, 0, 0.5) !important;
@@ -106,8 +106,9 @@ body {
               0 0 1px -2px $sidebar-box-shadow-second-color,
               0 0 5px 0 $sidebar-box-shadow-third-color;
   cursor: pointer;
+  max-height: calc(100% - 10px);
   max-width: 300px;
-  overflow: hidden;
+  overflow-y: auto;
   padding: 10px;
   position: fixed;
   right: 5px;
@@ -123,6 +124,10 @@ body {
     i {
       display: block;
     }
+  }
+
+  &:not(.show) {
+    overflow-y: hidden;
   }
 
   &.closed {
@@ -161,6 +166,10 @@ body {
       margin-bottom: 5px;
     }
   }
+}
+
+.material-tooltip {
+  z-index: 50000;
 }
 
 @media only screen and (max-width: 767px) {
