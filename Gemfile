@@ -37,6 +37,7 @@ gem 'webpacker', '~> 3.5'
 # Development environment gems
 group :development do
   # gem 'capistrano-rails'
+  gem 'guard-livereload', '~> 2.5', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
