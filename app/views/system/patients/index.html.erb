@@ -8,18 +8,15 @@
 </header>
 <section>
   <% if @patients.any? || @search %>
-    <nav class="search-bar">
-      <div class="nav-wrapper">
-        <form method="get" action="<%= system_patients_path %>">
-          <div class="input-field">
-            <label for="search" class="label-icon waves-effect tooltiped" onclick="onLabelClick(event)" data-tooltip="<%= t('patients.index.search_tooltip').html_safe %>" data-position="left">
-              <i class="fas fa-search"></i>
-            </label>
-            <input type="search" id="search" name="search" value="<%= @search %>" placeholder="<%= t('patients.index.search_placeholder').html_safe %>">
-          </div>
-        </form>
+    <form class="search-bar" method="get" action="<%= system_patients_path %>">
+      <div class="input-field">
+        <input id="search" type="text" name="search" value="<%= @search %>">
+        <label for="search"><%= t('patients.index.search_placeholder').html_safe %></label>
+        <button type="submit" class="submit btn-flat waves-effect tooltiped" data-tooltip="<%= t('patients.index.search_tooltip').html_safe %>" data-position="left">
+          <i class="fas fa-search fa-flip-horizontal"></i>
+        </button>
       </div>
-    </nav>
+    </form>
   <% end %>
   <% if @patients.any? %>
     <table>

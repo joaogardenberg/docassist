@@ -47,41 +47,36 @@
   }
 
   .search-bar {
-    background-color: $white;
-    border-radius: 3px;
-    height: 40px;
-    overflow: hidden;
+    margin-bottom: 20px;
 
-    label.label-icon {
-      box-shadow: -2px 0 2px 0 $sidebar-box-shadow-first-color,
-                  -3px 0 1px -2px $sidebar-box-shadow-second-color,
-                  -1px 0 5px 0 $sidebar-box-shadow-third-color;
-      border-radius: 3px;
-      cursor: pointer;
-      left: initial;
-      right: 0;
-      padding: 0 27px;
-      transform: none;
-      transition: background-color .2s;
+    .input-field {
+      margin: 0;
 
-      &:hover {
-        background-color: $disabled-color-lighter;
+      #search {
+        margin: 0;
+        border-color: $header-line-color;
+
+        &:focus {
+          border-bottom: 1px solid $gradient-initial-color;
+          box-shadow: 0 1px 0 0 $gradient-initial-color;
+
+          + label {
+            color: $gradient-initial-color !important;
+          }
+        }
       }
 
-      &, i {
-        height: 40px;
-        line-height: 40px;
+      .submit {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-radius: 5px 5px 0 0;
       }
 
-      i {
-        color: $black;
-        font-size: 1.5rem !important;
-        transition: color .2s;
+      label.active + .submit {
+        background: $gradient-initial-color !important;
+        color: $white;
       }
-    }
-
-    #search {
-      padding-left: 10px;
     }
   }
 
@@ -321,6 +316,10 @@ ul[id^="select-options"] {
   .datepicker-modal {
     top: 76px !important;
   }
+
+  th:nth-of-type(4), td:nth-of-type(4) {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -330,6 +329,10 @@ ul[id^="select-options"] {
 
   .datepicker-modal {
     left: 50%;
+  }
+
+  th:nth-of-type(3), td:nth-of-type(3) {
+    display: none;
   }
 }
 
