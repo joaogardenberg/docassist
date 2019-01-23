@@ -117,4 +117,9 @@ en:
     edit:
       title: "Your account"
   misc:
+    system: "System"
     confirm_destruction: "Are you sure?\nYou cannot undo that."
+    asc_full: "ascending"
+    desc_full: "descending"
+    order: "Order by %{field} %{direction}"
+    not_found: "No %{entry} found"

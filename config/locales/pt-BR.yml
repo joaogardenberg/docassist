@@ -308,7 +308,9 @@ pt-BR:
     edit:
       title: "Sua conta"
   misc:
+    system: "Sistema"
     confirm_destruction: "Você tem certeza disso?\nEsta ação não pode ser desfeita."
     asc_full: "crescente"
     desc_full: "decrescente"
     order: "Ordenar por %{field} %{direction}"
+    not_found: "Nenhum %{entry} encontrado"
