@@ -7,7 +7,10 @@
 
     <%= link_to :system_dashboard_index, class: 'my brand-logo waves-effect waves-light' do %>
       <!-- <img src="https://via.placeholder.com/350x150" /> -->
-      <h1>DocAssist</h1>
+      <h1>
+        <%= image_tag asset_path('logo.svg') %>
+        <span class="before">D</span><span class="hidden">o</span><span class="after">cAssist</span>
+      </h1>
     <% end %>
 
     <ul class="header-nav right">
