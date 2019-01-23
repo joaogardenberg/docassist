@@ -8,8 +8,8 @@
 </header>
 <section>
   <% if @patients.any? || @search %>
-    <form class="search-bar" method="get" action="<%= system_patients_path %>">
-      <div class="input-field">
+    <form class="search-bar row" method="get" action="<%= system_patients_path %>">
+      <div class="input-field col s12">
         <input id="search" type="text" name="search" value="<%= @search %>">
         <label for="search"><%= t('patients.index.search_placeholder').html_safe %></label>
         <button type="submit" class="submit btn-flat waves-effect tooltiped" data-tooltip="<%= t('patients.index.search_tooltip').html_safe %>" data-position="left">
@@ -19,7 +19,7 @@
     </form>
   <% end %>
   <% if @patients.any? %>
-    <table>
+    <table class="index-table">
       <thead>
         <tr>
           <th class="photo"></th>
@@ -62,7 +62,16 @@
         <div class="table-pages"><%= paginate @patients, window: 2, outer_window: 2 %></div>
       </div>
     </div>
-    <% else %>
-      <p>Nenhum paciente encontrado.</p>
-    <% end %>
+  <% else %>
+    <div class="not-found row">
+      <div class="col s12">
+        <p class="center-align">
+          <i class="fas fa-address-card"></i>
+        </p>
+      </div>
+      <div class="col s12">
+        <p class="center-align"><%= t('misc.not_found', entry: t('patients.attributes.patient')) %>.</p>
+      </div>
+    </div>
+  <% end %>
 </section>

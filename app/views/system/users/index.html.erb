@@ -8,8 +8,8 @@
 </header>
 <section>
   <% if @users.any? || @search %>
-    <form class="search-bar" method="get" action="<%= system_users_path %>">
-      <div class="input-field">
+    <form class="search-bar row" method="get" action="<%= system_users_path %>">
+      <div class="input-field col s12">
         <input id="search" type="text" name="search" value="<%= @search %>">
         <label for="search"><%= t('users.index.search_placeholder').html_safe %></label>
         <button type="submit" class="submit btn-flat waves-effect tooltiped" data-tooltip="<%= t('users.index.search_tooltip').html_safe %>" data-position="left">
@@ -19,7 +19,7 @@
     </form>
   <% end %>
   <% if @users.any? %>
-    <table>
+    <table class="index-table">
       <thead>
         <tr>
           <th class="photo"></th>
@@ -70,7 +70,16 @@
         <div class="table-pages"><%= paginate @users, window: 2, outer_window: 2 %></div>
       </div>
     </div>
-    <% else %>
-      <p>Nenhum usuário encontrado.</p>
-    <% end %>
+  <% else %>
+    <div class="not-found row">
+      <div class="col s12">
+        <p class="center-align">
+          <i class="fas fa-address-card"></i>
+        </p>
+      </div>
+      <div class="col s12">
+        <p class="center-align"><%= t('misc.not_found', entry: t('users.attributes.user')) %>.</p>
+      </div>
+    </div>
+  <% end %>
 </section>
