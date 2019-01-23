@@ -77,7 +77,7 @@ en:
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
       log_in_title: "Log in"
-      email_label: "Email or username"
+      login_label: "Email or username"
       password_label: "Password"
       remember_me_label: "Remember me for 24 hours"
       submit_label: "Log in"

@@ -77,7 +77,7 @@ pt-BR:
       signed_out: "Saiu com sucesso."
       already_signed_out: "Saiu com sucesso."
       log_in_title: "Login"
-      email_label: "E-mail ou usuário"
+      login_label: "E-mail ou usuário"
       password_label: "Senha"
       remember_me_label: "Lembrar de mim por 24 horas"
       submit_label: "Login"
