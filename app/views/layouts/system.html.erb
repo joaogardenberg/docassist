@@ -2,9 +2,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DocAssist - Sistema</title>
+    <title>DocAssist - <%= t('misc.system') %></title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%= favicon_link_tag asset_path('favicon.png') %>
 
     <%= stylesheet_link_tag    'system', media: 'all' %>
     <%= javascript_include_tag 'system' %>
@@ -19,33 +22,41 @@
       <%= render('/system/common/header') %>
 
       <main class="page-content">
-
         <article class="page">
 
           <%= yield %>
 
         </article>
-
-        <div class="todo" onclick="toggleTodo(event)">
-          <i class="fas fa-times" onclick="closeTodo(event)"></i>
-          <h5>TODO</h5>
-          <p>Ajeitar 'nenhum paciente encontrado'</p>
-          <p>Fazer páginas dos pacientes</p>
-          <p>Integrar páginas dos pacientes com o back-end</p>
-          <p>Fazer páginas dos usuários</p>
-          <p>Integrar páginas dos usuários com o back-end</p>
-          <h5>NEXT</h5>
-          <p>Adicionar permissões</p>
-          <p>Atualizar sidebar com as permissões</p>
-          <p>Fazer página das consultas</p>
-          <p>Fazer dashboard</p>
-          <p>Terminar campos dos pacientes</p>
-        </div>
-
       </main>
 
       <%= render('/system/common/footer') %>
 
     </div>
+
+    <div class="todo" onclick="toggleTodo(event)">
+      <i class="fas fa-times" onclick="closeTodo(event)"></i>
+      <h5>TODO</h5>
+      <p>Fazer páginas dos pacientes</p>
+      <p>Integrar páginas dos pacientes com o back-end</p>
+      <p>Fazer páginas dos usuários</p>
+      <p>Integrar páginas dos usuários com o back-end</p>
+      <p>Colocar alguns usuários como principais</p>
+      <p>Adicionar permissões</p>
+      <p>Só deixar os usuários acessarem coisas relacionadas ao usuário principal</p>
+      <p>Fazer validações dos usuários no back-end</p>
+      <p>Fazer validações dos pacientes no back-end</p>
+      <h5>NEXT</h5>
+      <p>Atualizar sidebar com as permissões</p>
+      <p>Fazer página das consultas</p>
+      <p>Fazer dashboard</p>
+      <p>Terminar campos dos pacientes</p>
+      <% if Rails.env.development? %>
+        <h5>Debug</h5>
+        <span><%= debug(params) %></span>
+      <% end %>
+    </div>
+
+
+
   </body>
 </html>
