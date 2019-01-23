@@ -106,6 +106,7 @@ body {
               0 0 1px -2px $sidebar-box-shadow-second-color,
               0 0 5px 0 $sidebar-box-shadow-third-color;
   cursor: pointer;
+  direction: rtl;
   max-height: calc(100% - 10px);
   max-width: 300px;
   overflow-y: auto;
@@ -165,6 +166,10 @@ body {
     &:not(:last-child) {
       margin-bottom: 5px;
     }
+  }
+
+  .debug_dump {
+    overflow: auto;
   }
 }
 

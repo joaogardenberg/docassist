@@ -53,8 +53,10 @@
       margin: 0;
 
       #search {
-        margin: 0;
+        box-sizing: border-box;
         border-color: $header-line-color;
+        margin: 0;
+        padding-right: 58px;
 
         &:focus {
           border-bottom: 1px solid $gradient-initial-color;
@@ -68,7 +70,7 @@
 
       .submit {
         position: absolute;
-        right: 0;
+        right: .75rem;
         bottom: 0;
         border-radius: 5px 5px 0 0;
       }
@@ -80,7 +82,7 @@
     }
   }
 
-  table {
+  table.index-table {
     margin: 10px 0 15px;
     max-width: 100%;
     overflow-x: auto;
@@ -88,164 +90,297 @@
     tr {
       border-color: $header-line-color;
     }
-  }
 
-  table + .row {
-    margin: 0;
-
-    .col {
-      padding: 0;
+    th.photo {
+      width: 32px;
     }
 
-    .table-info {
-      color: $default-color-lighter;
-      font-size: 1rem;
+    th.actions {
+      width: 69px;
+    }
+
+    td.photo {
+      line-height: 0;
+
+      img {
+        background-color: $default-color;
+        border-radius: 8px;
+        height: 32px;
+        object-fit: cover;
+        overflow: hidden;
+        padding: 1px;
+        width: 32px;
+        opacity: .6;
+      }
+    }
+
+    td.actions {
+      ul {
+        display: flex;
+        margin: 0;
+
+        li {
+          &:not(:first-child) {
+            margin-left: 5px;
+          }
+
+          .btn-floating.btn-small {
+            height: 32px;
+            opacity: .6;
+            padding: 0;
+            position: relative;
+            right: 0;
+            top: 0;
+            transition: all .2s;
+            width: 32px;
+          }
+
+          .btn-small i {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    tbody tr:hover {
+      background-color: $table-hover-color;
+
+      .btn-floating.btn-small {
+        opacity: 1 !important;
+      }
+
+      .photo img {
+        opacity: 1;
+      }
+    }
+
+    tbody tr {
+      cursor: pointer;
+    }
+
+    th,
+    td {
+      padding: 5px 10px;
+    }
+
+    th[class*="sort"]:not(.sorting_disabled) {
+      position: relative;
+      cursor: pointer;
+      outline: none;
+
+      &::after {
+        bottom: 0;
+        color: $disabled-color-lighter;
+        content: '\f0dc';
+        font-family: 'Font Awesome 5 Free';
+        font-size: 1.5rem;
+        height: 100%;
+        line-height: inherit;
+        position: absolute;
+        right: 0;
+      }
+
+      &.sorting_asc,
+      &.sorting_desc {
+        &::after {
+          color: inherit;
+        }
+      }
+
+      &.sorting_asc {
+        &::after {
+          content: '\f0de';
+        }
+      }
+
+      &.sorting_desc {
+        &::after {
+          content: '\f0dd';
+        }
+      }
+    }
+
+    & + .row {
+      margin: 0;
+
+      .col {
+        padding: 0;
+      }
+
+      .table-info {
+        color: $default-color-lighter;
+        font-size: 1rem;
+        font-weight: lighter;
+      }
+
+      .pagination {
+        margin: 0;
+        text-align: right;
+
+        li {
+          height: 2.5rem;
+          line-height: 2.5rem;
+          overflow: hidden;
+
+          a {
+            font-size: 1rem;
+            font-weight: lighter;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            padding: 0 .8rem;
+          }
+
+          i {
+            font-size: 1.35rem;
+          }
+
+          &.gap a {
+            padding: 0;
+          }
+
+          &.active a {
+            background-color: $gradient-initial-color;
+            font-weight: bold;
+          }
+
+          &.prev-page a, &.next-page a {
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+
+  .not-found {
+    margin-top: 100px;
+
+    p {
+      font-size: 1.5rem;
       font-weight: lighter;
     }
 
-    .pagination {
-      margin: 0;
-      text-align: right;
+    i {
+      font-size: 3rem;
+    }
+  }
 
-      li {
-        height: 2.5rem;
-        line-height: 2.5rem;
+  .form {
+    .row {
+      margin: 0 -.75rem;
+    }
+
+    .input-field {
+      margin-bottom: 24px;
+
+      label {
+        color: $default-color;
+        user-select: none;
+      }
+
+      input[type=text],
+      input[type=email],
+      input[type=password] {
+        position: relative;
+        margin: 0;
+
+        &:focus {
+          border-bottom: 1px solid $gradient-initial-color;
+          box-shadow: 0 2px 0 -1px $gradient-initial-color;
+
+          & + label {
+            color: $gradient-initial-color;
+          }
+        }
+      }
+
+      .prefix {
+        color: $default-color;
+
+        &.active {
+          color: $gradient-initial-color;
+        }
+      }
+
+      .picker {
+        height: auto;
+        padding: 8px 10px;
+        position: absolute;
+        right: .75rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .helper-text {
+        color: $error-color;
+        font-size: .84rem;
+        line-height: .84rem;
+        margin-top: 2px;
+        max-width: calc(100% - .75rem);
+        opacity: 0;
         overflow: hidden;
+        position: absolute;
+      }
 
-        a {
-          font-size: 1rem;
-          font-weight: lighter;
-          height: 2.5rem;
-          line-height: 2.5rem;
-          padding: 0 .8rem;
+      .character-counter {
+        bottom: -2px;
+        font-weight: lighter;
+        position: absolute;
+        right: .75rem;
+      }
+
+      &.valid {
+        input[type=text],
+        input[type=email],
+        input[type=password] {
+          border-bottom: 1px solid $success-color;
+          box-shadow: 0 2px 0 -1px $success-color;
+        }
+      }
+
+      &.invalid {
+        input[type=text],
+        input[type=email],
+        input[type=password] {
+          border-bottom: 1px solid $error-color;
+          box-shadow: 0 2px 0 -1px $error-color;
         }
 
-        i {
-          font-size: 1.35rem;
+        .helper-text {
+          animation: errorAppear .2s forwards;
         }
 
-        &.gap a {
-          padding: 0;
+        @keyframes errorAppear {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
+      }
+    }
 
-        &.active a {
-          background-color: $gradient-initial-color;
-          font-weight: bold;
-        }
+    .buttons {
+      margin-bottom: 0;
 
-        &.prev-page a, &.next-page a {
-          vertical-align: middle;
-        }
+      .btn:not(:last-child) {
+        margin-right: 10px;
       }
     }
   }
 
-  th.photo {
-    width: 32px;
+  .select-dropdown {
+    max-height: 200px;
   }
 
-  th.actions {
-    width: 69px;
-  }
+  h5.section {
+    background-color: $footer-background-color;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    line-height: 1.5rem;
+    margin: 1rem 0;
+    padding: .5rem 0;
+    text-align: center;
 
-  td.photo {
-    line-height: 0;
-
-    img {
-      background-color: $default-color;
-      border-radius: 8px;
-      height: 32px;
-      object-fit: cover;
-      overflow: hidden;
-      padding: 1px;
-      width: 32px;
-      opacity: .6;
-    }
-  }
-
-  td.actions {
-    ul {
-      display: flex;
-      margin: 0;
-
-      li {
-        &:not(:first-child) {
-          margin-left: 5px;
-        }
-
-        .btn-floating.btn-small {
-          height: 32px;
-          opacity: .6;
-          padding: 0;
-          position: relative;
-          right: 0;
-          top: 0;
-          transition: all .2s;
-          width: 32px;
-        }
-
-        .btn-small i {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
-
-  tbody tr:hover {
-    background-color: $table-hover-color;
-
-    .btn-floating.btn-small {
-      opacity: 1 !important;
-    }
-
-    .photo img {
-      opacity: 1;
-    }
-  }
-
-  tbody tr {
-    cursor: pointer;
-  }
-
-  th,
-  td {
-    padding: 5px 10px;
-  }
-
-  th[class*="sort"]:not(.sorting_disabled) {
-    position: relative;
-    cursor: pointer;
-    outline: none;
-
-    &::after {
-      bottom: 0;
-      color: $disabled-color-lighter;
-      content: '\f0dc';
-      font-family: 'Font Awesome 5 Free';
-      font-size: 1.5rem;
-      height: 100%;
-      line-height: inherit;
-      position: absolute;
-      right: 0;
-    }
-
-    &.sorting_asc,
-    &.sorting_desc {
-      &::after {
-        color: inherit;
-      }
-    }
-
-    &.sorting_asc {
-      &::after {
-        content: '\f0de';
-      }
-    }
-
-    &.sorting_desc {
-      &::after {
-        content: '\f0dd';
-      }
+    &:first-child {
+      margin-top: 0;
     }
   }
 }
@@ -337,7 +472,7 @@ ul[id^="select-options"] {
 }
 
 @media only screen and (max-width: 992px) {
-  .page table + .row {
+  .page table.index-table + .row {
     .table-info {
       text-align: center;
       margin-bottom: 15px;
