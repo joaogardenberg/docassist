@@ -3,7 +3,6 @@ module System
     respond_to    :html
     before_action :load_patient,     only: [:show, :edit, :update, :destroy]
     before_action :load_params,      only: :index
-    after_action  :validate_patient, only: [:create, :update]
 
     def index
       @patients = Patient
@@ -18,10 +17,22 @@ module System
 
     def create
       @patient = Patient.new(permitted_attributes)
+
+      if @patient.valid?
+        @patient.save && redirect_to(:system_patients)
+      else
+        render(action: :new)
+      end
     end
 
     def update
-      @patient = @patient.assign_attributes(permitted_attributes)
+      @patient.assign_attributes(permitted_attributes)
+
+      if @patient.valid?
+        @patient.save && redirect_to(:system_patients)
+      else
+        render(action: :edit)
+      end
     end
 
     def destroy
@@ -32,17 +43,16 @@ module System
     private
 
     def permitted_attributes
-      params.require(:patient)
-            .permit(
-              :name, :gender, :marital_status,
-              :date_of_birth, :occupation, :cpf,
-              :rg, :rg_issuing_agency, :nationality,
-              :nationality_other, :place_of_birth, :place_of_birth_other,
-              :landline, :cell_phone, :work_phone,
-              :email, :cep, :state,
-              :city, :neighborhood, :address,
-              :complement
-            )
+      params.permit(
+        :name, :gender, :marital_status,
+        :date_of_birth, :occupation, :cpf,
+        :rg, :rg_issuing_agency, :nationality,
+        :nationality_other, :place_of_birth, :place_of_birth_other,
+        :landline, :cell_phone, :work_phone,
+        :email, :cep, :state,
+        :city, :neighborhood, :address,
+        :complement
+      )
     end
 
     def permitted_params
@@ -52,11 +62,6 @@ module System
     def load_patient
       @patient = Patient.where(id: permitted_params[:id]).first
       redirect_to(:system_patients) unless @patient
-    end
-
-    def validate_patient
-      @patient.save if @patient.valid?
-      respond_with(@patient)
     end
 
     def load_params
