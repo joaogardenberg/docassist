@@ -1,9 +1,9 @@
 module System
   class UsersController < SystemController
     respond_to    :html
-    before_action :load_user,     only: [:show, :edit, :update, :destroy]
-    before_action :load_params,   only: :index
-    after_action  :validate_user, only: [:create, :update]
+    before_action :load_user,    only: [:show, :edit, :update, :destroy]
+    before_action :load_doctors, only: [:new, :edit]
+    before_action :load_params,  only: :index
 
     def index
       @users = User
@@ -18,10 +18,22 @@ module System
 
     def create
       @user = User.new(permitted_attributes)
+
+      if @user.valid?
+        @user.save && redirect_to(:system_users)
+      else
+        render(action: :new)
+      end
     end
 
     def update
-      @user = @user.assign_attributes(permitted_attributes)
+      @user.assign_attributes(permitted_attributes)
+
+      if @user.valid?
+        @user.save && redirect_to(:system_users)
+      else
+        render(action: :edit)
+      end
     end
 
     def destroy
@@ -32,12 +44,11 @@ module System
     private
 
     def permitted_attributes
-      params.require(:user)
-            .permit(
-              :email, :password, :username,
-              :type, :type_of, :name,
-              :picture, :background
-            )
+      params.permit(
+        :email, :password, :username,
+        :type, :type_of, :name,
+        :picture, :background
+      )
     end
 
     def permitted_params
@@ -49,9 +60,8 @@ module System
       redirect_to(:system_users) unless @user
     end
 
-    def validate_user
-      @user.save if @user.valid?
-      respond_with(@user)
+    def load_doctors
+      @doctors = User.where(type: 0)
     end
 
     def load_params
