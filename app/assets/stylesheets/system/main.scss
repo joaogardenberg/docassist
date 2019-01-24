@@ -114,8 +114,8 @@ body {
   position: fixed;
   right: 5px;
   top: calc(100% - 32px);
-  width: 70px;
-  z-index: 30000;
+  width: 80px;
+  z-index: $todo-z-index;
 
   &.show {
     bottom: 5px;
@@ -170,11 +170,17 @@ body {
 
   .debug_dump {
     overflow: auto;
+    direction: ltr;
   }
 }
 
 .material-tooltip {
-  z-index: 50000;
+  z-index: $tooltip-z-index;
+}
+
+.select-dropdown.dropdown-content {
+  max-height: 200px;
+  z-index: $select-dropdown-z-index;
 }
 
 @media only screen and (max-width: 767px) {

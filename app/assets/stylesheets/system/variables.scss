@@ -40,10 +40,14 @@ $black:                            #000;
 $black-transparent:                rgba(0, 0, 0, .7);
 $black-transparent-lighter:        rgba(0, 0, 0, .5);
 
+$modal-z-index:                    30000;
+$select-dropdown-z-index:          27000;
+$datepicker-z-index:               26000;
+$datepicker-overlay-z-index:       25000;
+$tooltip-z-index:                  20000;
+$todo-z-index:                     15000;
 $sidebar-z-index:                  12000;
 $sidebar-overlay-z-index:          11000;
 $sidebar-container-z-index:        10000;
 $header-z-index:                   5000;
 $footer-z-index:                   5000;
-$page-loader-z-index:              4000;
-$modal-z-index:                    3000;

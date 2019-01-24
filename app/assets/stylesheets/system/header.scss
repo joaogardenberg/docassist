@@ -57,11 +57,12 @@
       text-shadow: 1px 1px $black;
 
       .before {
-        margin: 0 .65rem 0 1rem;
+        margin-left: 16px;
       }
 
       .after {
-        margin: 0 1.1rem 0 1.25rem;
+        margin-left: 24px;
+        margin-right: 16px;
       }
 
       .hidden {

@@ -264,22 +264,22 @@
     }
   }
 
-  .form {
-    .row {
+  .form form {
+    > .row {
       margin: 0 -.75rem;
     }
 
-    .input-field {
+    > .row > .input-field, > .row > .col > .input-field {
       margin-bottom: 24px;
 
-      label {
+      > label {
         color: $default-color;
         user-select: none;
       }
 
-      input[type=text],
-      input[type=email],
-      input[type=password] {
+      > input[type=text],
+      > input[type=email],
+      > input[type=password] {
         position: relative;
         margin: 0;
 
@@ -329,29 +329,33 @@
       }
 
       &.valid {
-        input[type=text],
-        input[type=email],
-        input[type=password] {
-          border-bottom: 1px solid $success-color;
-          box-shadow: 0 2px 0 -1px $success-color;
+        &, > .select-wrapper {
+          > input[type=text],
+          > input[type=email],
+          > input[type=password] {
+            border-bottom: 1px solid $success-color;
+            box-shadow: 0 2px 0 -1px $success-color;
+          }
         }
       }
 
       &.invalid {
-        input[type=text],
-        input[type=email],
-        input[type=password] {
-          border-bottom: 1px solid $error-color;
-          box-shadow: 0 2px 0 -1px $error-color;
-        }
+        &, > .select-wrapper {
+          > input[type=text],
+          > input[type=email],
+          > input[type=password] {
+            border-bottom: 1px solid $error-color;
+            box-shadow: 0 2px 0 -1px $error-color;
+          }
 
-        .helper-text {
-          animation: errorAppear .2s forwards;
-        }
+          .helper-text {
+            animation: errorAppear .2s forwards;
+          }
 
-        @keyframes errorAppear {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          @keyframes errorAppear {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
         }
       }
     }
@@ -363,10 +367,10 @@
         margin-right: 10px;
       }
     }
-  }
 
-  .select-dropdown {
-    max-height: 200px;
+    .dropdown-trigger {
+      margin: 0;
+    }
   }
 
   h5.section {
@@ -393,12 +397,12 @@ ul[id^="select-options"] {
   }
 }
 
+.modal-overlay {
+  z-index: $datepicker-overlay-z-index !important;
+}
+
 .datepicker-modal {
-  top: 104px !important;
-  left: calc(120px + 50%);
-  right: initial;
-  transform: translateX(-50%) !important;
-  width: 625px;
+  z-index: $datepicker-z-index !important;
 
   .datepicker-date-display {
     background-color: $gradient-initial-color;
@@ -409,16 +413,8 @@ ul[id^="select-options"] {
       background-color: transparent;
     }
 
-    .selects-container {
-      .select-wrapper {
-        &:not(.select-month) input {
-          max-width: 50px;
-        }
-
-        input {
-          width: 90px;
-        }
-      }
+    .selects-container .select-wrapper input {
+      width: 90px;
     }
   }
 
@@ -448,12 +444,10 @@ ul[id^="select-options"] {
     padding-top: 71px;
   }
 
-  .datepicker-modal {
-    top: 76px !important;
-  }
-
-  th:nth-of-type(4), td:nth-of-type(4) {
-    display: none;
+  table.index-table {
+    th:nth-of-type(4), td:nth-of-type(4) {
+      display: none;
+    }
   }
 }
 
@@ -462,12 +456,10 @@ ul[id^="select-options"] {
     padding-top: 79px;
   }
 
-  .datepicker-modal {
-    left: 50%;
-  }
-
-  th:nth-of-type(3), td:nth-of-type(3) {
-    display: none;
+  table.index-table {
+    th:nth-of-type(3), td:nth-of-type(3) {
+      display: none;
+    }
   }
 }
 
@@ -485,11 +477,5 @@ ul[id^="select-options"] {
     .pagination {
       text-align: center;
     }
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .datepicker-modal {
-    left: calc(29px + 50%);
   }
 }
