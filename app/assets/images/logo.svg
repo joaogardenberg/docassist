@@ -3,140 +3,262 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#0059B3;}
-	.st1{fill:#007FFF;stroke:#000000;stroke-miterlimit:10;}
-	.st2{fill:#62BEFF;stroke:#000000;stroke-miterlimit:10;}
-	.st3{fill:#4D4D4D;stroke:#000000;stroke-miterlimit:10;}
-	.st4{fill:url(#SVGID_1_);stroke:#000000;stroke-miterlimit:10;}
-	.st5{fill:url(#SVGID_2_);stroke:#000000;stroke-miterlimit:10;}
-	.st6{fill:#B3B3B3;stroke:#000000;stroke-miterlimit:10;}
-	.st7{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
-	.st8{fill:#E6E6E6;stroke:#000000;stroke-miterlimit:10;}
-	.st9{display:none;}
-	.st10{display:inline;}
-	.st11{fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st12{display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st13{display:inline;fill:#007FFF;stroke:#000000;stroke-miterlimit:10;}
+	.st0{fill:#007FFF;}
+	.st1{fill:#0059B3;}
+	.st2{fill:#62BEFF;}
+	.st3{fill:#4D4D4D;}
+	.st4{fill:#FFFFFF;}
+	.st5{fill:url(#SVGID_1_);}
+	.st6{fill:url(#SVGID_2_);}
+	.st7{fill:#C8C8C8;}
+	.st8{fill:none;stroke:#4D4D4D;stroke-width:25;stroke-miterlimit:10;}
+	.st9{filter:url(#Adobe_OpacityMaskFilter);}
+	.st10{opacity:0.5;mask:url(#SVGID_3_);}
+	.st11{fill:none;stroke:#000000;stroke-width:25;stroke-miterlimit:10;}
+	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#000000;stroke-width:8;stroke-miterlimit:10;}
+	.st13{fill:#C8C8C8;stroke:#000000;stroke-width:8;stroke-miterlimit:10;}
+	.st14{display:none;}
+	.st15{display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st16{display:inline;}
+	.st17{fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
 <g id="Base">
 	<g>
-		<path class="st0" d="M500,999.5c-67.43,0-132.85-13.21-194.43-39.25c-59.48-25.16-112.9-61.17-158.77-107.05
-			c-45.87-45.87-81.89-99.29-107.05-158.77C13.71,632.85,0.5,567.43,0.5,500s13.21-132.85,39.25-194.43
-			c25.16-59.48,61.17-112.9,107.05-158.77c45.87-45.87,99.29-81.89,158.77-107.05C367.15,13.71,432.57,0.5,500,0.5
-			s132.85,13.21,194.43,39.25c59.48,25.16,112.9,61.17,158.77,107.05c45.87,45.87,81.89,99.29,107.05,158.77
-			c26.05,61.58,39.25,127,39.25,194.43s-13.21,132.85-39.25,194.43c-25.16,59.48-61.17,112.9-107.05,158.77
-			c-45.87,45.87-99.29,81.89-158.77,107.05C632.85,986.29,567.43,999.5,500,999.5z"/>
-		<path d="M500,1c67.36,0,132.71,13.19,194.23,39.21c59.42,25.13,112.79,61.11,158.61,106.94s81.81,99.19,106.94,158.61
-			C985.81,367.29,999,432.64,999,500s-13.19,132.71-39.21,194.23c-25.13,59.42-61.11,112.79-106.94,158.61
-			s-99.19,81.81-158.61,106.94C632.71,985.81,567.36,999,500,999s-132.71-13.19-194.23-39.21
-			c-59.42-25.13-112.79-61.11-158.61-106.94S65.35,753.65,40.21,694.23C14.19,632.71,1,567.36,1,500s13.19-132.71,39.21-194.23
-			c25.13-59.42,61.11-112.79,106.94-158.61s99.19-81.81,158.61-106.94C367.29,14.19,432.64,1,500,1 M500,0C223.86,0,0,223.86,0,500
-			s223.86,500,500,500s500-223.86,500-500S776.14,0,500,0L500,0z"/>
+		<path class="st0" d="M500,985c-65.48,0-129-12.82-188.78-38.11c-57.75-24.43-109.62-59.4-154.17-103.95
+			c-44.55-44.55-79.52-96.42-103.95-154.17C27.82,629,15,565.48,15,500c0-65.48,12.82-129,38.11-188.78
+			c24.43-57.75,59.4-109.62,103.95-154.17s96.42-79.52,154.17-103.95C371,27.82,434.52,15,500,15c65.48,0,129,12.82,188.78,38.11
+			c57.75,24.43,109.62,59.4,154.17,103.95c44.55,44.55,79.52,96.42,103.95,154.17C972.18,371,985,434.52,985,500
+			c0,65.48-12.82,129-38.11,188.78c-24.43,57.75-59.4,109.62-103.95,154.17c-44.55,44.55-96.42,79.52-154.17,103.95
+			C629,972.18,565.48,985,500,985z"/>
+		<path class="st1" d="M500,30c63.46,0,125.01,12.42,182.94,36.92c55.96,23.67,106.23,57.56,149.4,100.74s77.07,93.44,100.74,149.4
+			C957.58,374.99,970,436.54,970,500s-12.42,125.01-36.92,182.94c-23.67,55.96-57.56,106.23-100.74,149.4s-93.44,77.07-149.4,100.74
+			C625.01,957.58,563.46,970,500,970s-125.01-12.42-182.94-36.92c-55.96-23.67-106.23-57.56-149.4-100.74S90.59,738.9,66.92,682.94
+			C42.42,625.01,30,563.46,30,500s12.42-125.01,36.92-182.94c23.67-55.96,57.56-106.23,100.74-149.4s93.44-77.07,149.4-100.74
+			C374.99,42.42,436.54,30,500,30 M500,0C223.86,0,0,223.86,0,500s223.86,500,500,500s500-223.86,500-500S776.14,0,500,0L500,0z"/>
 	</g>
-	<circle class="st1" cx="499" cy="499" r="469.5"/>
-</g>
-<g id="Highlight">
-	<path class="st2" d="M924.5,300.5c-7.87,60.02-40.8,252.8-206,418c-42.8,42.8-186.36,175.63-418,206"/>
-	<path class="st2" d="M74.5,699.5c7.73-59.86,40.35-253.35,206-419s359.14-198.27,419-206"/>
 </g>
 <g id="Halo">
-	<path class="st3" d="M-0.5,999.5c9.55-90.68,54.14-408.14,323-677s586.32-313.45,677-323"/>
-	<path class="st3" d="M-0.5,999.5c89.9-9.15,408.56-52.57,678-322s312.85-588.1,322-678"/>
-	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="499.25" y1="499.75" x2="333.25" y2="333.75">
+	<path class="st2" d="M308,930c64.29-10.62,249.65-49.77,411-211c160.55-160.43,200.16-344.63,211-409"/>
+	<path class="st2" d="M70,692c10.55-64.09,49.6-249.6,211-411c45.93-45.93,185.78-173.92,411-211"/>
+	<polygon class="st3" points="10.3,987.7 2.89,995.11 0.19,999.81 4.89,997.11 12.3,989.7 15,985 	"/>
+	<polygon class="st3" points="995.25,2.75 987.76,10.24 984.95,14.94 989.65,12.13 997.14,4.64 999.94,-0.06 	"/>
+	<path class="st3" d="M0,1000c83.61-6.12,411.95-39.95,686-314c59.28-59.28,285.69-299.47,314-686"/>
+	<path class="st3" d="M0,1000c6.12-83.61,39.95-411.95,314-686S916.39,6.12,1000,0"/>
+	<polygon class="st4" points="730.5,245.5 245.5,730.5 15,985 269.5,754.5 754.5,269.5 985,15 	"/>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="501.7791" y1="501.7791" x2="330.4274" y2="330.4274">
 		<stop  offset="0" style="stop-color:#FFFFFF"/>
-		<stop  offset="1" style="stop-color:#AAAAAA"/>
+		<stop  offset="1" style="stop-color:#DCDCDC"/>
 	</linearGradient>
-	<path class="st4" d="M14.5,984.5c11.71-92.44,61.57-393.52,319-651c257.02-257.07,557.48-307.18,650-319"/>
-	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="498.7406" y1="499.244" x2="665.7736" y2="664.0792">
+	<path class="st5" d="M15,985c10.81-90.82,58.34-394.34,317-653S894.18,25.81,985,15"/>
+	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="498.8738" y1="498.8756" x2="669.1581" y2="668.8896">
 		<stop  offset="0" style="stop-color:#FFFFFF"/>
-		<stop  offset="1" style="stop-color:#AAAAAA"/>
+		<stop  offset="1" style="stop-color:#DCDCDC"/>
 	</linearGradient>
-	<path class="st5" d="M14.5,984.5c92.05-11.58,393.53-61.16,651-319c257.27-257.64,306.51-558.9,318-651"/>
+	<path class="st6" d="M15,985c90.82-10.81,394.34-58.34,653-317c64.67-64.67,273.76-289.76,317-653"/>
 </g>
 <g id="Stethoscope">
-	<circle class="st3" cx="500" cy="500" r="250.5"/>
-	<circle class="st6" cx="499.5" cy="499.5" r="235"/>
-	<ellipse class="st7" cx="499.5" cy="500" rx="125" ry="125.5"/>
-	<circle class="st8" cx="499.5" cy="499.5" r="94"/>
-</g>
-<g id="Base_grid" class="st9">
-	<g class="st10">
-		<line class="st11" x1="-0.5" y1="500.5" x2="499.5" y2="-0.5"/>
+	<g>
+		<g>
+			<circle class="st7" cx="500" cy="500" r="250"/>
+			<circle class="st8" cx="500" cy="500" r="250"/>
+		</g>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="237.5" y="237.5" width="525" height="525">
+				<feFlood  style="flood-color:white;flood-opacity:1" result="back"/>
+				<feBlend  in="SourceGraphic" in2="back" mode="normal"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="237.5" y="237.5" width="525" height="525" id="SVGID_3_">
+			<g class="st9">
+				
+					<image style="overflow:visible;" width="530" height="530" xlink:href="data:image/jpeg;base64,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
+AAAAAAAAAbgNqBVo6XbnY6N59OjefS+wC5ALkAtkcLZHCyywoiYNihuAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAbgbqg4gPswoTCmIDiA2YG4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/2gAIAQIAAQUA/wDEJ//aAAgBAwABBQD/
+AMQn/9oACAEBAAEFAP8AnPHjx45cuXLly5cvHjx5/R8ePHLlw4cOHDhw4cOHDhcuXLx5/M8SJlMp
+hMJhMOHDhw4cOHDhwuFwuFwuVysefyPEiZTCYTCYTCYTDhw4cOHDhw4cLhcLhcLhcLhcrlZ/E8SJ
+lMJhMJhMJhMJhMOHDhw4cOHDhwuFwuFwuFyuFwuFysWfwZEymUwmUymEwmUymEwmHDly5cuXLly4
+XC4XC5XK4XC5XK4XK5WPP2yJEyzhMplMJlMplMJlMplMuHDhw4cOHDhwuVyuVyuFwuVyuFyuWsLl
+Ys/XImWcs5ZyzlMplMphMplMphMJly5cuXLly5cuVyuVwuVyuVyuVyuWsrlrLWVys/TImWcs5Zyz
+lMplMplMplMplMplMuHDly5cuXLlwuVyuVyuVyuVyuVyuWstZay1lcrPzyM5ZyzlnLOWcs5TKZTK
+ZTKZTKZTLly5cuXLly5cuVyuVyuVyuVyuVyuWstZay1lrLWWsrPyyM5ZyzlnLOWcs5TKZTKZTKZT
+KZTKZTLly5cuXLly5crlcrlcrlcrlcrlcrlrLWWstZay1lrKz8cjMZyzlnLOWcs5ZyzlMplMplMp
+lMplMply5cuXLly5cuVyuVyuVyuVyuVyuWstZay1lrLWWstZays/DIzGcs5ZyzlnLOWcs5TKZTKZ
+TKZTKZTKZTKZcuXLly5cuXK5XK5XK5XK5XK5XK5ay1lrLWWstZay1lqLPwSM5ZyzlnLOWcs5Zyzl
+MplMplMplMplMplMuXLly5cuXLlyuVyuVyuVyuVyuVy1lrLWWstZay1lrLWWsrF+6RmM5ZyzlnLO
+Wcs5ZymUymUymUymUymUymUymXLly5cuXLlyuVyuVyuVyuVyuVyuWstZay1lrLWWstZay1Fn2xmM
+ZZyzlnLOWcs5ZyzGcplnKZTKZTKZTKZTKZcuXLl48cuXLlcrlcrFyuVyuVy1lctZay1GstZay1lr
+LWW8tRZ9kjMZjOWYzlmM5ZjMZjMZykSJlIkTKZSJEjx45cuXLly5eLlYsXK5XKxcrlctZajWWstR
+rLUay1GstRvLUX6ozGIzGYzGYzGYzGYzGcpEiZSJEykSJEiZcuXjx48ePHLlcrFixYuVixcrlY1l
+rLUay1GstRqNRqNxqLPqkYjMYjMZjMZjMZjMZjMSMxIkTKRIkSJlI8ePHjx48ePHixYuVixYsWLG
+o1Go1Go1Go1Go1Go3Go3Gov0RmMRmMxmMxmMxmMxmMxmMxIkSJEiRIkSJHjx48ePHjx48WLFixYs
+WLFixqNRqNRqNRqNRqNxqNxuNRZ9EjEYjEZjEZjMZjMZjMZjMSJGYkSJEiRIkSJHjx48ePHjx4sW
+LFixYsWLFixqNRqNRqNRqNRqNRuNRuNT5xmMRiMRmMxmMxmMxmMxmMxIzEiRIkSJEiRI8ePHjx48
+ePHixYsWLFixYsaixqNRqNRqNRqNRqNxqNxuNRflGYxGIzGIzGYzGYzGYzGYzGYkSJEiRIkSJEjx
+48ePHjx48eLFixYsWLFixY1Go1Go1Go1Go1Go3Go3G43F+UYjEYjMZjMZjMZjMZjMZjMZiRIkSJE
+iRIkSPHjx48ePHjx4sWLFixYsWLFjUajUajUajUajUbjUbjcbjcanxjLEYjEYjMYjMZjMZjMZjMZ
+iRIkSJEiRIkSJEjx48ePHjx48WLFixYsWLGosWNRqNRqNRqNRqNRqNxqNxuNRfhGWIxGIxGYxGYz
+GYzGYzGYzEiRmJEiRIkSJEiR48ePHjx48eLFixYsWLFixqLGo1Go1Go1Go1Go1G43G43G4vwjDEY
+jEYjMZjMZZjMZjMZjMSMxIkSJEiRIkSPHjx48ePHjx4sWLFixYsWLGosajUajUajUajUajcajcbj
+bca+EYYYYYYZYZZZZjLMZRlESIiJEifXVWKqrFVY1Gmo1Go01Gmo020222218MsMMMMsMsMsssss
+soyiIiIiJ9dVVVVVVaaaaaaaaaababbbba+GWGGGGWGWWWWWWWWWURERERE+uqqqqqqtNNNNNNNN
+NNttttttL/uWGGGGWGWWWWWWWWWURERERE+yqqqqqrTTTTTTTTTbbbbbbbS/7lhhhhlhllllllll
+GURERERE+yqqqqqrStNNNNNtNtttttttL/uWGGGGWGWWWWWWWUZRERERET7KqqqqqtNNNNNNNNNt
+ttttttL/ALlhhhhlhllllllllllERERERPsqqqqqq0rTTTTTTTbbbbbbbS/7lhhhhlhlllllllll
+lERERERPsqqqqqq00000000022222220v+5YYYYZYZZZZZZZZZZZRERERE+yqqqqqrTTTTTTTTTT
+bbbbbbXwjDDDDDDLDLLLLLLKMoiIiIifZVVVVVVpppppppppptpttttr4RhisVisVms1ms1ms1ms
+1ms1ms1KlSpUqVKlSvXr36atVVWqq1a1Wq1Wq01Wq1Wm603W222vhGaxWKxWKzWazWazWazWazWa
+lSpUqVKlSpUqV69evXr169evXq1atWrVq1a1VrVarVarVarVbrVbrdbrdbra/CMsVisVis1is1ms
+1ms1ms1mpUrNSpUqVKlSpUr169evXr169WrVq1atWrVrVWtVqtVqtVqtVqtVqt1ut1utVfjlisVi
+s1ms1ms1ms1ms1mpWalSpUqVKlSpUr169evXr169evVq1atWrVrVWrWq1Wq1Wq1Wq1W61W63W63W
+qvxjNYrFZrFZrNZrNZrNZrNZrNSpUqVKlSpUqV69evXr169evXq1atWrVq1atarVarVarVarVard
+ardbrdbrV+UZrFZrFYrNZrNZrNZrNZrNZrNSpUqVKlSpUr169evXr169evVq1atWrVq1a1Wq1Wq1
+Wq1Wq1Wq3W63W61V+crFYrFZrNZrNZrNZrNZrNSpUqVKlSpUqVKlevXr169evXq1atWrVq1ataq1
+qtVqtVqtVqtVqt1ut1utVfnGaxWazWazWazWazWazWazUqVKlSpUqVKlevXr169evXr16tWrVq1a
+tWrVrVarVarVarVardardbrVW/TmsVmsVms1ms1ms1ms1ms1mpUqVKlSppKlevXr169evXr16tWr
+patWrVq1qtVqtVqtVqtVqtVut1utVfplZrFZrNZrNZrNZrNZrOmazU0lSppKlSppNJXr169evXr1
+6tXS6WrVq6WrWtNVqtaarWmq1pqt1qt1utVb9crNZrOmazpms6ZrOmazWdJU0mkqVNJpKlSpp06d
+OnTp06dLVq1aul0tWrpdLWtNVrTWmtNaa01pvTVb01V+uVmsaZrOmdM6Z0zpnTOmdJpnSaTSaTSa
+TSaTSadOnTp66eunTpdLpdLpdLpdLpdLprTWmtNaa01prTWmtNab01Vv2ys1nTOmdM6Z0zpnTOmd
+M6Z0mk0mk0mk0mk0mk06dOnTp06dOl0ul0ul0ul0ul01pdNaa01prTWmtNaa01prTVX7YlZ0zpnT
+OmdM6Z0zpNM6TSaTSaTSaTSaTSaTTp06dOnTp06XS6XS6XS6XS6XS6a01prTWmtNaa01prTemqt+
++Vms6Z0zpnTOmdM6Z0mmdJpNJpNJpNJpNJpNOnTp06dOnTpdLpdLpdLpdLpdNaa01prTWmtNaa01
+prTWlv4ZWazpnTOmdM6Z0zpnSaTSaTSaTSaTSaTTp06dOnTp06dOl0ul0ul0ul0ul01prTWmtNaa
+01prTWlv45WdM6Z0zpnTOmdJpnSaTSaTSaTSaTSaTTp06dOnTp06XS6XS6XS6XS6XTWmtNaa01pr
+TWmtNaW/llZ0zpnTOmdM6Z0mk0mk0mk0mk0mk06dOnTt06dOnS6XS6XS6XS6XS6XTWmtNaa01prT
+Wlq380rOmdM6Z0zpNJpNJpNJpNJpNJpNJp06dOnTp06dLpdrpdLpdLpdLpdtaa01prTWmtLVv6JU
+0zpnTOmdJpNJtNJpNJtNJpNOnTp27du3bp06XS6Xa7XS6Xa6XTW2tNaa21pb+uVKmmdppNJtNJpN
+ptNJpNJt27du3bt27du12u10ul0u12ul2u101trS6W/t9SppnabTSbTaaTSbTabTTp07du3bt27d
+Ol2u12u12u12u121tdLpb/AlTSaTabTSbTabTSbTbt27du3bt27drtdrtdrtdrtdrtdLpa9/hepU
+0mk2m02m02m027du3bt27du3btdrtdrtdrtdLpa9/jepU0mk2m02m3bt27du3bt27du12u12u10u
+lr3+X69TSaTabdu3bt27du3bt27XS6XT17/Q9eunTp06dOnTp06dPXr3+x69evXr3/o//9oACAEC
+AgY/ABCf/9oACAEDAgY/ABCf/9oACAEBAQY/AAxP/9k=" transform="matrix(1 0 0 1 235 235)">
+				</image>
+			</g>
+		</mask>
+		<g class="st10">
+			<circle cx="500" cy="500" r="250"/>
+			<circle class="st11" cx="500" cy="500" r="250"/>
+		</g>
 	</g>
-	<line class="st12" x1="499.5" y1="-0.5" x2="999.5" y2="500.5"/>
-	<line class="st12" x1="499.5" y1="1000.5" x2="999.5" y2="500.5"/>
-	<line class="st12" x1="-0.5" y1="500.5" x2="499.5" y2="1000.5"/>
-	<line class="st12" x1="-0.5" y1="-0.5" x2="999.5" y2="999.5"/>
-	<line class="st12" x1="999.5" y1="-0.5" x2="-0.5" y2="999.5"/>
-	<line class="st12" x1="499.5" y1="-0.5" x2="499.5" y2="1000.5"/>
-	<line class="st12" x1="-0.5" y1="500.5" x2="999.5" y2="500.5"/>
-	<line class="st12" x1="-0.5" y1="-0.5" x2="499.5" y2="-0.5"/>
-	<line class="st12" x1="-0.5" y1="-0.5" x2="-0.5" y2="500.5"/>
-	<line class="st12" x1="-0.5" y1="999.5" x2="-0.5" y2="500.5"/>
-	<line class="st12" x1="-0.5" y1="999.5" x2="499.5" y2="1000.5"/>
-	<line class="st12" x1="499.5" y1="1000.5" x2="999.5" y2="999.5"/>
-	<line class="st12" x1="999.5" y1="500.5" x2="999.5" y2="999.5"/>
-	<line class="st12" x1="999.5" y1="500.5" x2="999.5" y2="-0.5"/>
-	<line class="st12" x1="499.5" y1="-0.5" x2="999.5" y2="-0.5"/>
-	<line class="st12" x1="-0.5" y1="245.5" x2="249.5" y2="-0.5"/>
-	<line class="st12" x1="749.5" y1="-0.5" x2="999.5" y2="249.5"/>
-	<line class="st12" x1="999.5" y1="752.5" x2="749.5" y2="1000.5"/>
-	<line class="st12" x1="-0.5" y1="750.5" x2="249.5" y2="999.5"/>
-	<line class="st12" x1="-0.5" y1="124.5" x2="122.5" y2="-0.5"/>
-	<line class="st12" x1="874.5" y1="-0.5" x2="999.5" y2="124.5"/>
-	<line class="st12" x1="874.5" y1="999.5" x2="999.5" y2="873.5"/>
-	<line class="st12" x1="-0.5" y1="874.5" x2="124.5" y2="999.5"/>
-	<line class="st12" x1="60.5" y1="-0.5" x2="-0.5" y2="61.5"/>
-	<line class="st12" x1="937.5" y1="-0.5" x2="999.5" y2="61.5"/>
-	<line class="st12" x1="999.5" y1="936.5" x2="936.5" y2="999.5"/>
-	<line class="st13" x1="-0.5" y1="936.5" x2="61.5" y2="999.5"/>
-	<line class="st12" x1="30.5" y1="-0.5" x2="-0.5" y2="30.5"/>
-	<line class="st12" x1="968.5" y1="-0.5" x2="999.5" y2="30.5"/>
-	<line class="st12" x1="999.5" y1="968.5" x2="968.5" y2="999.5"/>
-	<line class="st12" x1="-0.5" y1="968.5" x2="29.5" y2="1000.5"/>
+	<circle class="st12" cx="500" cy="500" r="125"/>
+	<circle class="st13" cx="500" cy="500" r="94"/>
 </g>
-<g id="Stethoscope_grid" class="st9">
-	<line class="st12" x1="249.5" y1="499.5" x2="499.5" y2="249.5"/>
-	<line class="st12" x1="499.5" y1="249.5" x2="750.5" y2="499.5"/>
-	<line class="st12" x1="499.5" y1="750.5" x2="750.5" y2="499.5"/>
-	<line class="st12" x1="249.5" y1="499.5" x2="499.5" y2="750.5"/>
-	<line class="st12" x1="249.5" y1="249.5" x2="750.5" y2="249.5"/>
-	<line class="st12" x1="249.5" y1="249.5" x2="249.5" y2="749.5"/>
-	<line class="st12" x1="249.5" y1="749.5" x2="749.5" y2="750.5"/>
-	<line class="st12" x1="749.5" y1="750.5" x2="750.5" y2="249.5"/>
-	<line class="st12" x1="374.5" y1="249.5" x2="249.5" y2="374.5"/>
-	<line class="st12" x1="249.5" y1="624.5" x2="374.5" y2="750.5"/>
-	<line class="st12" x1="624.5" y1="750.5" x2="749.5" y2="624.5"/>
-	<line class="st12" x1="624.5" y1="249.5" x2="749.5" y2="374.5"/>
-	<line class="st12" x1="249.5" y1="311.5" x2="311.5" y2="249.5"/>
-	<line class="st12" x1="249.5" y1="687.5" x2="311.5" y2="750.5"/>
-	<line class="st12" x1="686.5" y1="749.5" x2="749.5" y2="687.5"/>
-	<line class="st12" x1="686.5" y1="249.5" x2="750.5" y2="311.5"/>
-	<line class="st12" x1="280.5" y1="249.5" x2="249.5" y2="280.5"/>
-	<line class="st12" x1="718.5" y1="249.5" x2="750.5" y2="280.5"/>
-	<line class="st12" x1="717.5" y1="750.5" x2="749.5" y2="718.5"/>
-	<line class="st12" x1="280.5" y1="749.5" x2="249.5" y2="718.5"/>
-	<g class="st10">
-		<line class="st11" x1="374.5" y1="374.5" x2="624.5" y2="374.5"/>
+<g id="Grid" class="st14">
+	<line class="st15" x1="0" y1="0" x2="1000" y2="0"/>
+	<line class="st15" x1="1000" y1="0" x2="1000" y2="1000"/>
+	<line class="st15" x1="0" y1="1000" x2="1000" y2="1000"/>
+	<line class="st15" x1="0" y1="1000" x2="0" y2="0"/>
+	<line class="st15" x1="0" y1="0" x2="1000" y2="1000"/>
+	<line class="st15" x1="0" y1="1000" x2="1000" y2="0"/>
+	<line class="st15" x1="500" y1="0" x2="500" y2="1000"/>
+	<line class="st15" x1="0" y1="500" x2="1000" y2="500"/>
+	<line class="st15" x1="0" y1="500" x2="500" y2="0"/>
+	<line class="st15" x1="0" y1="500" x2="500" y2="1000"/>
+	<line class="st15" x1="500" y1="1000" x2="1000" y2="500"/>
+	<line class="st15" x1="500" y1="0" x2="1000" y2="500"/>
+	<line class="st15" x1="250" y1="0" x2="0" y2="250"/>
+	<line class="st15" x1="125" y1="0" x2="0" y2="125"/>
+	<line class="st15" x1="63" y1="0" x2="0" y2="63"/>
+	<line class="st15" x1="31" y1="0" x2="0" y2="32"/>
+	<line class="st15" x1="15" y1="0" x2="0" y2="16"/>
+	<line class="st15" x1="0" y1="750" x2="250" y2="1000"/>
+	<line class="st15" x1="0" y1="875" x2="125" y2="1000"/>
+	<line class="st15" x1="0" y1="938" x2="62" y2="1000"/>
+	<line class="st15" x1="0" y1="969" x2="31" y2="1000"/>
+	<line class="st15" x1="0" y1="985" x2="16" y2="1000"/>
+	<line class="st15" x1="1000" y1="750" x2="750" y2="1000"/>
+	<line class="st15" x1="875" y1="1000" x2="1000" y2="875"/>
+	<line class="st15" x1="1000" y1="938" x2="938" y2="1000"/>
+	<line class="st15" x1="1000" y1="969" x2="969" y2="1000"/>
+	<line class="st15" x1="1000" y1="985" x2="985" y2="1000"/>
+	<line class="st15" x1="1000" y1="250" x2="750" y2="0"/>
+	<line class="st15" x1="1000" y1="125" x2="875" y2="0"/>
+	<line class="st15" x1="1000" y1="63" x2="938" y2="0"/>
+	<line class="st15" x1="1000" y1="32" x2="969" y2="0"/>
+	<line class="st15" x1="1000" y1="16" x2="985" y2="0"/>
+	<line class="st15" x1="250" y1="250" x2="750" y2="250"/>
+	<line class="st15" x1="250" y1="750" x2="250" y2="250"/>
+	<line class="st15" x1="250" y1="750" x2="750" y2="750"/>
+	<line class="st15" x1="750" y1="750" x2="750" y2="250"/>
+	<line class="st15" x1="250" y1="500" x2="500" y2="750"/>
+	<line class="st15" x1="500" y1="750" x2="750" y2="500"/>
+	<line class="st15" x1="750" y1="500" x2="500" y2="250"/>
+	<line class="st15" x1="500" y1="250" x2="250" y2="500"/>
+	<line class="st15" x1="250" y1="375" x2="375" y2="250"/>
+	<line class="st15" x1="250" y1="312" x2="313" y2="250"/>
+	<line class="st15" x1="282" y1="250" x2="250" y2="281"/>
+	<line class="st15" x1="625" y1="250" x2="750" y2="375"/>
+	<line class="st15" x1="688" y1="250" x2="750" y2="313"/>
+	<line class="st15" x1="750" y1="282" x2="719" y2="250"/>
+	<line class="st15" x1="750" y1="625" x2="625" y2="750"/>
+	<line class="st15" x1="688" y1="750" x2="750" y2="688"/>
+	<line class="st15" x1="750" y1="719" x2="719" y2="750"/>
+	<line class="st15" x1="250" y1="625" x2="375" y2="750"/>
+	<line class="st15" x1="250" y1="688" x2="313" y2="750"/>
+	<g class="st16">
+		<line class="st17" x1="250" y1="719" x2="281" y2="750"/>
 	</g>
-	<line class="st12" x1="374.5" y1="374.5" x2="374.5" y2="624.5"/>
-	<line class="st12" x1="374.5" y1="624.5" x2="624.5" y2="624.5"/>
-	<line class="st12" x1="624.5" y1="374.5" x2="624.5" y2="624.5"/>
-	<line class="st12" x1="374.5" y1="499.5" x2="499.5" y2="374.5"/>
-	<line class="st12" x1="499.5" y1="625.5" x2="374.5" y2="499.5"/>
-	<line class="st12" x1="499.5" y1="625.5" x2="624.5" y2="499.5"/>
-	<line class="st12" x1="499.5" y1="374.5" x2="624.5" y2="499.5"/>
-	<line class="st12" x1="374.5" y1="436.5" x2="436.5" y2="374.5"/>
-	<line class="st12" x1="561.5" y1="374.5" x2="624.5" y2="436.5"/>
-	<line class="st12" x1="561.5" y1="624.5" x2="624.5" y2="562.5"/>
-	<line class="st12" x1="374.5" y1="562.5" x2="436.5" y2="625.5"/>
-	<line class="st12" x1="405.5" y1="374.5" x2="374.5" y2="405.5"/>
-	<line class="st12" x1="592.5" y1="374.5" x2="624.5" y2="405.5"/>
-	<line class="st12" x1="374.5" y1="593.5" x2="405.5" y2="624.5"/>
-	<line class="st12" x1="592.5" y1="624.5" x2="624.5" y2="593.5"/>
-	<line class="st12" x1="374.5" y1="389.5" x2="389.5" y2="374.5"/>
-	<line class="st12" x1="608.5" y1="374.5" x2="624.5" y2="389.5"/>
-	<line class="st12" x1="608.5" y1="624.5" x2="624.5" y2="608.5"/>
-	<line class="st12" x1="374.5" y1="608.5" x2="389.5" y2="624.5"/>
+	<g class="st16">
+		<line class="st17" x1="625" y1="375" x2="375" y2="375"/>
+	</g>
+	<line class="st15" x1="375" y1="375" x2="375" y2="625"/>
+	<line class="st15" x1="375" y1="625" x2="625" y2="625"/>
+	<line class="st15" x1="625" y1="625" x2="625" y2="375"/>
+	<line class="st15" x1="500" y1="375" x2="625" y2="500"/>
+	<line class="st15" x1="625" y1="500" x2="500" y2="625"/>
+	<line class="st15" x1="500" y1="625" x2="375" y2="500"/>
+	<line class="st15" x1="375" y1="500" x2="500" y2="375"/>
+	<line class="st15" x1="563" y1="375" x2="625" y2="437"/>
+	<line class="st15" x1="437" y1="375" x2="375" y2="437"/>
+	<line class="st15" x1="375" y1="563" x2="437" y2="625"/>
+	<line class="st15" x1="625" y1="563" x2="563" y2="625"/>
 </g>
 </svg>
