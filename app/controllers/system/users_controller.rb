@@ -17,7 +17,7 @@ module System
     end
 
     def create
-      @user = User.new(permitted_attributes)
+      @user = User.new(permitted_attributes.except(:email_confirmation, :password_confirmation))
 
       if @user.valid?
         @user.save && redirect_to(:system_users)
@@ -27,7 +27,7 @@ module System
     end
 
     def update
-      @user.assign_attributes(permitted_attributes)
+      @user.assign_attributes(permitted_attributes.except(:email_confirmation, :password_confirmation))
 
       if @user.valid?
         @user.save && redirect_to(:system_users)
@@ -45,10 +45,14 @@ module System
 
     def permitted_attributes
       params.permit(
-        :email, :password, :username,
-        :type, :type_of, :name,
-        :picture, :background
-      )
+              :username, :name, :type,
+              :type_of, :email, :email_confirmation,
+              :password, :password_confirmation, :picture,
+              :background
+            )
+            .merge(
+              type_of: params[:type_of]&.split(',')
+            )
     end
 
     def permitted_params
@@ -58,6 +62,7 @@ module System
     def load_user
       @user = User.where(id: permitted_params[:id]).first
       redirect_to(:system_users) unless @user
+      @doctor_names = User.where(:id.in => @user.type_of).pluck(:name)
     end
 
     def load_doctors
