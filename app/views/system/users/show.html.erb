@@ -2,5 +2,29 @@
   <h2><%= t('users.show.title').html_safe %></h2>
 </header>
 <section>
-
+  <a href="<%= edit_system_user_path(@user.id) %>" class="btn waves-effect waves-light bg-warning">
+    <i class="fas fa-pencil-alt left"></i>
+    Editar
+  </a>
+  <img src="<%= @user.picture %>" alt="<%= t('users.index.photo_alt', name: @user.name).html_safe %>" />
+  <img src="<%= @user.background %>" alt="<%= t('users.index.background_alt', name: @user.name).html_safe %>" />
+  <p><%= @user.name %></p>
+  <p><%= @user.username %></p>
+  <p><%= @user.email %></p>
+  <% if @user.type == 0 %>
+    <p><%= @user.type_name %></p>
+  <% else %>
+    <p>
+      <%= @user.type_name %> de
+      <% @doctor_names&.each_with_index do |name, index| %><!--
+     --><% if index == 0 %><!--
+       --><span><%= name %></span><!--
+     --><% elsif index > 0 && index < @doctor_names.size - 1 %><!--
+       --><span>, <%= name %></span><!--
+     --><% else %><!--
+       --><span> e <%= name %></span><!--
+     --><% end %><!--
+   --><% end %>
+    </p>
+  <% end %>
 </section>
