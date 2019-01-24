@@ -1,87 +1,24 @@
-import React, { Component } from 'react';
-import { reduxForm }        from 'redux-form';
-import Form                 from './FormPatient';
-import * as Regex           from '../constants/Regex';
-import * as Patient         from '../constants/Patient';
+import React         from 'react';
+import { reduxForm } from 'redux-form';
+import Form          from './FormPatient';
+import * as Regex    from '../constants/Regex';
+import * as Patient  from '../constants/Patient';
 
-const INITIAL_STATE = {
-  shouldReset: false,
-  shouldSubmit: false
-}
+let NewPatient = props => {
+  const { change, untouch, reset, authenticityToken, handleSubmit } = props;
 
-class NewPatient extends Component {
-  render() {
-    const { change, untouch, authenticityToken } = this.props;
-    const { shouldReset, shouldSubmit }          = this.state;
-    const formButtons = this.renderFormButtons();
-
-    return (
-      <div className="form">
-        <Form
-          action="/system/patients"
-          shouldReset={ shouldReset }
-          shouldSubmit={ shouldSubmit }
-          change={ change }
-          untouch={ untouch }
-          authenticityToken={ authenticityToken }
-        />
-        { formButtons }
-      </div>
-    );
-  }
-
-  renderFormButtons() {
-    return (
-      <div className="row">
-        <div className="input-field buttons col s12">
-          <button
-            className="btn waves-effect waves-light bg-success"
-            type="submit"
-            onClick={ this.props.handleSubmit(this.onSubmit.bind(this)) }
-          >
-            <i className="fas fa-plus left" />
-            Criar
-          </button>
-          <button
-            className="btn waves-effect waves-light bg-warning"
-            onClick={ this.onClearButtonClick.bind(this) }
-          >
-            <i className="fas fa-eraser left" />
-            Limpar
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = INITIAL_STATE;
-  }
-
-  componentDidUpdate() {
-    if (this.state.shouldReset) {
-      this.setState({ shouldReset: false });
-    }
-
-    if (this.state.shouldSubmit) {
-      this.setState({ shouldSubmit: false });
-    }
-  }
-
-  onClearButtonClick() {
-    this.clearForm();
-  }
-
-  clearForm() {
-    this.props.reset();
-    this.setState({ shouldReset: true });
-  }
-
-  onSubmit(values) {
-    this.setState({ shouldSubmit: true });
-  }
+  return (
+    <div className="form">
+      <Form
+        action="/system/patients"
+        change={ change }
+        untouch={ untouch }
+        clearCallback={ reset }
+        handleSubmit={ handleSubmit }
+        authenticityToken={ authenticityToken }
+      />
+    </div>
+  );
 }
 
 function validateName(name) {

@@ -51,23 +51,23 @@ const sanitize = attributes => {
 
   sanitized.id = sanitized._id.$oid;
 
-  if (sanitized.gender !== null) {
+  if (sanitized.gender !== null && sanitized.gender !== undefined) {
     sanitized.gender = `${sanitized.gender}`;
   }
 
-  if (sanitized.marital_status !== null) {
+  if (sanitized.marital_status !== null && sanitized.marital_status !== undefined) {
     sanitized.marital_status = `${sanitized.marital_status}`;
   }
 
-  if (sanitized.nationality !== null) {
+  if (sanitized.nationality !== null && sanitized.nationality !== undefined) {
     sanitized.nationality = `${sanitized.nationality}`;
   }
 
-  if (sanitized.place_of_birth !== null) {
+  if (sanitized.place_of_birth !== null && sanitized.place_of_birth !== undefined) {
     sanitized.place_of_birth = `${sanitized.place_of_birth}`;
   }
 
-  if (sanitized.state !== null) {
+  if (sanitized.state !== null && sanitized.state !== undefined) {
     sanitized.state = `${sanitized.state}`;
   }
 
@@ -75,8 +75,12 @@ const sanitize = attributes => {
     sanitized.email_confirmation = sanitized.email;
   }
 
-  if (sanitized.type !== null) {
+  if (sanitized.type !== null && sanitized.type !== undefined) {
     sanitized.type = `${sanitized.type}`;
+  }
+
+  if (sanitized.type_of && sanitized.type_of.length > 0) {
+    sanitized.type_of_alias = sanitized.type_of;
   }
 
   if (sanitized.date_of_birth) {

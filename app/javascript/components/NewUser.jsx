@@ -1,88 +1,26 @@
-import React, { Component } from 'react';
-import { reduxForm }        from 'redux-form';
-import Form                 from './FormUser';
-import * as Regex           from '../constants/Regex';
-import * as User            from '../constants/User';
+import React         from 'react';
+import { reduxForm } from 'redux-form';
+import Form          from './FormUser';
+import * as Regex    from '../constants/Regex';
+import * as User     from '../constants/User';
 
-const INITIAL_STATE = {
-  shouldReset: false,
-  shouldSubmit: false
-}
+let NewUser = props => {
+  const { change, untouch, reset, authenticityToken, handleSubmit } = props;
+  const { doctors }                                                 = props;
 
-class NewUser extends Component {
-  render() {
-    const { change, untouch, authenticityToken, doctors } = this.props;
-    const { shouldReset, shouldSubmit }                   = this.state;
-    const formButtons = this.renderFormButtons();
-
-    return (
-      <div className="form">
-        <Form
-          action="/system/users"
-          shouldReset={ shouldReset }
-          shouldSubmit={ shouldSubmit }
-          change={ change }
-          untouch={ untouch }
-          authenticityToken={ authenticityToken }
-          doctors={ doctors }
-        />
-        { formButtons }
-      </div>
-    );
-  }
-
-  renderFormButtons() {
-    return (
-      <div className="row">
-        <div className="input-field buttons col s12">
-          <button
-            className="btn waves-effect waves-light bg-success"
-            type="submit"
-            onClick={ this.props.handleSubmit(this.onSubmit.bind(this)) }
-          >
-            <i className="fas fa-plus left" />
-            Criar
-          </button>
-          <button
-            className="btn waves-effect waves-light bg-warning"
-            onClick={ this.onClearButtonClick.bind(this) }
-          >
-            <i className="fas fa-eraser left" />
-            Limpar
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = INITIAL_STATE;
-  }
-
-  componentDidUpdate() {
-    if (this.state.shouldReset) {
-      this.setState({ shouldReset: false });
-    }
-
-    if (this.state.shouldSubmit) {
-      this.setState({ shouldSubmit: false });
-    }
-  }
-
-  onClearButtonClick() {
-    this.clearForm();
-  }
-
-  clearForm() {
-    this.props.reset();
-    this.setState({ shouldReset: true });
-  }
-
-  onSubmit(values) {
-    this.setState({ shouldSubmit: true });
-  }
+  return (
+    <div className="form">
+      <Form
+        doctors={ doctors }
+        action="/system/users"
+        change={ change }
+        untouch={ untouch }
+        clearCallback={ reset }
+        handleSubmit={ handleSubmit }
+        authenticityToken={ authenticityToken }
+      />
+    </div>
+  );
 }
 
 function validateType(type) {
@@ -192,7 +130,7 @@ function validatePasswordConfirmation(password, passwordConfirmation) {
 function validate(values) {
   const errors = {
     type:                  validateType(values['type']),
-    type_of:               validateTypeOf(values['type'], values['type_of']),
+    type_of_alias:         validateTypeOf(values['type'], values['type_of_alias']),
     name:                  validateName(values['name']),
     username:              validateUsername(values['username']),
     email:                 validateEmail(values['email']),

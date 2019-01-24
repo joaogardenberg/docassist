@@ -4,14 +4,16 @@ import * as User            from '../constants/User';
 
 const INITIAL_STATE = {
   showTypeOf: false,
-  shouldResetSelects: false
+  shouldResetSelects: false,
+  shouldResetCounters: false
 }
 
 class FormUser extends Component {
   render() {
-    const { method, action } = this.props;
-    const { showTypeOf }     = this.state;
+    const { method, action, handleSubmit } = this.props;
+    const { showTypeOf }                   = this.state;
 
+    const formButtons = this.renderFormButtons();
     let addMethod;
 
     if (method) {
@@ -23,9 +25,11 @@ class FormUser extends Component {
         method="post"
         action={ action }
         ref={ this.formRef }
+        onSubmit={ handleSubmit(this.onSubmit.bind(this)) }
       >
         { addMethod }
-        <input type='hidden' name='authenticity_token' value={ this.props.authenticityToken } />
+        <input type="hidden" name="authenticity_token" value={ this.props.authenticityToken } />
+        <input type="hidden" name="type_of" ref={ this.typeOfHiddenRef } />
         <div className="row">
           <Field
             id="type"
@@ -40,8 +44,8 @@ class FormUser extends Component {
           </Field>
           <div className="col l4 m6 s12" style={{ display: showTypeOf ? 'block' : 'none' }}>
             <Field
-              id="type_of"
-              name="type_of"
+              id="type_of_alias"
+              name="type_of_alias"
               label="Secretário(a) de quem(ns)?"
               reference={ this.typeOfSelectRef }
               multiple={ true }
@@ -118,7 +122,49 @@ class FormUser extends Component {
             component={ this.renderField }
           />
         </div>
+        { formButtons }
       </form>
+    );
+  }
+
+  renderFormButtons() {
+    const { restoreCallback, clearCallback } = this.props;
+    let submitIcon, submitText, restoreIcon, restoreText, restoreFunc;
+
+    if (restoreCallback) {
+      submitIcon = 'fas fa-save';
+      submitText = 'Salvar';
+      restoreIcon = 'fas fa-sync-alt';
+      restoreText = 'Restaurar';
+      restoreFunc = restoreCallback;
+    } else {
+      submitIcon = 'fas fa-plus';
+      submitText = 'Criar';
+      restoreIcon = 'fas fa-eraser';
+      restoreText = 'Limpar';
+      restoreFunc = clearCallback;
+    }
+
+    return (
+      <div className="row">
+        <div className="input-field buttons col s12">
+          <button
+            className="btn waves-effect waves-light bg-success"
+            type="submit"
+          >
+            <i className={ `${submitIcon} left` } />
+            { submitText }
+          </button>
+          <button
+            className="btn waves-effect waves-light bg-warning"
+            type="button"
+            onClick={ () => this.onRestoreButtonClick(restoreFunc) }
+          >
+            <i className={ `${restoreIcon} left` } />
+            { restoreText }
+          </button>
+        </div>
+      </div>
     );
   }
 
@@ -202,6 +248,7 @@ class FormUser extends Component {
 
     this.typeSelectRef                = React.createRef();
     this.typeOfSelectRef              = React.createRef();
+    this.typeOfHiddenRef              = React.createRef();
     this.nameInputRef                 = React.createRef();
     this.usernameInputRef             = React.createRef();
     this.emailInputRef                = React.createRef();
@@ -214,23 +261,14 @@ class FormUser extends Component {
     this.countersLoaded               = false;
   }
 
-  componentDidMount() {
-    this.initFormCounters();
-    this.initFormSelects();
-  }
-
   componentDidUpdate() {
     this.initFormCounters();
     this.initFormSelects();
     M.updateTextFields();
     this.updateFields();
 
-    if (this.state.shouldResetSelects) {
-      this.setState({ shouldResetSelects: false });
-    }
-
-    if (this.props.shouldSubmit) {
-      this.formRef.current.submit();
+    if (this.state.shouldResetSelects || this.state.shouldResetCounters) {
+      this.setState({ shouldResetSelects: false, shouldResetCounters: false });
     }
   }
 
@@ -238,17 +276,30 @@ class FormUser extends Component {
     if (options[options.selectedIndex].value === '1' && this.state.showTypeOf === false) {
       this.setState({ showTypeOf: true });
     } else if (options[options.selectedIndex].value !== '1' && this.state.showTypeOf === true) {
-      this.props.change('type_of', '');
-      this.props.untouch('type_of');
+      this.props.change('type_of_alias', '');
+      this.props.untouch('type_of_alias');
       this.setState({ showTypeOf: false, shouldResetSelects: true });
     }
   }
 
+  onRestoreButtonClick(callback) {
+    callback();
+    this.setState({ shouldResetSelects: true, shouldResetCounters: true });
+  }
+
+  onSubmit(values) {
+    if (this.typeOfHiddenRef.current && values.type_of_alias) {
+      this.typeOfHiddenRef.current.value = values.type_of_alias;
+    }
+
+    this.formRef.current.submit();
+  }
+
   initFormCounters() {
     const { countersLoaded } = this;
-    const { shouldReset } = this.props;
+    const { shouldResetCounters } = this.props;
 
-    if (shouldReset || !countersLoaded) {
+    if (shouldResetCounters || !countersLoaded) {
       const elements = [
         this.nameInputRef.current,
         this.usernameInputRef.current,
@@ -271,18 +322,17 @@ class FormUser extends Component {
   initFormSelects() {
     const { typeSelectLoaded, typeOfSelectLoaded, typeSelectRef } = this;
     const { typeOfSelectRef }                                     = this;
-    const { users, shouldReset }                                  = this.props;
     const { shouldResetSelects }                                  = this.state;
 
-    // if (shouldReset || shouldResetSelects || (!typeSelectLoaded && typeSelectRef.current)) {
+    if (shouldResetSelects || (!typeSelectLoaded && typeSelectRef.current)) {
       M.FormSelect.init(typeSelectRef.current);
       this.typeSelectLoaded = true;
-    // }
+    }
 
-    // if (shouldReset || shouldResetSelects  || (!typeOfSelectLoaded && typeOfSelectRef.current && Object.keys(users).length > 0)) {
+    if (shouldResetSelects  || (!typeOfSelectLoaded && typeOfSelectRef.current)) {
       M.FormSelect.init(typeOfSelectRef.current);
       this.typeOfSelectLoaded = true;
-    // }
+    }
   }
 
   updateFields() {

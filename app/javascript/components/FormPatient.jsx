@@ -10,14 +10,17 @@ const INITIAL_STATE = {
   showRgIssuingAgency: false,
   showNationalityOther: false,
   showPlaceOfBirthOther: false,
-  shouldResetSelects: false
+  shouldResetSelects: false,
+  shouldResetCounters: false
 }
 
 class FormPatient extends Component {
   render() {
-    const { method, action }                              = this.props;
+    const { method, action, handleSubmit }                = this.props;
     const { showNationalityOther, showPlaceOfBirthOther } = this.state;
     const { showRgIssuingAgency }                         = this.state;
+
+    const formButtons = this.renderFormButtons();
     let addMethod;
 
     if (method) {
@@ -29,6 +32,7 @@ class FormPatient extends Component {
         method="post"
         action={ action }
         ref={ this.formRef }
+        onSubmit={ handleSubmit(this.onSubmit.bind(this)) }
       >
         { addMethod }
         <input type='hidden' name='authenticity_token' value={ this.props.authenticityToken } />
@@ -281,6 +285,7 @@ class FormPatient extends Component {
             component={ this.renderField }
           />
         </div>
+        { formButtons }
       </form>
     );
   }
@@ -297,6 +302,47 @@ class FormPatient extends Component {
   // <div className="row">
   //   <p class="center-align">Ainda a decidir os campos</p>
   // </div>
+
+  renderFormButtons() {
+    const { restoreCallback, clearCallback } = this.props;
+    let submitIcon, submitText, restoreIcon, restoreText, restoreFunc;
+
+    if (restoreCallback) {
+      submitIcon = 'fas fa-save';
+      submitText = 'Salvar';
+      restoreIcon = 'fas fa-sync-alt';
+      restoreText = 'Restaurar';
+      restoreFunc = restoreCallback;
+    } else {
+      submitIcon = 'fas fa-plus';
+      submitText = 'Criar';
+      restoreIcon = 'fas fa-eraser';
+      restoreText = 'Limpar';
+      restoreFunc = clearCallback;
+    }
+
+    return (
+      <div className="row">
+        <div className="input-field buttons col s12">
+          <button
+            className="btn waves-effect waves-light bg-success"
+            type="submit"
+          >
+            <i className={ `${submitIcon} left` } />
+            { submitText }
+          </button>
+          <button
+            className="btn waves-effect waves-light bg-warning"
+            type="button"
+            onClick={ () => this.onRestoreButtonClick(restoreFunc) }
+          >
+            <i className={ `${restoreIcon} left` } />
+            { restoreText }
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   renderField(field) {
     const { input, id, type, label, className, disabled } = field;
@@ -435,9 +481,7 @@ class FormPatient extends Component {
   }
 
   componentDidMount() {
-    this.initFormCounters();
     this.initFormMasks();
-    this.initFormSelects();
   }
 
   componentDidUpdate() {
@@ -446,12 +490,8 @@ class FormPatient extends Component {
     M.updateTextFields();
     this.updateFields();
 
-    if (this.state.shouldResetSelects) {
-      this.setState({ shouldResetSelects: false });
-    }
-
-    if (this.props.shouldSubmit) {
-      this.formRef.current.submit();
+    if (this.state.shouldResetSelects || this.state.shouldResetCounters) {
+      this.setState({ shouldResetSelects: false, shouldResetCounters: false });
     }
   }
 
@@ -544,11 +584,20 @@ class FormPatient extends Component {
     }
   }
 
-  initFormCounters() {
-    const { countersLoaded } = this;
-    const { shouldReset } = this.props;
+  onRestoreButtonClick(callback) {
+    callback();
+    this.setState({ shouldResetSelects: true, shouldResetCounters: true });
+  }
 
-    if (shouldReset || !countersLoaded) {
+  onSubmit(values) {
+    this.formRef.current.submit();
+  }
+
+  initFormCounters() {
+    const { countersLoaded }      = this;
+    const { shouldResetCounters } = this.state;
+
+    if (shouldResetCounters || !countersLoaded) {
       const elements = [
         this.nameInputRef.current,
         this.occupationInputRef.current,
@@ -640,33 +689,32 @@ class FormPatient extends Component {
     const { genderSelectRef, maritalStatusSelectRef }           = this;
     const { nationalitySelectRef, placeOfBirthSelectRef }       = this;
     const { stateSelectRef }                                    = this;
-    const { shouldReset }                                       = this.props;
     const { shouldResetSelects }                                = this.state;
 
-    // if ((shouldReset || shouldResetSelects || !genderSelectLoaded) && genderSelectRef.current) {
+    if ((shouldResetSelects || !genderSelectLoaded) && genderSelectRef.current) {
       M.FormSelect.init(genderSelectRef.current);
       this.genderSelectLoaded = true;
-    // }
+    }
 
-    // if ((shouldReset || shouldResetSelects || !maritalStatusSelectLoaded) && maritalStatusSelectRef.current) {
+    if ((shouldResetSelects || !maritalStatusSelectLoaded) && maritalStatusSelectRef.current) {
       M.FormSelect.init(maritalStatusSelectRef.current);
       this.maritalStatusSelectLoaded = true;
-    // }
+    }
 
-    // if ((shouldReset || shouldResetSelects || !nationalitySelectLoaded) && nationalitySelectRef.current) {
+    if ((shouldResetSelects || !nationalitySelectLoaded) && nationalitySelectRef.current) {
       M.FormSelect.init(nationalitySelectRef.current);
       this.nationalitySelectLoaded = true;
-    // }
+    }
 
-    // if ((shouldReset || shouldResetSelects || !placeOfBirthSelectLoaded) && placeOfBirthSelectRef.current) {
+    if ((shouldResetSelects || !placeOfBirthSelectLoaded) && placeOfBirthSelectRef.current) {
       M.FormSelect.init(placeOfBirthSelectRef.current);
       this.placeOfBirthSelectLoaded = true;
-    // }
+    }
 
-    // if ((shouldReset || shouldResetSelects || !stateSelectLoaded) && stateSelectRef.current) {
+    if ((shouldResetSelects || !stateSelectLoaded) && stateSelectRef.current) {
       M.FormSelect.init(stateSelectRef.current);
       this.stateSelectLoaded = true;
-    // }
+    }
   }
 
   updateFields() {
@@ -717,7 +765,7 @@ class FormPatient extends Component {
     cityInputRef.current.disabled         = true;
     neighborhoodInputRef.current.disabled = true;
     addressInputRef.current.disabled      = true;
-    this.setState({ shouldResetSelects: true });
+    this.setState({ shouldReinitialize: true });
   }
 
   enableAddressFields() {
@@ -729,7 +777,7 @@ class FormPatient extends Component {
     cityInputRef.current.disabled         = false;
     neighborhoodInputRef.current.disabled = false;
     addressInputRef.current.disabled      = false;
-    this.setState({ shouldResetSelects: true });
+    this.setState({ shouldReinitialize: true });
   }
 }
 
