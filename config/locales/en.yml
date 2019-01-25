@@ -115,7 +115,7 @@ en:
       undefined: "Undefined"
   user:
     edit:
-      title: "Your account"
+      title: "Edit your account"
   misc:
     system: "System"
     confirm_destruction: "Are you sure?\nYou cannot undo that."
