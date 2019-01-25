@@ -3,6 +3,8 @@ module Users::Fields::Custom
 
   included do
     attr_writer :login
+    attr_writer :email_confirmation
+    attr_writer :password_confirmation
 
     field :type,       type: Integer, default: 0
     field :type_of,    type: Array

@@ -17,7 +17,7 @@ module System
     end
 
     def create
-      @user = User.new(permitted_attributes.except(:email_confirmation, :password_confirmation))
+      @user = User.new(permitted_attributes)
 
       if @user.valid?
         @user.save && redirect_to(:system_users)
@@ -27,7 +27,7 @@ module System
     end
 
     def update
-      @user.assign_attributes(permitted_attributes.except(:email_confirmation, :password_confirmation))
+      @user.assign_attributes(permitted_attributes)
 
       if @user.valid?
         @user.save && redirect_to(:system_users)
