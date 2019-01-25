@@ -6,6 +6,10 @@ body {
   overflow-x: hidden;
 }
 
+::selection, ::-moz-selection {
+  background: $gradient-initial-color;
+}
+
 .bg-info {
   &,
   &[class*="btn"]:hover,

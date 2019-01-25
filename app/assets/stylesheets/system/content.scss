@@ -46,44 +46,46 @@
     margin-top: 37px;
   }
 
-  .search-bar {
-    margin-bottom: 20px;
+  .search-bar .input-field {
+    margin: 0;
 
-    .input-field {
+    #search {
+      box-sizing: border-box;
+      border-color: $header-line-color;
       margin: 0;
+      padding-right: 40px;
 
-      #search {
-        box-sizing: border-box;
-        border-color: $header-line-color;
-        margin: 0;
-        padding-right: 58px;
+      &:focus {
+        border-bottom: 1px solid $gradient-initial-color;
+        box-shadow: 0 1px 0 0 $gradient-initial-color;
 
-        &:focus {
-          border-bottom: 1px solid $gradient-initial-color;
-          box-shadow: 0 1px 0 0 $gradient-initial-color;
-
-          + label {
-            color: $gradient-initial-color !important;
-          }
+        + label {
+          color: $gradient-initial-color !important;
         }
       }
+    }
 
-      .submit {
-        position: absolute;
-        right: .75rem;
-        bottom: 0;
-        border-radius: 5px 5px 0 0;
+    .submit {
+      height: auto;
+      line-height: 14px;
+      padding: 8px 10px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &:focus {
+        background: transparent;
       }
 
-      label.active + .submit {
-        background: $gradient-initial-color !important;
-        color: $white;
+      i {
+        font-size: 14px;
       }
     }
   }
 
   table.index-table {
-    margin: 10px 0 15px;
+    margin: 0 0 15px;
     max-width: 100%;
     overflow-x: auto;
 
