@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   get '/system' => redirect('/system/patients')
 
   namespace :system do
-    resources :dashboard, only: :index
-    resources :appointments
-    resources :patients
-    resources :users
-    get '/user/edit' => 'user#edit'
+    resources :appointments,
+              :patients,
+              :users
+
+    resources :dashboard,     only: :index
+    get       '/user/edit',   to: 'user#edit'
+    put       '/user/update', to: 'user#update'
   end
 
   devise_for :users,
