@@ -6,6 +6,7 @@ import NewPatient           from './NewPatient';
 import EditPatient          from './EditPatient';
 import NewUser              from './NewUser';
 import EditUser             from './EditUser';
+import EditSelf             from './EditSelf';
 import Default              from './Default';
 
 const Redux = props => {
@@ -23,6 +24,9 @@ const Redux = props => {
       break;
     case 'EditUser':
       RenderComponent = EditUser;
+      break;
+    case 'EditSelf':
+      RenderComponent = EditSelf;
       break;
     default:
       RenderComponent = Default;
