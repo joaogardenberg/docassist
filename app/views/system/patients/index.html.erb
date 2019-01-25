@@ -8,8 +8,8 @@
 </header>
 <section>
   <% if @patients.any? || @search %>
-    <form class="search-bar row" method="get" action="<%= system_patients_path %>">
-      <div class="input-field col s12">
+    <form class="search-bar" method="get" action="<%= system_patients_path %>">
+      <div class="input-field">
         <input id="search" type="text" name="search" value="<%= @search %>">
         <label for="search"><%= t('patients.index.search_placeholder').html_safe %></label>
         <button type="submit" class="submit btn-flat waves-effect tooltiped" data-tooltip="<%= t('patients.index.search_tooltip').html_safe %>" data-position="left">
