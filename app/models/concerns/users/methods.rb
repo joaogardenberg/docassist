@@ -17,6 +17,10 @@ module Users::Methods
       end
     end
 
+    def doctors
+      User.where(:id.in => type_of)
+    end
+
     def password_required?
       new_record? || password.present? || password_confirmation.present?
     end
