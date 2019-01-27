@@ -6,7 +6,9 @@
     <% end %>
   </aside>
 </header>
+
 <section>
+
   <% if @users.any? || @search %>
     <form class="search-bar" method="get" action="<%= system_users_path %>">
       <div class="input-field">
@@ -18,63 +20,142 @@
       </div>
     </form>
   <% end %>
+
   <% if @users.any? %>
     <table class="index-table">
       <thead>
         <tr>
+
           <th class="photo"></th>
+
           <% next_name_direction = @order && @order[:field] == :name && @order[:direction] == :asc ? 'desc' : 'asc' %>
           <% next_name_direction_full = next_name_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
           <th class="tooltiped-delayed <%= @order && @order[:field] == :name ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'name', '<%= next_name_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.name').html_safe, direction: next_name_direction_full) %>" data-position="top"><%= t('users.attributes.name').html_safe %></th>
+
           <% next_username_direction = @order && @order[:field] == :username && @order[:direction] == :asc ? 'desc' : 'asc' %>
           <% next_username_direction_full = next_username_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
           <th class="tooltiped-delayed <%= @order && @order[:field] == :username ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'username', '<%= next_username_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.username').html_safe, direction: next_username_direction_full) %>" data-position="top"><%= t('users.attributes.username').html_safe %></th>
+
           <% next_type_direction = @order && @order[:field] == :type && @order[:direction] == :asc ? 'desc' : 'asc' %>
           <% next_type_direction_full = next_type_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
           <th class="tooltiped-delayed <%= @order && @order[:field] == :type ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'type', '<%= next_type_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.type').html_safe, direction: next_type_direction_full) %>" data-position="top"><%= t('users.attributes.type').html_safe %></th>
+
           <th class="actions"></th>
+
         </tr>
       </thead>
       <tbody>
         <% @users.each do |user| %>
-          <tr onclick="openUrl('<%= system_user_path(id: user.id) %>', event)">
+          <tr onclick="openUserShow('<%= user.id %>', event)">
+
             <td class="photo">
-              <img src="<%= user.picture %>" alt="<%= t('users.index.photo_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)">
+              <img src="<%= user.picture %>" alt="<%= t('users.index.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)">
             </td>
+
             <td><%= user.name %></td>
+
             <td><%= user.username %></td>
+
             <td><%= user.type_name %></td>
+
             <td class="actions">
               <ul>
+
                 <li>
                   <%= link_to edit_system_user_path(id: user.id), class: 'btn-floating btn-small bg-warning waves-effect waves-light' do %>
                     <i class="fas fa-pencil-alt"></i>
                   <% end %>
                 </li>
+
                 <li>
                   <%= link_to system_user_path(id: user.id), class: 'btn-floating btn-small bg-error waves-effect waves-light', method: :delete, data: { confirm: t('misc.confirm_destruction') } do %>
                     <i class="fas fa-trash-alt"></i>
                   <% end %>
                 </li>
+
               </ul>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+
     <div class="row">
+
       <div class="col s12 m12 l6">
         <div class="table-info"><%= page_entries_info @users, entry_name: t('users.attributes.user').html_safe %></div>
       </div>
+
       <div class="col s12 m12 l6">
         <div class="table-pages"><%= paginate @users, window: 2, outer_window: 2 %></div>
       </div>
+
+    </div>
+
+    <div class="users-show">
+      <% @users.each do |user| %>
+        <div id="user-<%= user.id %>" class="user-show-container">
+          <div class="user-show bottom-shadow">
+            <header>
+              <% if user.picture %>
+                <img class="picture" src="<%= user.picture %>" alt="<%= t('users.show.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)" />
+              <% else %>
+                <img class="picture" src="/images/empty_avatar.png" alt="<%= t('users.show.empty_picture') %>">
+              <% end %>
+              <% if user.background %>
+                <img class="background" src="<%= user.background %>" alt="<%= t('users.show.background_alt', name: user.name).html_safe %>" onerror="onUserBackgroundError(event)" />
+              <% else %>
+                <img class="background" src="https://placeimg.com/220/220/any" alt="<%= t('users.show.empty_picture') %>">
+              <% end %>
+              <p class="truncate tooltiped" data-tooltip="<%= user.name %>" data-position="top"><%= user.name %></p>
+              <button class="btn-flat waves-effect waves-light" type="button" onclick="closeUserShow('<%= user.id %>', event)">
+                <i class="fas fa-times"></i>
+              </button>
+            </header>
+            <article>
+              <p><span>Usuário</span> <span><%= user.username %></span></p>
+              <p><span>E-mail</span> <span><%= user.email %></span></p>
+              <p>
+                <span>Tipo</span>
+                <span>
+                  <% if user.type == 0 %>
+                    <%= user.type_name %>
+                  <% else %>
+                    <%= user.type_name %> de&nbsp;<!--
+                 --><% user.doctors&.each_with_index do |doctor, index| %><!--
+                   --><% if index == 0 %><!--
+                     --><span class="doctor"><%= doctor.name %></span><!--
+                   --><% elsif index > 0 && index < user.doctors.size - 1 %><!--
+                     --><%= t('support.array.words_connector') %><span class="doctor"><%= doctor.name %></span><!--
+                   --><% else %><!--
+                     --><%= t('support.array.last_word_connector') %><span class="doctor"><%= doctor.name %></span><!--
+                   --><% end %><!--
+                 --><% end %>
+                  <% end %>
+                </span>
+              </p>
+            </article>
+            <footer>
+              <a href="<%= edit_system_user_path(user.id) %>" class="btn waves-effect waves-light bg-warning">
+                <i class="fas fa-pencil-alt left"></i>
+                Editar
+              </a><!--
+           --><button class="btn-flat waves-effect" type="button" onclick="closeUserShow('<%= user.id %>', event)">
+                <i class="fas fa-arrow-left left"></i>
+                Voltar
+              </button>
+            </footer>
+          </div>
+        </div>
+      <% end %>
+      <div class="user-show-overlay"></div>
     </div>
   <% else %>
     <div class="not-found row">
       <div class="col s12">
         <p class="center-align">
-          <i class="fas fa-address-card"></i>
+          <i class="fas fa-users"></i>
+          <i class="fas fa-question"></i>
         </p>
       </div>
       <div class="col s12">

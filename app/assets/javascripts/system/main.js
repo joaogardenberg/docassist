@@ -30,6 +30,18 @@ function openUrl(url, event) {
   }
 }
 
+function openUserShow(id, event) {
+  if (!event || (event && !event.target.closest('a'))) {
+    $(`.users-show, #user-${id}, .user-show-overlay`).addClass('open');
+  }
+}
+
+function closeUserShow(id, event) {
+  if (!event || (event && !event.target.closest('a'))) {
+    $(`.users-show, #user-${id}, .user-show-overlay`).removeClass('open');
+  }
+}
+
 function sort(url, search, field, direction) {
   openUrl(`${url}?order=${field}-${direction}${search ? `&search=${search}` : ''}`);
 }
