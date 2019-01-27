@@ -17,7 +17,11 @@ function hasTouch() {
 }
 
 function onUserPictureError({ target }) {
-  target.src = 'https://pixelmator-pro.s3.amazonaws.com/community/avatar_empty@2x.png';
+  target.src = '/images/empty_avatar.png';
+}
+
+function onUserBackgroundError({ target }) {
+  target.src = 'https://placeimg.com/220/220/any';
 }
 
 function openUrl(url, event) {
