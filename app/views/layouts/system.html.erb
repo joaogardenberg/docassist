@@ -33,36 +33,35 @@
 
     </div>
 
-    <div class="todo" onclick="toggleTodo(event)">
-      <i class="fas fa-times" onclick="closeTodo(event)"></i>
-      <h5>SPRINT</h5>
-      <p>Estilizar esse search das index direito que tá escroto</p>
-      <p>Fazer páginas dos pacientes</p>
-      <p>Integrar páginas dos pacientes com o back-end</p>
-      <p>Fazer páginas dos usuários</p>
-      <p>Integrar páginas dos usuários com o back-end</p>
-      <p>Colocar alguns usuários como principais</p>
-      <p>Adicionar permissões</p>
-      <p>Só deixar os usuários principais acessarem coisas relacionadas aos mesmos</p>
-      <p>Só deixar os usuários normais acessarem coisas atribuídas a eles pelo usuário principal</p>
-      <p>Fazer validações dos usuários no back-end</p>
-      <p>Fazer validações dos pacientes no back-end</p>
-      <p>Fazer formulário ficar vermelho caso já haja o mesmo email/username cadastrado</p>
-      <p>Flash message pra quando criar usuário avisando que mandou e-mail pra confirmar</p>
-      <p>Flash messages em geral</p>
-      <h5>BACKLOG</h5>
-      <p>Colocar modal do materialize no lugar dos alerts/confirms</p>
-      <p>Atualizar sidebar com as permissões</p>
-      <p>Fazer página das consultas</p>
-      <p>Fazer dashboard</p>
-      <p>Terminar campos dos pacientes</p>
-      <% if Rails.env.development? %>
-        <h5>Debug</h5>
+    <% if Rails.env.development? %>
+      <div class="todo" onclick="toggleTodo(event)">
+        <i class="fas fa-times" onclick="closeTodo(event)"></i>
+
+        <h5>SPRINT</h5>
+        <p>Fazer páginas dos pacientes</p>
+        <p>Colocar alguns usuários como principais</p>
+        <p>Adicionar permissões</p>
+        <p>Só deixar os usuários principais acessarem coisas relacionadas aos mesmos</p>
+        <p>Só deixar os usuários normais acessarem coisas atribuídas a eles pelo usuário principal</p>
+        <p>Validações dos usuários</p>
+        <p>Validações dos pacientes</p>
+        <p>Fazer campos do formulário ficarem vermelhos caso falhem nas validações</p>
+
+        <h5>BACKLOG</h5>
+        <p>Flash message pra quando criar usuário avisando que mandou e-mail pra confirmar</p>
+        <p>Flash messages em geral</p>
+        <p>Traduzir as partes feitas no react</p>
+        <p>Colocar modal do materialize no lugar dos alerts/confirms</p>
+        <p>Colocar animação de abrir/fechar os modais e os user#show</p>
+        <p>Atualizar sidebar com as permissões</p>
+        <p>Fazer página das consultas</p>
+        <p>Fazer dashboard</p>
+        <p>Terminar campos dos pacientes</p>
+
+        <h5>DEBUG</h5>
         <span><%= debug(params) %></span>
-      <% end %>
-    </div>
-
-
+      </div>
+    <% end %>
 
   </body>
 </html>
