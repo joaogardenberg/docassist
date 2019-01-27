@@ -1,9 +1,9 @@
 module System
   class UsersController < SystemController
     respond_to    :html
-    before_action :load_user,    only: [:show, :edit, :update, :destroy]
-    before_action :load_doctors, only: [:new, :edit]
-    before_action :load_params,  only: :index
+    before_action :load_user,         only: [:edit, :update, :destroy]
+    before_action :load_doctors,      only: [:new, :edit]
+    before_action :load_params,       only: :index
 
     def index
       @users = User
@@ -62,7 +62,6 @@ module System
     def load_user
       @user = User.where(id: permitted_params[:id]).first
       redirect_to(:system_users) unless @user
-      @doctor_names = User.where(:id.in => @user.type_of).pluck(:name)
     end
 
     def load_doctors

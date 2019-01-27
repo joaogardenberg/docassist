@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   namespace :system do
     resources :appointments,
-              :patients,
-              :users
+              :patients
 
+    resources :users,         except: :show
     resources :dashboard,     only: :index
     get       '/user/edit',   to: 'user#edit'
     put       '/user/update', to: 'user#update'
