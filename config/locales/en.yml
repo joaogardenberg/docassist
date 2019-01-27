@@ -95,11 +95,16 @@ en:
     index:
       title: "Users"
       new_user_label: "New user"
-      photo_alt: "Photo of %{name}"
+      picture_alt: "Photo of %{name}"
       search_placeholder: "Search user..."
       search_tooltip: "Search user"
     show:
       title: "User"
+      picture_alt: "Picture of %{name}"
+      empty_picture: "User with no picture"
+      background_alt: "%{name}'s background"
+      random_background_alt: "Random background"
+      random_background_text: "Random"
     new:
       title: "New user"
     edit:

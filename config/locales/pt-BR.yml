@@ -286,11 +286,16 @@ pt-BR:
     index:
       title: "Usuários"
       new_user_label: "Novo usuário"
-      photo_alt: "Foto de %{name}"
+      picture_alt: "Foto de %{name}"
       search_placeholder: "Procurar usuário..."
       search_tooltip: "Procurar usuário"
     show:
       title: "Usuário"
+      picture_alt: "Foto de %{name}"
+      empty_picture: "Usuário sem foto"
+      background_alt: "Plano de fundo de %{name}"
+      random_background_alt: "Plano de fundo aleatório"
+      random_background_text: "Aleatório"
     new:
       title: "Novo usuário"
     edit:
