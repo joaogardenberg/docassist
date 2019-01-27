@@ -7,7 +7,7 @@ body {
 }
 
 ::selection, ::-moz-selection {
-  background: $gradient-initial-color;
+  background-color: $gradient-initial-color;
 }
 
 .bg-info {
@@ -97,7 +97,7 @@ body {
 
 .test {
   &, * {
-    background: rgba(0, 0, 0, 0.2) !important;
+    background-color: rgba(0, 0, 0, 0.2) !important;
     box-shadow: 0 0 0 1px rgba(0, 255, 0, 0.5) !important;
   }
 }
