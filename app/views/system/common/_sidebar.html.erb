@@ -3,7 +3,7 @@
   <nav class="right-shadow desktop-only">
     <ul class="page-links">
 
-      <%= link_to :system_user_edit, class: 'current-user-info waves-effect waves-light', style: "background-image: #{current_user.background.present? ? "url(#{current_user.background})" : 'url(https://placeimg.com/536/129/any)'}" do %>
+      <%= link_to :system_user_edit, class: 'current-user-info waves-effect waves-light', style: "background-image: #{current_user.background.present? ? "url(#{current_user.background})" : 'url(https://placeimg.com/220/220/any)'}" do %>
         <img src="<%= current_user.picture %>" alt="<%= t('sidebar.user_picture').html_safe %>" onerror="onUserPictureError(event)" />
         <span class="name"><%= current_user.name || 'Usuário' %></span>
         <span class="new badge"><%= t('sidebar.edit').html_safe %></span>
