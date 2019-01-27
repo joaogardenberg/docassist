@@ -7,10 +7,10 @@ module Users::Fields::Custom
     attr_writer :password_confirmation
 
     field :type,       type: Integer, default: 0
-    field :type_of,    type: Array
-    field :name,       type: String
+    field :type_of,    type: Array,   default: []
+    field :name,       type: String,  default: ''
     field :username,   type: String
-    field :picture,    type: String
-    field :background, type: String
+    field :picture,    type: String,  default: ''
+    field :background, type: String,  default: ''
   end
 end

@@ -2,11 +2,11 @@ module Patients::Fields::Address
   extend ActiveSupport::Concern
 
   included do
-    field :cep,          type: String
-    field :state,        type: Integer
-    field :city,         type: String
-    field :neighborhood, type: String
-    field :address,      type: String
-    field :complement,   type: String
+    field :cep,          type: String,  default: ''
+    field :state,        type: Integer, default: 18
+    field :city,         type: String,  default: ''
+    field :neighborhood, type: String,  default: ''
+    field :address,      type: String,  default: ''
+    field :complement,   type: String,  default: ''
   end
 end
