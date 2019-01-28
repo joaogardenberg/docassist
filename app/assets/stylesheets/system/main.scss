@@ -139,6 +139,10 @@ body {
     display: none;
   }
 
+  * {
+    direction: ltr;
+  }
+
   i {
     display: none;
     font-size: 1.2rem;
@@ -174,7 +178,6 @@ body {
 
   .debug_dump {
     overflow: auto;
-    direction: ltr;
   }
 }
 
