@@ -12,5 +12,6 @@ module Users::Fields::Custom
     field :username,   type: String
     field :picture,    type: String,  default: ''
     field :background, type: String,  default: ''
+    field :is_main,    type: Boolean, default: false
   end
 end

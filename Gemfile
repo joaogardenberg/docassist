@@ -31,6 +31,7 @@ gem 'jquery-rails', '~> 4.3'
 gem 'kaminari-actionview'
 gem 'kaminari-mongoid'
 gem 'materialize-sass', '~> 1.0.0'
+gem 'pundit', '~> 2.0.1'
 gem 'react-rails', '~> 2.4'
 gem 'webpacker', '~> 3.5'
 

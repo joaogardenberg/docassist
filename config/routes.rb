@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'application#index'
 
   # resources :system, only: :index
-  get '/system' => redirect('/system/patients')
+  get '/system' => redirect('/system/dashboard')
 
   namespace :system do
     resources :appointments,

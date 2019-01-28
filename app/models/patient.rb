@@ -7,4 +7,5 @@ class Patient
   include Patients::Fields::PersonalHistory
   include Patients::Fields::Habits
   include Patients::Fields::FamilyHistory
+  include Patients::Methods
 end

@@ -1,11 +1,14 @@
 module System
   class PatientsController < SystemController
     respond_to    :html
-    before_action :load_patient,     only: [:show, :edit, :update, :destroy]
-    before_action :load_params,      only: :index
+    before_action :load_params,                       only: :index
+    before_action :load_patient,                      only: [:show, :edit, :update, :destroy]
+    before_action :verify_authorization,              only: [:index, :new, :create]
+    before_action :verify_authorization_with_patient, only: [:show, :edit, :update, :destroy]
+    before_action :load_doctors,                      only: [:new, :edit]
 
     def index
-      @patients = Patient
+      @patients = current_user.patients
       @patients = @patients.where('name' => /.*#{@search}.*/i) if @search.present?
       @patients = @patients.order(@order[:field] => @order[:direction])
       @patients = @patients.page(@page)
@@ -52,6 +55,8 @@ module System
         :email, :cep, :state,
         :city, :neighborhood, :address,
         :complement
+      ).merge(
+        user_id: params[:user_id].present? ? BSON::ObjectId(params[:user_id]) : current_user.id
       )
     end
 
@@ -59,15 +64,27 @@ module System
       params.permit(:id, :search, :order, :page)
     end
 
+    def load_params
+      @search = @search || search
+      @order  = @order || order
+      @page   = @page || page
+    end
+
     def load_patient
       @patient = Patient.where(id: permitted_params[:id]).first
       redirect_to(:system_patients) unless @patient
     end
 
-    def load_params
-      @search = @search || search
-      @order  = @order || order
-      @page   = @page || page
+    def load_doctors
+      @doctors = current_user.doctor? ? [] : current_user.doctors
+    end
+
+    def verify_authorization
+      authorize(:patient)
+    end
+
+    def verify_authorization_with_patient
+      authorize(@patient)
     end
 
     def search

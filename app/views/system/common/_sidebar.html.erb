@@ -30,12 +30,14 @@
         <% end %>
       </li>
 
-      <li class="link">
-        <%= link_to :system_users, class: "waves-effect#{controller?('system/users') ? ' active' : ''}" do %>
-          <i class="fas fa-users"></i>
-          <span class="name"><%= t('sidebar.users').html_safe %></span>
-        <% end %>
-      </li>
+      <% if policy(:user).index? %>
+        <li class="link">
+          <%= link_to :system_users, class: "waves-effect#{controller?('system/users') ? ' active' : ''}" do %>
+            <i class="fas fa-users"></i>
+            <span class="name"><%= t('sidebar.users').html_safe %></span>
+          <% end %>
+        </li>
+      <% end %>
 
     </ul>
   </nav>

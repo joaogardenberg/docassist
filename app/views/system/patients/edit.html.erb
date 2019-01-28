@@ -2,5 +2,5 @@
   <h2><%= t('patients.edit.title').html_safe %></h2>
 </header>
 <section>
-  <%= react_component 'Redux', { component: 'EditPatient', authenticityToken: form_authenticity_token, attributes: @patient } %>
+  <%= react_component 'Redux', { component: 'EditPatient', authenticityToken: form_authenticity_token, attributes: @patient, doctors: @doctors } %>
 </section>

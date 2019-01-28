@@ -1,12 +1,14 @@
 module System
   class UsersController < SystemController
     respond_to    :html
-    before_action :load_user,         only: [:edit, :update, :destroy]
-    before_action :load_doctors,      only: [:new, :edit]
-    before_action :load_params,       only: :index
+    before_action :load_params,                    only: :index
+    before_action :load_user,                      only: [:edit, :update, :destroy]
+    before_action :verify_authorization,           only: [:index, :new, :create]
+    before_action :verify_authorization_with_user, only: [:edit, :update, :destroy]
+    before_action :load_doctors,                   only: [:new, :edit]
 
     def index
-      @users = User
+      @users = User.where(user_id: current_user.id)
       @users = @users.where('name' => /.*#{@search}.*/i) if @search.present?
       @users = @users.order(@order[:field] => @order[:direction])
       @users = @users.page(@page)
@@ -46,12 +48,14 @@ module System
     def permitted_attributes
       params.permit(
               :username, :name, :type,
-              :type_of, :email, :email_confirmation,
-              :password, :password_confirmation, :picture,
-              :background
+              :email, :email_confirmation, :password,
+              :password_confirmation, :picture, :background
             )
             .merge(
-              type_of: params[:type_of]&.split(',')
+              user_id: current_user.id,
+              type_of: params[:type_of]&.split(',').map do |id|
+                BSON::ObjectId(id)
+              end
             )
     end
 
@@ -59,19 +63,27 @@ module System
       params.permit(:id, :search, :order, :page)
     end
 
+    def load_params
+      @search = @search || search
+      @order  = @order || order
+      @page   = @page || page
+    end
+
     def load_user
       @user = User.where(id: permitted_params[:id]).first
       redirect_to(:system_users) unless @user
     end
 
-    def load_doctors
-      @doctors = User.where(type: 0)
+    def verify_authorization
+      authorize(:user)
     end
 
-    def load_params
-      @search = @search || search
-      @order  = @order || order
-      @page   = @page || page
+    def verify_authorization_with_user
+      authorize(@user)
+    end
+
+    def load_doctors
+      @doctors = User.where(type: 0, user_id: current_user.id)
     end
 
     def search

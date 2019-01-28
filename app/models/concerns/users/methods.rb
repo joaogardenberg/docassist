@@ -17,8 +17,16 @@ module Users::Methods
       end
     end
 
+    def doctor?
+      type == 0
+    end
+
     def doctors
-      User.where(:id.in => type_of)
+      User.where(type: 0, user_id: is_main ? id : user_id, :id.in => type_of)
+    end
+
+    def patients
+      Patient.where(:user_id.in => type == 0 ? [id] : type_of)
     end
 
     def password_required?
@@ -27,6 +35,18 @@ module Users::Methods
 
     def login
       @login || self.username || self.email
+    end
+
+    def main?
+      is_main
+    end
+
+    def main_user_id
+      user_id
+    end
+
+    def main_user
+      User.where(id: user_id).first
     end
 
     def self.find_first_by_auth_conditions(warden_conditions)
