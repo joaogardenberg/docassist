@@ -16,15 +16,20 @@ const INITIAL_STATE = {
 
 class FormPatient extends Component {
   render() {
-    const { method, action, handleSubmit }                = this.props;
+    const { method, action, handleSubmit, doctors }       = this.props;
     const { showNationalityOther, showPlaceOfBirthOther } = this.state;
     const { showRgIssuingAgency }                         = this.state;
 
     const formButtons = this.renderFormButtons();
     let addMethod;
+    let renderDoctorField;
 
     if (method) {
       addMethod = <input type="hidden" name="_method" value={ method } />;
+    }
+
+    if (doctors && doctors.length > 0) {
+      renderDoctorField = this.renderDoctorField();
     }
 
     return (
@@ -36,6 +41,7 @@ class FormPatient extends Component {
       >
         { addMethod }
         <input type='hidden' name='authenticity_token' value={ this.props.authenticityToken } />
+        { renderDoctorField }
         <h5 className="section">Informações pessoais</h5>
         <div className="row">
           <Field
@@ -404,6 +410,27 @@ class FormPatient extends Component {
     );
   }
 
+  renderDoctorField() {
+    return (
+      <div className="row">
+        <Field
+          id="user_id"
+          name="user_id"
+          label="Médico(a)"
+          className="col s12"
+          reference={ this.userIdSelectRef }
+          component={ this.renderSelect }
+        >
+          { this.renderUserIdOptions() }
+        </Field>
+      </div>
+    );
+  }
+
+  renderUserIdOptions() {
+    return this.props.doctors.map(doctor => <option key={ doctor.id } value={ doctor.id }>{ doctor.name }</option>);
+  }
+
   renderGenderOptions() {
     return Patient.GENDERS.map((gender, index) => {
       const value = Patient.GENDER_VALUES[index];
@@ -446,6 +473,7 @@ class FormPatient extends Component {
 
     this.formRef                   = React.createRef();
 
+    this.userIdSelectRef           = React.createRef();
     this.nameInputRef              = React.createRef();
     this.genderSelectRef           = React.createRef();
     this.maritalStatusSelectRef    = React.createRef();
@@ -458,6 +486,7 @@ class FormPatient extends Component {
     this.nationalityOtherInputRef  = React.createRef();
     this.placeOfBirthSelectRef     = React.createRef();
     this.placeOfBirthOtherInputRef = React.createRef();
+    this.userIdSelectLoaded        = false;
     this.genderSelectLoaded        = false;
     this.maritalStatusSelectLoaded = false;
     this.nationalitySelectLoaded   = false;
@@ -683,13 +712,18 @@ class FormPatient extends Component {
   }
 
   initFormSelects() {
-    const { genderSelectLoaded, maritalStatusSelectLoaded }     = this;
-    const { nationalitySelectLoaded, placeOfBirthSelectLoaded } = this;
-    const { stateSelectLoaded }                                 = this;
-    const { genderSelectRef, maritalStatusSelectRef }           = this;
-    const { nationalitySelectRef, placeOfBirthSelectRef }       = this;
-    const { stateSelectRef }                                    = this;
-    const { shouldResetSelects }                                = this.state;
+    const { userIdSelectLoaded, genderSelectLoaded }             = this;
+    const { maritalStatusSelectLoaded, nationalitySelectLoaded } = this;
+    const { placeOfBirthSelectLoaded, stateSelectLoaded }        = this;
+    const { userIdSelectRef, genderSelectRef }                   = this;
+    const { maritalStatusSelectRef, nationalitySelectRef }       = this;
+    const { placeOfBirthSelectRef, stateSelectRef }              = this;
+    const { shouldResetSelects }                                 = this.state;
+
+    if ((shouldResetSelects || !userIdSelectLoaded) && userIdSelectRef.current) {
+      M.FormSelect.init(userIdSelectRef.current);
+      this.userIdSelectLoaded = true;
+    }
 
     if ((shouldResetSelects || !genderSelectLoaded) && genderSelectRef.current) {
       M.FormSelect.init(genderSelectRef.current);
