@@ -438,9 +438,11 @@
           }
 
           img.picture {
-            background-color: $white;
+            background-color: $black;
             border-radius: 10px;
+            border: 1px solid $white;
             bottom: calc(1.4rem + 20px);
+            box-shadow: 0 0 0 1px $black;
             height: calc(100% - 2.8rem - 40px);
             left: 50%;
             max-width: calc(100% - 2.8rem - 60px);
