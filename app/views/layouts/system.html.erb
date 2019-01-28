@@ -38,10 +38,6 @@
         <i class="fas fa-times" onclick="closeTodo(event)"></i>
 
         <h5>SPRINT</h5>
-        <p>Colocar alguns usuários como principais</p>
-        <p>Adicionar permissões</p>
-        <p>Só deixar os usuários principais acessarem coisas relacionadas aos mesmos</p>
-        <p>Só deixar os usuários normais acessarem coisas atribuídas a eles pelo usuário principal</p>
         <p>Validações dos usuários</p>
         <p>Validações dos pacientes</p>
         <p>Fazer campos do formulário ficarem vermelhos caso falhem nas validações</p>
@@ -59,8 +55,13 @@
         <p>Terminar campos dos pacientes</p>
 
         <h5>DEBUG</h5>
+        <p>CURRENT USER<br><%= current_user.id %><br><%= current_user.name %><br><%= current_user.type_name %><br><%= current_user.doctors.pluck(:name) %></p>
         <span><%= debug(params) %></span>
       </div>
+    <% end %>
+
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
 
   </body>
