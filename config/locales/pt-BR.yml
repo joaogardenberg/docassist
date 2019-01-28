@@ -282,6 +282,7 @@ pt-BR:
     attributes:
       patient: "paciente"
       name: "Nome"
+      user_name: "Médico"
   users:
     index:
       title: "Usuários"

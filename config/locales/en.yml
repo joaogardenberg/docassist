@@ -91,6 +91,7 @@ en:
     attributes:
       patient: "patient"
       name: "Name"
+      user_name: "Doctor"
   users:
     index:
       title: "Users"
