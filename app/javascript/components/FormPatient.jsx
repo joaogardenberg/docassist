@@ -17,16 +17,12 @@ const INITIAL_STATE = {
 class FormPatient extends Component {
   render() {
     const { method, action, handleSubmit, doctors }       = this.props;
+    const { submitCallback }                              = this.props;
     const { showNationalityOther, showPlaceOfBirthOther } = this.state;
     const { showRgIssuingAgency }                         = this.state;
 
     const formButtons = this.renderFormButtons();
-    let addMethod;
     let renderDoctorField;
-
-    if (method) {
-      addMethod = <input type="hidden" name="_method" value={ method } />;
-    }
 
     if (doctors && doctors.length > 0) {
       renderDoctorField = this.renderDoctorField();
@@ -34,13 +30,8 @@ class FormPatient extends Component {
 
     return (
       <form
-        method="post"
-        action={ action }
-        ref={ this.formRef }
-        onSubmit={ handleSubmit(this.onSubmit.bind(this)) }
+        onSubmit={ handleSubmit(submitCallback) }
       >
-        { addMethod }
-        <input type='hidden' name='authenticity_token' value={ this.props.authenticityToken } />
         { renderDoctorField }
         <h5 className="section">Informações pessoais</h5>
         <div className="row">
@@ -286,7 +277,7 @@ class FormPatient extends Component {
             label="Complemento"
             className="col l6 s12"
             autoComplete="off"
-            maxLength="50"
+            maxLength="100"
             reference={ this.complementInputRef }
             component={ this.renderField }
           />
@@ -310,21 +301,22 @@ class FormPatient extends Component {
   // </div>
 
   renderFormButtons() {
-    const { restoreCallback, clearCallback } = this.props;
+    const { page, restoreCallback, clearCallback, pristine } = this.props;
+    const { submitting }                                     = this.props;
     let submitIcon, submitText, restoreIcon, restoreText, restoreFunc;
 
-    if (restoreCallback) {
-      submitIcon = 'fas fa-save';
-      submitText = 'Salvar';
-      restoreIcon = 'fas fa-sync-alt';
-      restoreText = 'Restaurar';
-      restoreFunc = restoreCallback;
-    } else {
+    if (page === 'new') {
       submitIcon = 'fas fa-plus';
       submitText = 'Criar';
       restoreIcon = 'fas fa-eraser';
       restoreText = 'Limpar';
       restoreFunc = clearCallback;
+    } else {
+      submitIcon = 'fas fa-save';
+      submitText = 'Salvar';
+      restoreIcon = 'fas fa-sync-alt';
+      restoreText = 'Restaurar';
+      restoreFunc = restoreCallback;
     }
 
     return (
@@ -333,6 +325,7 @@ class FormPatient extends Component {
           <button
             className="btn waves-effect waves-light bg-success"
             type="submit"
+            disabled={ submitting }
           >
             <i className={ `${submitIcon} left` } />
             { submitText }
@@ -340,6 +333,7 @@ class FormPatient extends Component {
           <button
             className="btn waves-effect waves-light bg-warning"
             type="button"
+            disabled={ pristine || submitting }
             onClick={ () => this.onRestoreButtonClick(restoreFunc) }
           >
             <i className={ `${restoreIcon} left` } />
@@ -470,8 +464,6 @@ class FormPatient extends Component {
     super(props);
 
     this.state = INITIAL_STATE;
-
-    this.formRef                   = React.createRef();
 
     this.userIdSelectRef           = React.createRef();
     this.nameInputRef              = React.createRef();
@@ -616,10 +608,6 @@ class FormPatient extends Component {
   onRestoreButtonClick(callback) {
     callback();
     this.setState({ shouldResetSelects: true, shouldResetCounters: true });
-  }
-
-  onSubmit(values) {
-    this.formRef.current.submit();
   }
 
   initFormCounters() {

@@ -22,9 +22,9 @@ module System
       @patient = Patient.new(permitted_attributes)
 
       if @patient.valid?
-        @patient.save && redirect_to(:system_patients)
+        @patient.save && render(status: :ok, json: { success: true })
       else
-        render(action: :new)
+        render(status: :ok, json: { success: false, errors: @patient.errors })
       end
     end
 
@@ -32,9 +32,9 @@ module System
       @patient.assign_attributes(permitted_attributes)
 
       if @patient.valid?
-        @patient.save && redirect_to(:system_patients)
+        @patient.save && render(status: :ok, json: { success: true })
       else
-        render(action: :edit)
+        render(status: :ok, json: { success: false, errors: @patient.errors })
       end
     end
 
@@ -56,7 +56,8 @@ module System
         :city, :neighborhood, :address,
         :complement
       ).merge(
-        user_id: params[:user_id].present? ? BSON::ObjectId(params[:user_id]) : current_user.id
+        user_id: current_user.doctor? ? current_user.id : BSON::ObjectId(params[:user_id]),
+        current_user: current_user
       )
     end
 

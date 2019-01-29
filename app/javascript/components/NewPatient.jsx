@@ -1,25 +1,43 @@
-import React         from 'react';
-import { reduxForm } from 'redux-form';
-import Form          from './FormPatient';
-import * as Patient  from '../constants/Patient';
+import React                          from 'react';
+import { reduxForm, SubmissionError } from 'redux-form';
+import Axios                          from 'axios';
+import Form                           from './FormPatient';
+import * as Patient                   from '../constants/Patient';
 
 let NewPatient = props => {
   const { change, untouch, reset, authenticityToken, handleSubmit } = props;
-  const { doctors }                                                 = props;
+  const { doctors, pristine, submitting }                           = props;
 
   return (
     <div className="form">
       <Form
         doctors={ doctors }
-        action="/system/patients"
+        page="new"
         change={ change }
         untouch={ untouch }
+        pristine={ pristine }
+        submitting={ submitting }
         clearCallback={ reset }
         handleSubmit={ handleSubmit }
         authenticityToken={ authenticityToken }
+        submitCallback={ values => onSubmit(values, props) }
       />
     </div>
   );
+}
+
+function onSubmit(values, props) {
+  const params = { ...values, authenticity_token: props.authenticityToken }
+
+  return Axios.post('/system/patients', params)
+              .then(({ status, data: { success, errors } }) => {
+                if (status === 200 && success) {
+                  window.location.href = '/system/patients';
+                } else {
+                  Object.keys(errors).forEach(key => errors[key] = errors[key][0]);
+                  throw new SubmissionError(errors);
+                }
+              });
 }
 
 function validate(values) {
@@ -62,13 +80,6 @@ function validate(values) {
 
 NewPatient = reduxForm({
   validate,
-  initialValues: {
-    gender: '0',
-    marital_status: '0',
-    nationality: '0',
-    place_of_birth: '18',
-    state: '18'
-  },
   enableReinitialize: true,
   form: 'NewPatientForm'
 })(NewPatient);

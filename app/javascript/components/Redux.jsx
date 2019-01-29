@@ -32,8 +32,8 @@ const Redux = props => {
       RenderComponent = Default;
   }
 
-  const initialValues = sanitize(props.attributes);
   const doctors = sanitizeArray(props.doctors);
+  const initialValues = sanitize(props.attributes, props.component, doctors);
 
   return (
     <Provider store={ createStore(Reducers) }>
@@ -46,9 +46,35 @@ const Redux = props => {
   );
 }
 
-const sanitize = attributes => {
+const sanitize = (attributes, component, doctors) => {
   if (!attributes) {
-    return undefined;
+    let initialValues;
+
+    switch(component) {
+      case 'NewPatient':
+        initialValues = {
+          gender: '0',
+          marital_status: '0',
+          nationality: '0',
+          place_of_birth: '18',
+          state: '18'
+        }
+
+        if (doctors && doctors.length > 0) {
+          initialValues.user_id = doctors[0].id;
+        }
+
+        break;
+      case 'NewUser':
+        initialValues = {
+          type: '0'
+        }
+        break;
+      default:
+        initialValues = undefined;
+    }
+
+    return initialValues;
   }
 
   const sanitized = attributes;

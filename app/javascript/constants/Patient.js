@@ -418,7 +418,7 @@ export function validatePlaceOfBirthOther(placeOfBirth, placeOfBirthOther) {
 
 export function validatePhone(phone) {
   if (phone && !phone.match(Regex.Phone)) {
-    return 'Número inválido'
+    return 'Número inválido';
   }
 
   return null;
@@ -479,8 +479,8 @@ export function validateAddress(address) {
 }
 
 export function validateComplement(complement) {
-  if (complement && complement.length > 50) {
-    return 'Máximo 50 caracteres';
+  if (complement && complement.length > 100) {
+    return 'Máximo 100 caracteres';
   }
 
   return null;
