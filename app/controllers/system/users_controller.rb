@@ -53,9 +53,9 @@ module System
             )
             .merge(
               user: current_user,
-              type_of: params[:type_of]&.map do |id|
+              type_of: params[:type_of].present? ? params[:type_of]&.map do |id|
                 BSON::ObjectId(id)
-              end
+              end : []
             )
     end
 
