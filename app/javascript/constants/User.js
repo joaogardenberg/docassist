@@ -62,7 +62,7 @@ export function validateUsername(username) {
   }
 
   if (!username.toLowerCase().match(Regex.Username)) {
-    return 'Só pode conter letras e números'
+    return 'Só pode conter letras e números';
   }
 
   return null;
