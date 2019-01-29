@@ -71,7 +71,7 @@ module System
 
     def load_user
       @user = User.where(id: permitted_params[:id]).first
-      # redirect_to(:system_users) unless @user
+      redirect_to(:system_users) unless @user
     end
 
     def verify_authorization
