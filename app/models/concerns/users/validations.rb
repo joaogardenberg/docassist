@@ -49,7 +49,7 @@ module Users::Validations
     def validate_type_of
       type_of&.each do |id|
         doctor = User.where(id: id).first
-        no_error = (doctor.main? ? doctor.id : doctor.user_id) == (main? ? id : user_id) if doctor
+        no_error = (doctor.main? ? doctor.id : doctor.user_id) == (self.main? ? self.id : self.user_id) if doctor
         errors.add(:type_of, I18n.t('errors.messages.not_authorized')) unless no_error
       end
     end
