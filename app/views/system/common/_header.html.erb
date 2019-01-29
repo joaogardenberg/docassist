@@ -15,11 +15,11 @@
 
     <ul class="header-nav right">
 
-      <li class="nav-item hide-on-small-only">
+      <!--li class="nav-item hide-on-small-only">
         <a class="nav-link waves-effect waves-light tooltiped" onclick="toggleFullScreen()" data-tooltip="<%= t('header.fullscreen_tooltip').html_safe %>" data-position="left">
           <i class="fas fa-expand"></i>
         </a>
-      </li>
+      </li-->
 
       <li class="nav-item">
         <%= button_to destroy_user_session_path, class: 'nav-link waves-effect waves-light tooltiped', 'data-tooltip' => t('header.logout_tooltip').html_safe, 'data-position' => 'left', method: :delete do %>
