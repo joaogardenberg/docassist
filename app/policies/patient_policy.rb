@@ -20,7 +20,11 @@ class PatientPolicy < SystemPolicy
   end
 
   def update?
-    user.id == record.doctor_id
+    if user.doctor?
+      user.id == record.doctor_id
+    else
+      user.type_of.include?(record.doctor_id)
+    end
   end
 
   def edit?
@@ -28,6 +32,10 @@ class PatientPolicy < SystemPolicy
   end
 
   def destroy?
-    user.id == record.doctor_id
+    if user.doctor?
+      user.id == record.doctor_id
+    else
+      user.type_of.include?(record.doctor_id)
+    end
   end
 end
