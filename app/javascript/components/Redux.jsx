@@ -84,7 +84,7 @@ const sanitize = attributes => {
   }
 
   if (sanitized.type_of && sanitized.type_of.length > 0) {
-    sanitized.type_of_alias = sanitized.type_of;
+    sanitized.type_of = sanitized.type_of.map(object => object.$oid);
   }
 
   if (sanitized.date_of_birth) {

@@ -3,5 +3,7 @@ class User
   include Users::Options
   include Users::Fields::Devise
   include Users::Fields::Custom
+  include Users::Constants
   include Users::Methods
+  include Users::Validations
 end

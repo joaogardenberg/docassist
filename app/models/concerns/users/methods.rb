@@ -2,6 +2,10 @@ module Users::Methods
   extend ActiveSupport::Concern
 
   included do
+    before_validation do
+      self.user = self if is_main && !user
+    end
+
     def will_save_change_to_email?
       false
     end

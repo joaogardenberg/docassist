@@ -50,6 +50,9 @@ en:
           other: "Displaying %{count} %{entry_name}"
       more_pages:
         display_entries: "Displaying %{entry_name} %{first} - %{last} of %{total}"
+  errors:
+    messages:
+    not_authorized: "not authorized"
   sidebar:
     user_picture: "User picture"
     edit: "Edit"

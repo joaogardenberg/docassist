@@ -139,6 +139,8 @@ pt-BR:
         one: não possui o tamanho esperado (1 caracter)
         other: não possui o tamanho esperado (%{count} caracteres)
       other_than: deve ser diferente de %{count}
+      not_authorized: "não autorizado"
+
     template:
       body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
       header:

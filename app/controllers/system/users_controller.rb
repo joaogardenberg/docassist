@@ -22,9 +22,9 @@ module System
       @user = User.new(permitted_attributes)
 
       if @user.valid?
-        @user.save && redirect_to(:system_users)
+        @user.save && render(status: :ok, json: { success: true })
       else
-        render(action: :new)
+        render(status: :ok, json: { success: false, errors: @user.errors })
       end
     end
 
@@ -32,9 +32,9 @@ module System
       @user.assign_attributes(permitted_attributes)
 
       if @user.valid?
-        @user.save && redirect_to(:system_users)
+        @user.save && render(status: :ok, json: { success: true })
       else
-        render(action: :edit)
+        render(status: :ok, json: { success: false, errors: @user.errors })
       end
     end
 
@@ -52,8 +52,8 @@ module System
               :password_confirmation, :picture, :background
             )
             .merge(
-              user_id: current_user.id,
-              type_of: params[:type_of]&.split(',').map do |id|
+              user: current_user,
+              type_of: params[:type_of]&.map do |id|
                 BSON::ObjectId(id)
               end
             )
@@ -71,7 +71,7 @@ module System
 
     def load_user
       @user = User.where(id: permitted_params[:id]).first
-      redirect_to(:system_users) unless @user
+      # redirect_to(:system_users) unless @user
     end
 
     def verify_authorization

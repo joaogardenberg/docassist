@@ -10,26 +10,15 @@ const INITIAL_STATE = {
 
 class FormUser extends Component {
   render() {
-    const { method, action, handleSubmit } = this.props;
-    const { showTypeOf }                   = this.state;
+    const { method, action, handleSubmit, submitCallback } = this.props;
+    const { showTypeOf }                                   = this.state;
 
     const formButtons = this.renderFormButtons();
-    let addMethod;
-
-    if (method) {
-      addMethod = <input type="hidden" name="_method" value={ method } />;
-    }
 
     return (
       <form
-        method="post"
-        action={ action }
-        ref={ this.formRef }
-        onSubmit={ handleSubmit(this.onSubmit.bind(this)) }
+        onSubmit={ handleSubmit(submitCallback) }
       >
-        { addMethod }
-        <input type="hidden" name="authenticity_token" value={ this.props.authenticityToken } />
-        <input type="hidden" name="type_of" ref={ this.typeOfHiddenRef } />
         <div className="row">
           <Field
             id="type"
@@ -44,8 +33,8 @@ class FormUser extends Component {
           </Field>
           <div className="col l4 m6 s12" style={{ display: showTypeOf ? 'block' : 'none' }}>
             <Field
-              id="type_of_alias"
-              name="type_of_alias"
+              id="type_of"
+              name="type_of"
               label="Secretário(a) de quem(ns)?"
               reference={ this.typeOfSelectRef }
               multiple={ true }
@@ -128,21 +117,22 @@ class FormUser extends Component {
   }
 
   renderFormButtons() {
-    const { restoreCallback, clearCallback } = this.props;
+    const { page, restoreCallback, clearCallback, pristine } = this.props;
+    const { submitting }                                     = this.props;
     let submitIcon, submitText, restoreIcon, restoreText, restoreFunc;
 
-    if (restoreCallback) {
-      submitIcon = 'fas fa-save';
-      submitText = 'Salvar';
-      restoreIcon = 'fas fa-sync-alt';
-      restoreText = 'Restaurar';
-      restoreFunc = restoreCallback;
-    } else {
+    if (page === 'new') {
       submitIcon = 'fas fa-plus';
       submitText = 'Criar';
       restoreIcon = 'fas fa-eraser';
       restoreText = 'Limpar';
       restoreFunc = clearCallback;
+    } else {
+      submitIcon = 'fas fa-save';
+      submitText = 'Salvar';
+      restoreIcon = 'fas fa-sync-alt';
+      restoreText = 'Restaurar';
+      restoreFunc = restoreCallback;
     }
 
     return (
@@ -151,6 +141,7 @@ class FormUser extends Component {
           <button
             className="btn waves-effect waves-light bg-success"
             type="submit"
+            disabled={ submitting }
           >
             <i className={ `${submitIcon} left` } />
             { submitText }
@@ -158,6 +149,7 @@ class FormUser extends Component {
           <button
             className="btn waves-effect waves-light bg-warning"
             type="button"
+            disabled={ pristine || submitting }
             onClick={ () => this.onRestoreButtonClick(restoreFunc) }
           >
             <i className={ `${restoreIcon} left` } />
@@ -244,11 +236,8 @@ class FormUser extends Component {
 
     this.state                        = INITIAL_STATE;
 
-    this.formRef                      = React.createRef();
-
     this.typeSelectRef                = React.createRef();
     this.typeOfSelectRef              = React.createRef();
-    this.typeOfHiddenRef              = React.createRef();
     this.nameInputRef                 = React.createRef();
     this.usernameInputRef             = React.createRef();
     this.emailInputRef                = React.createRef();
@@ -276,8 +265,8 @@ class FormUser extends Component {
     if (options[options.selectedIndex].value === '1' && this.state.showTypeOf === false) {
       this.setState({ showTypeOf: true });
     } else if (options[options.selectedIndex].value !== '1' && this.state.showTypeOf === true) {
-      this.props.change('type_of_alias', '');
-      this.props.untouch('type_of_alias');
+      this.props.change('type_of', '');
+      this.props.untouch('type_of');
       this.setState({ showTypeOf: false, shouldResetSelects: true });
     }
   }
@@ -285,14 +274,6 @@ class FormUser extends Component {
   onRestoreButtonClick(callback) {
     callback();
     this.setState({ shouldResetSelects: true, shouldResetCounters: true });
-  }
-
-  onSubmit(values) {
-    if (this.typeOfHiddenRef.current && values.type_of_alias) {
-      this.typeOfHiddenRef.current.value = values.type_of_alias;
-    }
-
-    this.formRef.current.submit();
   }
 
   initFormCounters() {
