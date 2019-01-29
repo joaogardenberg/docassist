@@ -30,7 +30,7 @@ let EditUser = props => {
 function onSubmit(values, props) {
   const params = { ...values, authenticity_token: props.authenticityToken }
 
-  return Axios.patch(`/system/users/${props.initialValues.id}`, params)
+  return Axios.put(`/system/users/${props.initialValues.id}`, params)
               .then(({ status, data: { success, errors } }) => {
                 if (status === 200 && success) {
                   window.location.href = '/system/users';
