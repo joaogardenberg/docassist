@@ -28,10 +28,12 @@
           <% next_name_direction_full = next_name_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
           <th class="tooltiped-delayed <%= @order && @order[:field] == :name ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_patients_path %>', '<%= @search %>', 'name', '<%= next_name_direction %>')" data-tooltip="<%= t('misc.order', field: t('patients.attributes.name').html_safe, direction: next_name_direction_full).html_safe %>" data-position="top"><%= t('patients.attributes.name').html_safe %></th>
 
-          <% next_user_name_direction = @order && @order[:field] == :user_name && @order[:direction] == :asc ? 'desc' : 'asc' %>
-          <% next_user_name_direction_full = next_user_name_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
-          <!--th class="tooltiped-delayed <%= @order && @order[:field] == :user_name ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_patients_path %>', '<%= @search %>', 'user_name', '<%= next_user_name_direction %>')" data-tooltip="<%= t('misc.order', field: t('patients.attributes.user_name').html_safe, direction: next_user_name_direction_full).html_safe %>" data-position="top"><%= t('patients.attributes.user_name').html_safe %></th-->
-          <th><%= t('patients.attributes.user_name').html_safe %></th>
+          <% unless current_user.doctor? %>
+            <% next_user_name_direction = @order && @order[:field] == :user_name && @order[:direction] == :asc ? 'desc' : 'asc' %>
+            <% next_user_name_direction_full = next_user_name_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
+            <!--th class="tooltiped-delayed <%= @order && @order[:field] == :user_name ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_patients_path %>', '<%= @search %>', 'user_name', '<%= next_user_name_direction %>')" data-tooltip="<%= t('misc.order', field: t('patients.attributes.user_name').html_safe, direction: next_user_name_direction_full).html_safe %>" data-position="top"><%= t('patients.attributes.user_name').html_safe %></th-->
+            <th><%= t('patients.attributes.user_name').html_safe %></th>
+          <% end %>
 
           <th class="actions"></th>
         </tr>
@@ -43,7 +45,11 @@
               <img src="<%= patient.picture %>" alt="<%= t('patients.index.photo_alt', name: patient.name).html_safe %>" onerror="onUserPictureError(event)">
             </td>
             <td><%= patient.name %></td>
-            <td><%= patient.doctor.name %></td>
+
+            <% unless current_user.doctor? %>
+              <td><%= patient.doctor.name %></td>
+            <% end %>
+
             <td class="actions">
               <ul>
                 <li>
