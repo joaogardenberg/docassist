@@ -438,16 +438,15 @@
           }
 
           img.picture {
-            background-color: $black;
-            border-radius: 10px;
-            border: 1px solid $white;
+            background-color: $white;
+            border-radius: 15%;
             bottom: calc(1.4rem + 20px);
-            box-shadow: 0 0 0 1px $black;
+            box-shadow: 0 0 10px -2px $black;
             height: calc(100% - 2.8rem - 40px);
             left: 50%;
             max-width: calc(100% - 2.8rem - 60px);
             object-fit: cover;
-            padding: 1px;
+            padding: 2px;
             position: absolute;
             transform: translateX(-50%);
           }
@@ -462,7 +461,7 @@
           p {
             bottom: 0;
             font-size: 1.4rem;
-            font-weight: lighter;
+            font-weight: bold;
             left: 0;
             line-height: 1.4rem;
             width: 100%;
