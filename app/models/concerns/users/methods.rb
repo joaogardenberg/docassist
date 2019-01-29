@@ -58,7 +58,7 @@ module Users::Methods
     end
 
     def main_user
-      User.where(id: user_id).first
+      user
     end
 
     def self.find_first_by_auth_conditions(warden_conditions)
