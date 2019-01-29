@@ -31,7 +31,14 @@ module Users::Methods
     end
 
     def patients
-      Patient.where(:user_id.in => type == 0 ? [id] : type_of)
+      if type == 0
+        Patient.where(user_id: id)
+      else
+        Patient.where(:user_id.in => type_of.filter do |id|
+                                       User.where(id: id)&.first&.doctor?
+                                     end
+        )
+      end
     end
 
     def password_required?
