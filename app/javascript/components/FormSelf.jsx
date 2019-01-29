@@ -8,24 +8,14 @@ const INITIAL_STATE = {
 
 class FormSelf extends Component {
   render() {
-    const { method, action, handleSubmit } = this.props;
+    const { method, action, handleSubmit, submitCallback } = this.props;
 
     const formButtons = this.renderFormButtons();
-    let addMethod;
-
-    if (method) {
-      addMethod = <input type="hidden" name="_method" value={ method } />;
-    }
 
     return (
       <form
-        method="post"
-        action={ action }
-        ref={ this.formRef }
-        onSubmit={ handleSubmit(this.onSubmit.bind(this)) }
+        onSubmit={ handleSubmit(submitCallback) }
       >
-        { addMethod }
-        <input type="hidden" name="authenticity_token" value={ this.props.authenticityToken } />
         <div className="row">
           <Field
             id="name"
@@ -100,12 +90,15 @@ class FormSelf extends Component {
   }
 
   renderFormButtons() {
+    const { pristine, submitting } = this.props;
+
     return (
       <div className="row">
         <div className="input-field buttons col s12">
           <button
             className="btn waves-effect waves-light bg-success"
             type="submit"
+            disabled={ submitting }
           >
             <i className="fas fa-save left" />
             Salvar
@@ -113,6 +106,7 @@ class FormSelf extends Component {
           <button
             className="btn waves-effect waves-light bg-warning"
             type="button"
+            disabled={ pristine || submitting }
             onClick={ this.onRestoreButtonClick.bind(this) }
           >
             <i className="fas fa-sync-alt left" />
@@ -155,8 +149,6 @@ class FormSelf extends Component {
 
     this.state                        = INITIAL_STATE;
 
-    this.formRef                      = React.createRef();
-
     this.nameInputRef                 = React.createRef();
     this.usernameInputRef             = React.createRef();
     this.emailInputRef                = React.createRef();
@@ -179,10 +171,6 @@ class FormSelf extends Component {
   onRestoreButtonClick() {
     this.props.restoreCallback();
     this.setState({ shouldResetCounters: true });
-  }
-
-  onSubmit(values) {
-    this.formRef.current.submit();
   }
 
   initFormCounters() {

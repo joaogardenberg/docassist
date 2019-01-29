@@ -6,9 +6,9 @@ module System
       @user.assign_attributes(permitted_attributes)
 
       if @user.valid?
-        @user.save && redirect_to(:system_dashboard_index)
+        @user.save && render(status: :ok, json: { success: true })
       else
-        render(action: :edit)
+        render(status: :ok, json: { success: false, errors: @user.errors })
       end
     end
 
