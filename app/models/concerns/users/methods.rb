@@ -4,6 +4,7 @@ module Users::Methods
   included do
     before_validation do
       self.user = self if is_main && !user
+      type_of = [] if type == 0
     end
 
     def will_save_change_to_email?
