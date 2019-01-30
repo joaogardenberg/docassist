@@ -1,8 +1,8 @@
 import * as Regex from './Regex';
 
 export const GENDERS = [
-  'Masculino',
-  'Feminino'
+  I18n.t('patients.genders.male'),
+  I18n.t('patients.genders.female')
 ];
 
 export const GENDER_VALUES = [
@@ -11,10 +11,10 @@ export const GENDER_VALUES = [
 ];
 
 export const MARITAL_STATUSES = [
-  'Solteiro(a)',
-  'Casado(a)',
-  'Divorciado(a)',
-  'Viúvo(a)'
+  I18n.t('patients.marital_statuses.single'),
+  I18n.t('patients.marital_statuses.married'),
+  I18n.t('patients.marital_statuses.divorced'),
+  I18n.t('patients.marital_statuses.widow')
 ];
 
 export const MARITAL_STATUS_VALUES = [
@@ -25,8 +25,8 @@ export const MARITAL_STATUS_VALUES = [
 ];
 
 export const NATIONALITIES = [
-  'Brasileira',
-  'Outra'
+  I18n.t('patients.nationalities.brazilian'),
+  I18n.t('patients.nationalities.other')
 ];
 
 export const NATIONALITY_VALUES = [
@@ -62,7 +62,7 @@ export const STATES = [
   'São Paulo',
   'Sergipe',
   'Tocantins',
-  'Outra'
+  I18n.t('patients.places_of_birth.other')
 ];
 
 export const STATE_VALUES = [

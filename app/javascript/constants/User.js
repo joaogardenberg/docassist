@@ -1,8 +1,8 @@
 import * as Regex from './Regex';
 
 export const TYPES = [
-  'Médico(a)',
-  'Secretário(a)'
+  I18n.t('users.types.doctor'),
+  I18n.t('users.types.secretary')
 ];
 
 export const TYPE_VALUES = [

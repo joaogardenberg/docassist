@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const Default = () => {
-  return <p>Default component</p>;
+  return <p>{ I18n.t('misc.default_component') }</p>;
 }
 
 export default Default;

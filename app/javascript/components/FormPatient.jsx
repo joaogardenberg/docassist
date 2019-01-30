@@ -39,7 +39,7 @@ class FormPatient extends Component {
             id="name"
             name="name"
             type="text"
-            label="Nome"
+            label={ I18n.t('patients.attributes.name') }
             className="col l8 s12"
             autoComplete="off"
             maxLength="100"
@@ -50,7 +50,7 @@ class FormPatient extends Component {
             id="date_of_birth"
             name="date_of_birth"
             type="text"
-            label="Data de nascimento"
+            label={ I18n.t('patients.attributes.date_of_birth') }
             className="col l4 m6 s12"
             autoComplete="off"
             reference={ this.dateOfBirthInputRef }
@@ -61,7 +61,7 @@ class FormPatient extends Component {
           <Field
             id="gender"
             name="gender"
-            label="Gênero"
+            label={ I18n.t('patients.attributes.gender') }
             className="col l4 m6 s12"
             reference={ this.genderSelectRef }
             component={ this.renderSelect }
@@ -71,7 +71,7 @@ class FormPatient extends Component {
           <Field
             id="marital_status"
             name="marital_status"
-            label="Estado civil"
+            label={ I18n.t('patients.attributes.marital_status') }
             className="col l4 m6 s12"
             reference={ this.maritalStatusSelectRef }
             component={ this.renderSelect }
@@ -82,7 +82,7 @@ class FormPatient extends Component {
             id="occupation"
             name="occupation"
             type="text"
-            label="Profissão"
+            label={ I18n.t('patients.attributes.occupation') }
             className="col l4 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -93,7 +93,7 @@ class FormPatient extends Component {
             id="cpf"
             name="cpf"
             type="text"
-            label="CPF"
+            label={ I18n.t('patients.attributes.cpf') }
             className="col l4 s12"
             autoComplete="off"
             reference={ this.cpfInputRef }
@@ -103,7 +103,7 @@ class FormPatient extends Component {
             id="rg"
             name="rg"
             type="text"
-            label="RG"
+            label={ I18n.t('patients.attributes.rg') }
             className={ showRgIssuingAgency ? 'col l4 m6 s12' : 'col l8 s12' }
             autoComplete="off"
             maxLength="50"
@@ -115,7 +115,7 @@ class FormPatient extends Component {
             id="rg_issuing_agency"
             name="rg_issuing_agency"
             type="text"
-            label="Órgão emissor"
+            label={ I18n.t('patients.attributes.rg_issuing_agency') }
             className="col l4 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -126,7 +126,7 @@ class FormPatient extends Component {
           <Field
             id="nationality"
             name="nationality"
-            label="Nacionalidade"
+            label={ I18n.t('patients.attributes.nationality') }
             className={ showNationalityOther ? 'col l3 m6 s12' : 'col l6 s12' }
             reference={ this.nationalitySelectRef }
             component={ this.renderSelect }
@@ -138,7 +138,7 @@ class FormPatient extends Component {
             id="nationality_other"
             name="nationality_other"
             type="text"
-            label="Qual nacionalidade?"
+            label={ I18n.t('patients.form.nationality_other_label') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -149,7 +149,7 @@ class FormPatient extends Component {
           <Field
             id="place_of_birth"
             name="place_of_birth"
-            label="Naturalidade"
+            label={ I18n.t('patients.attributes.place_of_birth') }
             className={ showPlaceOfBirthOther ? 'col l3 m6 s12' : 'col l6 s12' }
             reference={ this.placeOfBirthSelectRef }
             component={ this.renderSelect }
@@ -161,7 +161,7 @@ class FormPatient extends Component {
             id="place_of_birth_other"
             name="place_of_birth_other"
             type="text"
-            label="Qual naturalidade?"
+            label={ I18n.t('patients.form.place_of_birth_other_label') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -176,7 +176,7 @@ class FormPatient extends Component {
             id="email"
             name="email"
             type="email"
-            label="E-mail"
+            label={ I18n.t('patients.attributes.email') }
             className="col l6 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -187,7 +187,7 @@ class FormPatient extends Component {
             id="landline"
             name="landline"
             type="text"
-            label="Telefone"
+            label={ I18n.t('patients.attributes.landline') }
             className="col l2 m6 s12"
             autoComplete="off"
             reference={ this.landlineInputRef }
@@ -197,7 +197,7 @@ class FormPatient extends Component {
             id="cell_phone"
             name="cell_phone"
             type="text"
-            label="Celular"
+            label={ I18n.t('patients.attributes.cell_phone') }
             className="col l2 m6 s12"
             autoComplete="off"
             reference={ this.cellPhoneInputRef }
@@ -207,7 +207,7 @@ class FormPatient extends Component {
             id="work_phone"
             name="work_phone"
             type="text"
-            label="Trabalho"
+            label={ I18n.t('patients.attributes.work_phone') }
             className="col l2 m6 s12"
             autoComplete="off"
             reference={ this.workPhoneInputRef }
@@ -220,7 +220,7 @@ class FormPatient extends Component {
             id="cep"
             name="cep"
             type="text"
-            label="CEP"
+            label={ I18n.t('patients.attributes.cep') }
             className="col l2 m6 s12"
             autoComplete="off"
             reference={ this.cepInputRef }
@@ -230,7 +230,7 @@ class FormPatient extends Component {
           <Field
             id="state"
             name="state"
-            label="Estado"
+            label={ I18n.t('patients.attributes.state') }
             className="col l3 m6 s12"
             reference={ this.stateSelectRef }
             component={ this.renderSelect }
@@ -241,7 +241,7 @@ class FormPatient extends Component {
             id="city"
             name="city"
             type="text"
-            label="Cidade"
+            label={ I18n.t('patients.attributes.city') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -252,7 +252,7 @@ class FormPatient extends Component {
             id="neighborhood"
             name="neighborhood"
             type="text"
-            label="Bairro"
+            label={ I18n.t('patients.attributes.neighborhood') }
             className="col l4 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -263,7 +263,7 @@ class FormPatient extends Component {
             id="address"
             name="address"
             type="text"
-            label="Endereço"
+            label={ I18n.t('patients.attributes.address') }
             className="col l6 s12"
             autoComplete="off"
             maxLength="100"
@@ -274,7 +274,7 @@ class FormPatient extends Component {
             id="complement"
             name="complement"
             type="text"
-            label="Complemento"
+            label={ I18n.t('patients.attributes.complement') }
             className="col l6 s12"
             autoComplete="off"
             maxLength="100"
@@ -307,15 +307,15 @@ class FormPatient extends Component {
 
     if (page === 'new') {
       submitIcon = 'fas fa-plus';
-      submitText = 'Criar';
+      submitText = I18n.t('misc.create');
       restoreIcon = 'fas fa-eraser';
-      restoreText = 'Limpar';
+      restoreText = I18n.t('misc.clear');
       restoreFunc = clearCallback;
     } else {
       submitIcon = 'fas fa-save';
-      submitText = 'Salvar';
+      submitText = I18n.t('misc.save');
       restoreIcon = 'fas fa-sync-alt';
-      restoreText = 'Restaurar';
+      restoreText = I18n.t('misc.restore');
       restoreFunc = restoreCallback;
     }
 

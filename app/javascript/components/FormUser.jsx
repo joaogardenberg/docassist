@@ -23,7 +23,7 @@ class FormUser extends Component {
           <Field
             id="type"
             name="type"
-            label="Tipo"
+            label={ I18n.t('users.attributes.type') }
             className={ `col ${showTypeOf ? 'l2 m6 s12' : 'l6 s12'}` }
             reference={ this.typeSelectRef }
             component={ this.renderSelect }
@@ -35,7 +35,7 @@ class FormUser extends Component {
             <Field
               id="type_of"
               name="type_of"
-              label="Secretário(a) de quem(ns)?"
+              label={ I18n.t('users.form.type_of_label') }
               reference={ this.typeOfSelectRef }
               multiple={ true }
               format={ value => value || [] }
@@ -48,7 +48,7 @@ class FormUser extends Component {
             id="name"
             name="name"
             type="text"
-            label="Nome"
+            label={ I18n.t('users.attributes.name') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="100"
@@ -59,7 +59,7 @@ class FormUser extends Component {
             id="username"
             name="username"
             type="text"
-            label="Usuário"
+            label={ I18n.t('users.attributes.username') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -70,7 +70,7 @@ class FormUser extends Component {
             id="email"
             name="email"
             type="email"
-            label="E-mail"
+            label={ I18n.t('users.attributes.email') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -81,7 +81,7 @@ class FormUser extends Component {
             id="email_confirmation"
             name="email_confirmation"
             type="email"
-            label="Confirmação de e-mail"
+            label={ I18n.t('users.attributes.email_confirmation') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -92,7 +92,7 @@ class FormUser extends Component {
             id="password"
             name="password"
             type="password"
-            label="Senha"
+            label={ I18n.t('users.attributes.password') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -103,7 +103,7 @@ class FormUser extends Component {
             id="password_confirmation"
             name="password_confirmation"
             type="password"
-            label="Confirmação de senha"
+            label={ I18n.t('users.attributes.password_confirmation') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -123,15 +123,15 @@ class FormUser extends Component {
 
     if (page === 'new') {
       submitIcon = 'fas fa-plus';
-      submitText = 'Criar';
+      submitText = I18n.t('misc.create');
       restoreIcon = 'fas fa-eraser';
-      restoreText = 'Limpar';
+      restoreText = I18n.t('misc.clear');
       restoreFunc = clearCallback;
     } else {
       submitIcon = 'fas fa-save';
-      submitText = 'Salvar';
+      submitText = I18n.t('misc.save');
       restoreIcon = 'fas fa-sync-alt';
-      restoreText = 'Restaurar';
+      restoreText = I18n.t('misc.restore');
       restoreFunc = restoreCallback;
     }
 

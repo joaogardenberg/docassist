@@ -21,7 +21,7 @@ class FormSelf extends Component {
             id="name"
             name="name"
             type="text"
-            label="Nome"
+            label={ I18n.t('users.attributes.name') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="100"
@@ -32,7 +32,7 @@ class FormSelf extends Component {
             id="username"
             name="username"
             type="text"
-            label="Usuário"
+            label={ I18n.t('users.attributes.username') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -43,7 +43,7 @@ class FormSelf extends Component {
             id="email"
             name="email"
             type="email"
-            label="E-mail"
+            label={ I18n.t('users.attributes.email') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -54,7 +54,7 @@ class FormSelf extends Component {
             id="email_confirmation"
             name="email_confirmation"
             type="email"
-            label="Confirmação de e-mail"
+            label={ I18n.t('users.attributes.email_confirmation') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -65,7 +65,7 @@ class FormSelf extends Component {
             id="password"
             name="password"
             type="password"
-            label="Senha"
+            label={ I18n.t('users.attributes.password') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -76,7 +76,7 @@ class FormSelf extends Component {
             id="password_confirmation"
             name="password_confirmation"
             type="password"
-            label="Confirmação de senha"
+            label={ I18n.t('users.attributes.password_confirmation') }
             className="col l3 m6 s12"
             autoComplete="off"
             maxLength="50"
@@ -101,7 +101,7 @@ class FormSelf extends Component {
             disabled={ submitting }
           >
             <i className="fas fa-save left" />
-            Salvar
+            { I18n.t('misc.save') }
           </button>
           <button
             className="btn waves-effect waves-light bg-warning"
@@ -110,7 +110,7 @@ class FormSelf extends Component {
             onClick={ this.onRestoreButtonClick.bind(this) }
           >
             <i className="fas fa-sync-alt left" />
-            Restaurar
+            { I18n.t('misc.restore') }
           </button>
         </div>
       </div>

@@ -16,4 +16,5 @@
 //= require cable
 //= require jquery
 //= require materialize-sprockets
+//= require i18n/translations
 //= require_tree ./system
