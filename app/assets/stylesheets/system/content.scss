@@ -119,9 +119,13 @@
     td.actions {
       ul {
         display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
         margin: 0;
 
         li {
+
+
           &:not(:first-child) {
             margin-left: 5px;
           }
