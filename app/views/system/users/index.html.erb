@@ -1,10 +1,12 @@
 <header>
   <h2><%= t('users.index.title').html_safe %></h2>
-  <aside class="new">
-    <%= link_to :new_system_user, class: 'btn-floating btn-large waves-effect waves-light tooltiped', 'data-position' => 'left', 'data-tooltip' => t('users.index.new_user_label').html_safe do %>
-      <i class="fas fa-plus"></i>
-    <% end %>
-  </aside>
+  <% if policy(:user).new? %>
+    <aside class="new">
+      <%= link_to :new_system_user, class: 'btn-floating btn-large waves-effect waves-light tooltiped', 'data-position' => 'left', 'data-tooltip' => t('users.index.new_user_label').html_safe do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    </aside>
+  <% end %>
 </header>
 
 <section>
@@ -59,21 +61,27 @@
             <td><%= user.type_name %></td>
 
             <td class="actions">
-              <ul>
+              <% if policy(user).edit? || policy(user).destroy? %>
+                <ul>
 
-                <li>
-                  <%= link_to edit_system_user_path(id: user.id), class: 'btn-floating btn-small bg-warning waves-effect waves-light' do %>
-                    <i class="fas fa-pencil-alt"></i>
+                  <% if policy(user).edit? %>
+                    <li>
+                      <%= link_to edit_system_user_path(id: user.id), class: 'btn-floating btn-small bg-warning waves-effect waves-light' do %>
+                        <i class="fas fa-pencil-alt"></i>
+                      <% end %>
+                    </li>
                   <% end %>
-                </li>
 
-                <li>
-                  <a href="#delete-<%= user.id %>" class="btn-floating btn-small bg-error waves-effect waves-light modal-trigger">
-                    <i class="fas fa-trash-alt"></i>
-                  </a>
-                </li>
+                  <% if policy(user).destroy? %>
+                    <li>
+                      <a href="#delete-<%= user.id %>" class="btn-floating btn-small bg-error waves-effect waves-light modal-trigger">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </li>
+                  <% end %>
 
-              </ul>
+                </ul>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -94,85 +102,107 @@
 
     <div class="users-show">
       <% @users.each do |user| %>
-        <div id="user-<%= user.id %>" class="modal user-show">
-          <header>
-            <% if user.picture %>
-              <img class="picture" src="<%= user.picture %>" alt="<%= t('users.show.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)" />
-            <% else %>
-              <img class="picture" src="/images/empty_avatar.png" alt="<%= t('users.show.empty_picture') %>">
-            <% end %>
-            <% if user.background %>
-              <img class="background" src="<%= user.background %>" alt="<%= t('users.show.background_alt', name: user.name).html_safe %>" onerror="onUserBackgroundError(event)" />
-            <% else %>
-              <img class="background" src="https://placeimg.com/220/220/any" alt="<%= t('users.show.empty_picture') %>">
-            <% end %>
-            <p class="truncate tooltiped" data-tooltip="<%= user.name %>" data-position="top"><%= user.name %></p>
-            <!--button class="btn-flat waves-effect waves-light" type="button" onclick="closeUserShow('user-<%= user.id %>')">
-              <i class="fas fa-times"></i>
-            </button-->
-          </header>
-          <article>
-            <p><span><%= t('users.attributes.username') %></span> <span><%= user.username %></span></p>
-            <p><span><%= t('users.attributes.email') %></span> <span><%= user.email %></span></p>
-            <p>
-              <span><%= t('users.attributes.type') %></span>
-              <span>
-                <% if user.type == 0 %>
-                  <%= user.type_name %>
-                <% else %>
-                  <%= user.type_name %> de&nbsp;<!--
-               --><% user.doctors&.each_with_index do |doctor, index| %><!--
-                 --><% if index == 0 %><!--
-                   --><span class="doctor"><%= doctor.name %></span><!--
-                 --><% elsif index > 0 && index < user.doctors.size - 1 %><!--
-                   --><%= t('support.array.words_connector') %><span class="doctor"><%= doctor.name %></span><!--
-                 --><% else %><!--
-                   --><%= t('support.array.last_word_connector') %><span class="doctor"><%= doctor.name %></span><!--
-                 --><% end %><!--
-               --><% end %>
-                <% end %>
-              </span>
-            </p>
-          </article>
-          <footer>
-            <a href="<%= edit_system_user_path(user.id) %>" class="btn waves-effect waves-light bg-warning">
-              <i class="fas fa-pencil-alt left"></i>
-              <%= t('misc.edit') %>
-            </a><!--
-         --><button class="btn-flat waves-effect" type="button" onclick="closeUserShow('user-<%= user.id %>')">
-              <i class="fas fa-arrow-left left"></i>
-              <%= t('misc.back') %>
-            </button>
-          </footer>
-        </div>
+        <% if policy(user).show? %>
+          <div id="user-<%= user.id %>" class="modal user-show">
+            <header>
+
+              <% if user.picture %>
+                <img class="picture" src="<%= user.picture %>" alt="<%= t('users.show.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)" />
+              <% else %>
+                <img class="picture" src="/images/empty_avatar.png" alt="<%= t('users.show.empty_picture') %>">
+              <% end %>
+
+              <% if user.background %>
+                <img class="background" src="<%= user.background %>" alt="<%= t('users.show.background_alt', name: user.name).html_safe %>" onerror="onUserBackgroundError(event)" />
+              <% else %>
+                <img class="background" src="https://placeimg.com/220/220/any" alt="<%= t('users.show.empty_picture') %>">
+              <% end %>
+
+              <p class="truncate tooltiped" data-tooltip="<%= user.name %>" data-position="top"><%= user.name %></p>
+
+              <!--button class="btn-flat waves-effect waves-light" type="button" onclick="closeUserShow('user-<%= user.id %>')">
+                <i class="fas fa-times"></i>
+              </button-->
+
+            </header>
+            <article>
+
+              <p><span><%= t('users.attributes.username') %></span> <span><%= user.username %></span></p>
+
+              <p><span><%= t('users.attributes.email') %></span> <span><%= user.email %></span></p>
+
+              <p>
+                <span><%= t('users.attributes.type') %></span>
+                <span>
+                  <% if user.type == 0 %>
+                    <%= user.type_name %>
+                  <% else %>
+                    <%= user.type_name %> de&nbsp;<!--
+                 --><% user.doctors&.each_with_index do |doctor, index| %><!--
+                   --><% if index == 0 %><!--
+                     --><span class="doctor"><%= doctor.name %></span><!--
+                   --><% elsif index > 0 && index < user.doctors.size - 1 %><!--
+                     --><%= t('support.array.words_connector') %><span class="doctor"><%= doctor.name %></span><!--
+                   --><% else %><!--
+                     --><%= t('support.array.last_word_connector') %><span class="doctor"><%= doctor.name %></span><!--
+                   --><% end %><!--
+                 --><% end %>
+                  <% end %>
+                </span>
+              </p>
+
+            </article>
+            <footer>
+
+              <% if policy(user).edit? %>
+                <a href="<%= edit_system_user_path(user.id) %>" class="btn waves-effect waves-light bg-warning">
+                  <i class="fas fa-pencil-alt left"></i>
+                  <%= t('misc.edit') %>
+                </a>
+              <% end %><!--
+
+           --><button class="btn-flat waves-effect" type="button" onclick="closeUserShow('user-<%= user.id %>')">
+                <i class="fas fa-arrow-left left"></i>
+                <%= t('misc.back') %>
+              </button>
+
+            </footer>
+          </div>
+        <% end %>
       <% end %>
     </div>
 
     <div class="users-delete">
       <% @users.each do |user| %>
-        <div id="delete-<%= user.id %>" class="modal bottom-sheet">
+        <% if policy(user).destroy? %>
+          <div id="delete-<%= user.id %>" class="modal bottom-sheet">
 
-          <div class="modal-content">
-            <h4><%= t('users.index.delete_user') %></h4>
-            <p><%= t('users.index.about_to_delete', name: user.name) %></p>
-            <p><%= t('misc.confirm_destruction') %></p>
+            <div class="modal-content">
+
+              <h4><%= t('users.index.delete_user') %></h4>
+
+              <p><%= t('users.index.about_to_delete', name: user.name) %></p>
+
+              <p><%= t('misc.confirm_destruction') %></p>
+
+            </div>
+
+            <div class="modal-footer">
+
+              <%= link_to system_user_path(id: user.id), class: 'btn bg-error waves-effect waves-light', method: :delete do %>
+                <i class="fa fa-trash-alt left"></i>
+                <%= t('misc.delete') %>
+              <% end %><!--
+
+           --><button class="btn-flat waves-effect" type="button" onclick="closeDeleteModal('delete-<%= user.id %>')">
+                <i class="fas fa-arrow-up left"></i>
+                <%= t('misc.back') %>
+              </button>
+
+            </div>
+
           </div>
-
-          <div class="modal-footer">
-
-            <%= link_to system_user_path(id: user.id), class: 'btn bg-error waves-effect waves-light', method: :delete do %>
-              <i class="fa fa-trash-alt left"></i>
-              <%= t('misc.delete') %>
-            <% end %><!--
-
-         --><button class="btn-flat waves-effect" type="button" onclick="closeDeleteModal('delete-<%= user.id %>')">
-              <i class="fas fa-arrow-up left"></i>
-              <%= t('misc.back') %>
-            </button>
-
-          </div>
-
-        </div>
+        <% end %>
       <% end %>
     </div>
 

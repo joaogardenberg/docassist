@@ -1,10 +1,12 @@
 <header>
   <h2><%= t('patients.index.title').html_safe %></h2>
-  <aside class="new">
-    <%= link_to :new_system_patient, class: 'btn-floating btn-large waves-effect waves-light tooltiped', 'data-position' => 'left', 'data-tooltip' => t('patients.index.new_patient_label').html_safe do %>
-      <i class="fas fa-plus"></i>
-    <% end %>
-  </aside>
+  <% if policy(:patient).new? %>
+    <aside class="new">
+      <%= link_to :new_system_patient, class: 'btn-floating btn-large waves-effect waves-light tooltiped', 'data-position' => 'left', 'data-tooltip' => t('patients.index.new_patient_label').html_safe do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    </aside>
+  <% end %>
 </header>
 
 <section>
@@ -58,21 +60,27 @@
             <% end %>
 
             <td class="actions">
-              <ul>
+              <% if policy(patient).edit? || policy(patient).destroy? %>
+                <ul>
 
-                <li>
-                  <%= link_to edit_system_patient_path(id: patient.id), class: 'btn-floating btn-small bg-warning waves-effect waves-light' do %>
-                    <i class="fas fa-pencil-alt"></i>
+                  <% if policy(patient).edit? %>
+                    <li>
+                      <%= link_to edit_system_patient_path(id: patient.id), class: 'btn-floating btn-small bg-warning waves-effect waves-light' do %>
+                        <i class="fas fa-pencil-alt"></i>
+                      <% end %>
+                    </li>
                   <% end %>
-                </li>
 
-                <li>
-                  <a href="#delete-<%= patient.id %>" class="btn-floating btn-small bg-error waves-effect waves-light modal-trigger">
-                    <i class="fas fa-trash-alt"></i>
-                  </a>
-                </li>
+                  <% if policy(patient).destroy? %>
+                    <li>
+                      <a href="#delete-<%= patient.id %>" class="btn-floating btn-small bg-error waves-effect waves-light modal-trigger">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </li>
+                  <% end %>
 
-              </ul>
+                </ul>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -92,29 +100,35 @@
 
     <div class="patients-delete">
       <% @patients.each do |patient| %>
-        <div id="delete-<%= patient.id %>" class="modal bottom-sheet">
+        <% if policy(patient).destroy? %>
+          <div id="delete-<%= patient.id %>" class="modal bottom-sheet">
 
-          <div class="modal-content">
-            <h4><%= t('patients.index.delete_patient') %></h4>
-            <p><%= t('patients.index.about_to_delete', name: patient.name) %></p>
-            <p><%= t('misc.confirm_destruction') %></p>
+            <div class="modal-content">
+
+              <h4><%= t('patients.index.delete_patient') %></h4>
+
+              <p><%= t('patients.index.about_to_delete', name: patient.name) %></p>
+
+              <p><%= t('misc.confirm_destruction') %></p>
+              
+            </div>
+
+            <div class="modal-footer">
+
+              <%= link_to system_patient_path(id: patient.id), class: 'btn bg-error waves-effect waves-light', method: :delete do %>
+                <i class="fa fa-trash-alt left"></i>
+                <%= t('misc.delete') %>
+              <% end %><!--
+
+           --><button class="btn-flat waves-effect" type="button" onclick="closeDeleteModal('delete-<%= patient.id %>')">
+                <i class="fas fa-arrow-up left"></i>
+                <%= t('misc.back') %>
+              </button>
+
+            </div>
+
           </div>
-
-          <div class="modal-footer">
-
-            <%= link_to system_patient_path(id: patient.id), class: 'btn bg-error waves-effect waves-light', method: :delete do %>
-              <i class="fa fa-trash-alt left"></i>
-              <%= t('misc.delete') %>
-            <% end %><!--
-
-         --><button class="btn-flat waves-effect" type="button" onclick="closeDeleteModal('delete-<%= patient.id %>')">
-              <i class="fas fa-arrow-up left"></i>
-              <%= t('misc.back') %>
-            </button>
-
-          </div>
-
-        </div>
+        <% end %>
       <% end %>
     </div>
 
