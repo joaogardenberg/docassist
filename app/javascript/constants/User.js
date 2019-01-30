@@ -22,7 +22,7 @@ export function getTypeName(type) {
 
 export function validateType(type) {
   if (!TYPE_VALUES.includes(type)) {
-    return 'Opção inválida. Recarregue a página';
+    return I18n.t('errors.messages.wrong_select_value');
   }
 
   return null;
@@ -30,7 +30,7 @@ export function validateType(type) {
 
 export function validateTypeOf(type, typeOf) {
   if (type === TYPE_VALUES[TYPE_VALUES.length - 1] && (!typeOf || typeOf.length < 1)) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   return null;
@@ -38,15 +38,15 @@ export function validateTypeOf(type, typeOf) {
 
 export function validateName(name) {
   if (!name) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (name.length > 100) {
-    return 'Máximo 100 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 100 });
   }
 
   if (!name.toLowerCase().match(Regex.LowercaseName)) {
-    return 'Não pode conter caracteres especiais';
+    return I18n.t('errors.messages.no_special_characters');
   }
 
   return null;
@@ -54,15 +54,15 @@ export function validateName(name) {
 
 export function validateUsername(username) {
   if (!username) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (username.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   if (!username.toLowerCase().match(Regex.Username)) {
-    return 'Só pode conter letras e números';
+    return I18n.t('errors.messages.letters_numbers_only');
   }
 
   return null;
@@ -70,15 +70,15 @@ export function validateUsername(username) {
 
 export function validateEmail(email) {
   if (!email) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (email.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   if (!email.toLowerCase().match(Regex.Email)) {
-    return 'E-mail inválido';
+    return I18n.t('errors.messages.invalid_email');
   }
 
   return null;
@@ -86,11 +86,11 @@ export function validateEmail(email) {
 
 export function validateEmailConfirmation(email, emailConfirmation) {
   if (!emailConfirmation) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (email !== emailConfirmation) {
-    return 'Os e-mails não conferem';
+    return I18n.t('errors.messages.emails_not_match');
   }
 
   return null;
@@ -98,15 +98,15 @@ export function validateEmailConfirmation(email, emailConfirmation) {
 
 export function validatePasswordNew(password) {
   if (!password) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (password.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   if (password.length < 6) {
-    return 'Mínimo 6 caracteres';
+    return I18n.t('errors.messages.minimum_characters', { number: 6 });
   }
 
   return null;
@@ -114,11 +114,11 @@ export function validatePasswordNew(password) {
 
 export function validatePasswordEdit(password) {
   if (password && password.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   if (password && password.length < 6) {
-    return 'Mínimo 6 caracteres';
+    return I18n.t('errors.messages.minimum_characters', { number: 6 });
   }
 
   return null;
@@ -126,11 +126,11 @@ export function validatePasswordEdit(password) {
 
 export function validatePasswordConfirmationNew(password, passwordConfirmation) {
   if (!passwordConfirmation) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (password !== passwordConfirmation) {
-    return 'As senhas não conferem';
+    return I18n.t('errors.messages.passwords_not_match');
   }
 
   return null;
@@ -138,11 +138,11 @@ export function validatePasswordConfirmationNew(password, passwordConfirmation) 
 
 export function validatePasswordConfirmationEdit(password, passwordConfirmation) {
   if (password && !passwordConfirmation) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (password && password !== passwordConfirmation) {
-    return 'As senhas não conferem';
+    return I18n.t('errors.messages.passwords_not_match');
   }
 
   return null;

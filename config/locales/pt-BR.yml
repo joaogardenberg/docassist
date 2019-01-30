@@ -149,7 +149,19 @@ pt-BR:
         other: "não possui o tamanho esperado (%{count} caracteres)"
       other_than: "deve ser diferente de %{count}"
       not_authorized: não autorizado
-      
+      wrong_select_value: Opção inválida. Recarregue a página
+      required_field: Campo obrigatório
+      minimum_characters: "Mínimo %{number} caracteres"
+      maximum_characters: "Máximo %{number} caracteres"
+      no_special_characters: Não pode conter caracteres especiais
+      letters_numbers_only: Só pode conter letras e números
+      invalid_email: E-mail inválido
+      emails_not_match: Os e-mails não conferem
+      passwords_not_match: As senhas não conferem
+      invalid_date_of_birth: Data de nascimento inválida
+      invalid_cpf: CPF inválido
+      invalid_phone_number: Número inválido
+      invalid_cep: CEP inválido
     template:
       body: "Por favor, verifique o(s) seguinte(s) campo(s):"
       header:

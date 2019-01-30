@@ -62,7 +62,19 @@ en:
   errors:
     messages:
       not_authorized: not authorized
-      
+      wrong_select_value: Invalid option. Please reload the page
+      required_field: Required field
+      minimum_characters: "%{number} characters minimum"
+      maximum_characters: "%{number} characters maximum"
+      no_special_characters: No special characters accepted
+      letters_numbers_only: Only letters and numbers accepted
+      invalid_email: Invalid email address
+      emails_not_match: The emails do not match
+      passwords_not_match: The passwords do not match
+      invalid_date_of_birth: Invalid date of birth
+      invalid_cpf: Invalid CPF
+      invalid_phone_number: Invalid number
+      invalid_cep: Invalid zip code
   sidebar:
     user_picture: User picture
     edit: Edit
@@ -129,19 +141,19 @@ en:
       neighborhood: Neighborhood
       address: Address
       complement: Complement
-      genders:
-        male: Male
-        female: Female
-      marital_statuses:
-        single: Single
-        married: Married
-        divorced: Divorced
-        widow: Widow(er)
-      nationalities:
-        brazilian: Brazilian
-        other: Other
-      places_of_birth:
-        other: Other
+    genders:
+      male: Male
+      female: Female
+    marital_statuses:
+      single: Single
+      married: Married
+      divorced: Divorced
+      widow: Widow(er)
+    nationalities:
+      brazilian: Brazilian
+      other: Other
+    places_of_birth:
+      other: Other
   users:
     index:
       title: Users

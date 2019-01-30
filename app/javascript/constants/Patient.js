@@ -252,15 +252,15 @@ export function getFullAddress(cep, state, city, neighborhood, address, compleme
 
 export function validateName(name) {
   if (!name) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (name.length > 100) {
-    return 'Máximo 100 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 100 });
   }
 
   if (!name.toLowerCase().match(Regex.LowercaseName)) {
-    return 'Não pode conter caracteres especiais';
+    return I18n.t('errors.messages.no_special_characters');
   }
 
   return null;
@@ -268,7 +268,7 @@ export function validateName(name) {
 
 export function validateGender(gender) {
   if (!GENDER_VALUES.includes(gender)) {
-    return 'Opção inválida. Recarregue a página';
+    return I18n.t('errors.messages.wrong_select_value');
   }
 
   return null;
@@ -276,7 +276,7 @@ export function validateGender(gender) {
 
 export function validateMaritalStatus(maritalStatus) {
   if (!MARITAL_STATUS_VALUES.includes(maritalStatus)) {
-    return 'Opção inválida. Recarregue a página';
+    return I18n.t('errors.messages.wrong_select_value');
   }
 
   return null;
@@ -284,11 +284,11 @@ export function validateMaritalStatus(maritalStatus) {
 
 export function validateDateOfBirth(dateOfBirth) {
   if (!dateOfBirth) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (!dateOfBirth.match(Regex.DateOfBirth)) {
-    return 'Data de nascimento inválida';
+    return I18n.t('errors.messages.invalid_date_of_birth');
   }
 
   const [ day, month, year ] = dateOfBirth.split('/');
@@ -296,7 +296,7 @@ export function validateDateOfBirth(dateOfBirth) {
   const date = Date.parse(`${month}/${day}/${year}`);
 
   if (!date || date > new Date()) {
-    return 'Data de nascimento inválida';
+    return I18n.t('errors.messages.invalid_date_of_birth');
   }
 
   return null;
@@ -304,7 +304,7 @@ export function validateDateOfBirth(dateOfBirth) {
 
 export function validateOccupation(occupation) {
   if (occupation && occupation.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   return null;
@@ -313,7 +313,7 @@ export function validateOccupation(occupation) {
 export function validateCpf(cpf) {
   if (cpf) {
     if (!cpf.match(Regex.CPF)) {
-      return 'CPF inválido';
+      return I18n.t('errors.messages.invalid_cpf');
     }
 
     cpf = cpf.replace(/\./g, '').replace(/-/g, '');
@@ -349,7 +349,7 @@ export function validateCpf(cpf) {
     }
 
     if (error) {
-      return 'CPF inválido';
+      return I18n.t('errors.messages.invalid_cpf');
     }
   }
 
@@ -358,7 +358,7 @@ export function validateCpf(cpf) {
 
 export function validateRg(rg) {
   if (rg && rg.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   return null;
@@ -366,11 +366,11 @@ export function validateRg(rg) {
 
 export function validateRgIssuingAgency(rg, rgIssuingAgency) {
   if (rg && !rgIssuingAgency) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (rg && rgIssuingAgency && rgIssuingAgency.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   return null;
@@ -378,7 +378,7 @@ export function validateRgIssuingAgency(rg, rgIssuingAgency) {
 
 export function validateNationality(nationality) {
   if (!NATIONALITY_VALUES.includes(nationality)) {
-    return 'Opção inválida. Recarregue a página';
+    return I18n.t('errors.messages.wrong_select_value');
   }
 
   return null;
@@ -386,11 +386,11 @@ export function validateNationality(nationality) {
 
 export function validateNationalityOther(nationality, nationalityOther) {
   if (nationality === NATIONALITY_VALUES[NATIONALITY_VALUES.length - 1] && !nationalityOther) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (nationality === NATIONALITY_VALUES[NATIONALITY_VALUES.length - 1] && nationalityOther && nationalityOther.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   return null;
@@ -398,7 +398,7 @@ export function validateNationalityOther(nationality, nationalityOther) {
 
 export function validatePlaceOfBirth(placeOfBirth) {
   if (!STATE_VALUES.includes(placeOfBirth)) {
-    return 'Opção inválida. Recarregue a página';
+    return I18n.t('errors.messages.wrong_select_value');
   }
 
   return null;
@@ -406,11 +406,11 @@ export function validatePlaceOfBirth(placeOfBirth) {
 
 export function validatePlaceOfBirthOther(placeOfBirth, placeOfBirthOther) {
   if (placeOfBirth === STATE_VALUES[STATE_VALUES.length - 1] && !placeOfBirthOther) {
-    return 'Campo obrigatório';
+    return I18n.t('errors.messages.required_field');
   }
 
   if (placeOfBirth === STATE_VALUES[STATE_VALUES.length - 1] && placeOfBirthOther && placeOfBirthOther.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   return null;
@@ -418,7 +418,7 @@ export function validatePlaceOfBirthOther(placeOfBirth, placeOfBirthOther) {
 
 export function validatePhone(phone) {
   if (phone && !phone.match(Regex.Phone)) {
-    return 'Número inválido';
+    return I18n.t('errors.messages.invalid_phone_number');
   }
 
   return null;
@@ -427,11 +427,11 @@ export function validatePhone(phone) {
 export function validateEmail(email) {
   if (email) {
     if (email.length > 50) {
-      return 'Máximo 50 caracteres';
+      return I18n.t('errors.messages.maximum_characters', { number: 50 });
     }
 
     if (!email.toLowerCase().match(Regex.Email)) {
-      return 'E-mail inválido';
+      return I18n.t('errors.messages.invalid_email');
     }
   }
 
@@ -440,7 +440,7 @@ export function validateEmail(email) {
 
 export function validateCep(cep) {
   if (cep && !cep.match(Regex.CEP)) {
-    return 'CEP inválido';
+    return I18n.t('errors.messages.invalid_cep');
   }
 
   return null;
@@ -448,7 +448,7 @@ export function validateCep(cep) {
 
 export function validateState(state) {
   if (!STATE_VALUES.includes(state)) {
-    return 'Opção inválida. Recarregue a página';
+    return I18n.t('errors.messages.wrong_select_value');
   }
 
   return null;
@@ -456,7 +456,7 @@ export function validateState(state) {
 
 export function validateCity(city) {
   if (city && city.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   return null;
@@ -464,7 +464,7 @@ export function validateCity(city) {
 
 export function validateNeighborhood(neighborhood) {
   if (neighborhood && neighborhood.length > 50) {
-    return 'Máximo 50 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 50 });
   }
 
   return null;
@@ -472,7 +472,7 @@ export function validateNeighborhood(neighborhood) {
 
 export function validateAddress(address) {
   if (address && address.length > 100) {
-    return 'Máximo 100 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 100 });
   }
 
   return null;
@@ -480,7 +480,7 @@ export function validateAddress(address) {
 
 export function validateComplement(complement) {
   if (complement && complement.length > 100) {
-    return 'Máximo 100 caracteres';
+    return I18n.t('errors.messages.maximum_characters', { number: 100 });
   }
 
   return null;
