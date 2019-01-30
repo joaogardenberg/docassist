@@ -1,6 +1,8 @@
 $(document).on('ready', () => {
   Waves.displayEffect();
 
+  $('.modal').modal();
+
   if (!hasTouch()) {
     $('.tooltiped').tooltip();
 
@@ -25,21 +27,23 @@ function onUserBackgroundError({ target }) {
 }
 
 function openUrl(url, event) {
-  if (!event || (event && !event.target.closest('a'))) {
+  if (!event || (event && !event.target.closest('a') && !event.target.closest('button'))) {
     window.location.href = url;
   }
 }
 
 function openUserShow(id, event) {
-  if (!event || (event && !event.target.closest('a'))) {
-    $(`.users-show, #user-${id}, .user-show-overlay`).addClass('open');
+  if (!event || (event && !event.target.closest('a') && !event.target.closest('button'))) {
+    M.Modal.getInstance(document.getElementById(id)).open();
   }
 }
 
-function closeUserShow(id, event) {
-  if (!event || (event && !event.target.closest('a'))) {
-    $(`.users-show, #user-${id}, .user-show-overlay`).removeClass('open');
-  }
+function closeUserShow(id) {
+  M.Modal.getInstance(document.getElementById(id)).close();
+}
+
+function closeDeleteModal(id) {
+  M.Modal.getInstance(document.getElementById(id)).close();
 }
 
 function sort(url, search, field, direction) {

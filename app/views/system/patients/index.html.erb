@@ -6,7 +6,9 @@
     <% end %>
   </aside>
 </header>
+
 <section>
+
   <% if @patients.any? || @search %>
     <form class="search-bar" method="get" action="<%= system_patients_path %>">
       <div class="input-field">
@@ -18,10 +20,12 @@
       </div>
     </form>
   <% end %>
+
   <% if @patients.any? %>
     <table class="index-table">
       <thead>
         <tr>
+
           <th class="photo"></th>
 
           <% next_name_direction = @order && @order[:field] == :name && @order[:direction] == :asc ? 'desc' : 'asc' %>
@@ -36,14 +40,17 @@
           <% end %>
 
           <th class="actions"></th>
+
         </tr>
       </thead>
       <tbody>
         <% @patients.each do |patient| %>
           <tr onclick="openUrl('<%= system_patient_path(id: patient.id) %>', event)">
+
             <td class="photo">
               <img src="<%= patient.picture %>" alt="<%= t('patients.index.photo_alt', name: patient.name).html_safe %>" onerror="onUserPictureError(event)">
             </td>
+
             <td><%= patient.name %></td>
 
             <% unless current_user.doctor? %>
@@ -52,16 +59,19 @@
 
             <td class="actions">
               <ul>
+
                 <li>
                   <%= link_to edit_system_patient_path(id: patient.id), class: 'btn-floating btn-small bg-warning waves-effect waves-light' do %>
                     <i class="fas fa-pencil-alt"></i>
                   <% end %>
                 </li>
+
                 <li>
-                  <%= link_to system_patient_path(id: patient.id), class: 'btn-floating btn-small bg-error waves-effect waves-light', method: :delete, data: { confirm: t('misc.confirm_destruction') } do %>
+                  <a href="#delete-<%= patient.id %>" class="btn-floating btn-small bg-error waves-effect waves-light modal-trigger">
                     <i class="fas fa-trash-alt"></i>
-                  <% end %>
+                  </a>
                 </li>
+
               </ul>
             </td>
           </tr>
@@ -69,14 +79,47 @@
       </tbody>
     </table>
     <div class="row">
+
       <div class="col s12 m12 l6">
         <div class="table-info"><%= page_entries_info @patients, entry_name: t('patients.attributes.patient').html_safe %></div>
       </div>
+
       <div class="col s12 m12 l6">
         <div class="table-pages"><%= paginate @patients, window: 2, outer_window: 2 %></div>
       </div>
+
     </div>
+
+    <div class="patients-delete">
+      <% @patients.each do |patient| %>
+        <div id="delete-<%= patient.id %>" class="modal bottom-sheet">
+
+          <div class="modal-content">
+            <h4><%= t('patients.index.delete_patient') %></h4>
+            <p><%= t('patients.index.about_to_delete', name: patient.name) %></p>
+            <p><%= t('misc.confirm_destruction') %></p>
+          </div>
+
+          <div class="modal-footer">
+
+            <%= link_to system_patient_path(id: patient.id), class: 'btn bg-error waves-effect waves-light', method: :delete do %>
+              <i class="fa fa-trash-alt left"></i>
+              <%= t('misc.delete') %>
+            <% end %><!--
+
+         --><button class="btn-flat waves-effect" type="button" onclick="closeDeleteModal('delete-<%= patient.id %>')">
+              <i class="fas fa-arrow-up left"></i>
+              <%= t('misc.back') %>
+            </button>
+
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+
   <% else %>
+
     <div class="not-found row">
       <div class="col s12">
         <p class="center-align">
@@ -88,5 +131,6 @@
         <p class="center-align"><%= t('misc.not_found', entry: t('patients.attributes.patient')) %>.</p>
       </div>
     </div>
+
   <% end %>
 </section>

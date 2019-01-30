@@ -46,7 +46,7 @@
       </thead>
       <tbody>
         <% @users.each do |user| %>
-          <tr onclick="openUserShow('<%= user.id %>', event)">
+          <tr onclick="openUserShow('user-<%= user.id %>', event)">
 
             <td class="photo">
               <img src="<%= user.picture %>" alt="<%= t('users.index.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)">
@@ -68,9 +68,9 @@
                 </li>
 
                 <li>
-                  <%= link_to system_user_path(id: user.id), class: 'btn-floating btn-small bg-error waves-effect waves-light', method: :delete, data: { confirm: t('misc.confirm_destruction') } do %>
+                  <a href="#delete-<%= user.id %>" class="btn-floating btn-small bg-error waves-effect waves-light modal-trigger">
                     <i class="fas fa-trash-alt"></i>
-                  <% end %>
+                  </a>
                 </li>
 
               </ul>
@@ -94,63 +94,90 @@
 
     <div class="users-show">
       <% @users.each do |user| %>
-        <div id="user-<%= user.id %>" class="user-show-container">
-          <div class="user-show bottom-shadow">
-            <header>
-              <% if user.picture %>
-                <img class="picture" src="<%= user.picture %>" alt="<%= t('users.show.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)" />
-              <% else %>
-                <img class="picture" src="/images/empty_avatar.png" alt="<%= t('users.show.empty_picture') %>">
-              <% end %>
-              <% if user.background %>
-                <img class="background" src="<%= user.background %>" alt="<%= t('users.show.background_alt', name: user.name).html_safe %>" onerror="onUserBackgroundError(event)" />
-              <% else %>
-                <img class="background" src="https://placeimg.com/220/220/any" alt="<%= t('users.show.empty_picture') %>">
-              <% end %>
-              <p class="truncate tooltiped" data-tooltip="<%= user.name %>" data-position="top"><%= user.name %></p>
-              <button class="btn-flat waves-effect waves-light" type="button" onclick="closeUserShow('<%= user.id %>', event)">
-                <i class="fas fa-times"></i>
-              </button>
-            </header>
-            <article>
-              <p><span>Usuário</span> <span><%= user.username %></span></p>
-              <p><span>E-mail</span> <span><%= user.email %></span></p>
-              <p>
-                <span>Tipo</span>
-                <span>
-                  <% if user.type == 0 %>
-                    <%= user.type_name %>
-                  <% else %>
-                    <%= user.type_name %> de&nbsp;<!--
-                 --><% user.doctors&.each_with_index do |doctor, index| %><!--
-                   --><% if index == 0 %><!--
-                     --><span class="doctor"><%= doctor.name %></span><!--
-                   --><% elsif index > 0 && index < user.doctors.size - 1 %><!--
-                     --><%= t('support.array.words_connector') %><span class="doctor"><%= doctor.name %></span><!--
-                   --><% else %><!--
-                     --><%= t('support.array.last_word_connector') %><span class="doctor"><%= doctor.name %></span><!--
-                   --><% end %><!--
-                 --><% end %>
-                  <% end %>
-                </span>
-              </p>
-            </article>
-            <footer>
-              <a href="<%= edit_system_user_path(user.id) %>" class="btn waves-effect waves-light bg-warning">
-                <i class="fas fa-pencil-alt left"></i>
-                Editar
-              </a><!--
-           --><button class="btn-flat waves-effect" type="button" onclick="closeUserShow('<%= user.id %>', event)">
-                <i class="fas fa-arrow-left left"></i>
-                Voltar
-              </button>
-            </footer>
-          </div>
+        <div id="user-<%= user.id %>" class="modal user-show">
+          <header>
+            <% if user.picture %>
+              <img class="picture" src="<%= user.picture %>" alt="<%= t('users.show.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)" />
+            <% else %>
+              <img class="picture" src="/images/empty_avatar.png" alt="<%= t('users.show.empty_picture') %>">
+            <% end %>
+            <% if user.background %>
+              <img class="background" src="<%= user.background %>" alt="<%= t('users.show.background_alt', name: user.name).html_safe %>" onerror="onUserBackgroundError(event)" />
+            <% else %>
+              <img class="background" src="https://placeimg.com/220/220/any" alt="<%= t('users.show.empty_picture') %>">
+            <% end %>
+            <p class="truncate tooltiped" data-tooltip="<%= user.name %>" data-position="top"><%= user.name %></p>
+            <!--button class="btn-flat waves-effect waves-light" type="button" onclick="closeUserShow('user-<%= user.id %>')">
+              <i class="fas fa-times"></i>
+            </button-->
+          </header>
+          <article>
+            <p><span><%= t('users.attributes.username') %></span> <span><%= user.username %></span></p>
+            <p><span><%= t('users.attributes.email') %></span> <span><%= user.email %></span></p>
+            <p>
+              <span><%= t('users.attributes.type') %></span>
+              <span>
+                <% if user.type == 0 %>
+                  <%= user.type_name %>
+                <% else %>
+                  <%= user.type_name %> de&nbsp;<!--
+               --><% user.doctors&.each_with_index do |doctor, index| %><!--
+                 --><% if index == 0 %><!--
+                   --><span class="doctor"><%= doctor.name %></span><!--
+                 --><% elsif index > 0 && index < user.doctors.size - 1 %><!--
+                   --><%= t('support.array.words_connector') %><span class="doctor"><%= doctor.name %></span><!--
+                 --><% else %><!--
+                   --><%= t('support.array.last_word_connector') %><span class="doctor"><%= doctor.name %></span><!--
+                 --><% end %><!--
+               --><% end %>
+                <% end %>
+              </span>
+            </p>
+          </article>
+          <footer>
+            <a href="<%= edit_system_user_path(user.id) %>" class="btn waves-effect waves-light bg-warning">
+              <i class="fas fa-pencil-alt left"></i>
+              <%= t('misc.edit') %>
+            </a><!--
+         --><button class="btn-flat waves-effect" type="button" onclick="closeUserShow('user-<%= user.id %>')">
+              <i class="fas fa-arrow-left left"></i>
+              <%= t('misc.back') %>
+            </button>
+          </footer>
         </div>
       <% end %>
-      <div class="user-show-overlay"></div>
     </div>
+
+    <div class="users-delete">
+      <% @users.each do |user| %>
+        <div id="delete-<%= user.id %>" class="modal bottom-sheet">
+
+          <div class="modal-content">
+            <h4><%= t('users.index.delete_user') %></h4>
+            <p><%= t('users.index.about_to_delete', name: user.name) %></p>
+            <p><%= t('misc.confirm_destruction') %></p>
+          </div>
+
+          <div class="modal-footer">
+
+            <%= link_to system_user_path(id: user.id), class: 'btn bg-error waves-effect waves-light', method: :delete do %>
+              <i class="fa fa-trash-alt left"></i>
+              <%= t('misc.delete') %>
+            <% end %><!--
+
+         --><button class="btn-flat waves-effect" type="button" onclick="closeDeleteModal('delete-<%= user.id %>')">
+              <i class="fas fa-arrow-up left"></i>
+              <%= t('misc.back') %>
+            </button>
+
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+
   <% else %>
+
     <div class="not-found row">
       <div class="col s12">
         <p class="center-align">
@@ -162,5 +189,6 @@
         <p class="center-align"><%= t('misc.not_found', entry: t('users.attributes.user')) %>.</p>
       </div>
     </div>
+
   <% end %>
 </section>
