@@ -3,9 +3,9 @@ class UserPolicy < SystemPolicy
     user.main?
   end
 
-  # def show?
-  #   user.main? && user.id == record.main_user_id
-  # end
+  def show?
+    user.main? && user.id == record.main_user_id
+  end
 
   def create?
     user.main?
