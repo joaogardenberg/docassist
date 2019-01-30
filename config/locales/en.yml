@@ -30,19 +30,28 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    single_letter_day_names:
+    - S
+    - M
+    - T
+    - W
+    - T
+    - F
+    - S
   views:
     pagination:
-      first: "First"
-      last: "Last"
-      previous: "Previous"
-      next: "Next"
+      first: First
+      last: Last
+      previous: Previous
+      next: Next
       truncate: "&hellip;"
   helpers:
     page_entries_info:
       entry:
-        zero: "entries"
-        one: "entry"
-        other: "entries"
+        zero: entries
+        one: entry
+        other: entries
       one_page:
         display_entries:
           zero: "No %{entry_name} found"
@@ -52,83 +61,140 @@ en:
         display_entries: "Displaying %{entry_name} %{first} - %{last} of %{total}"
   errors:
     messages:
-    not_authorized: "not authorized"
+      not_authorized: not authorized
+      
   sidebar:
-    user_picture: "User picture"
-    edit: "Edit"
-    dashboard: "Dashboard"
-    appointments: "Appointments"
-    patients: "Patients"
-    users: "Users"
+    user_picture: User picture
+    edit: Edit
+    dashboard: Dashboard
+    appointments: Appointments
+    patients: Patients
+    users: Users
   header:
-    sidebar_toggle_tooltip: "Open menu"
-    fullscreen_tooltip: "Fullscreen"
-    logout_tooltip: "Log out"
+    sidebar_toggle_tooltip: Open menu
+    fullscreen_tooltip: Fullscreen
+    logout_tooltip: Log out
   footer:
-    all_rights_reserved: "All rights reserved"
+    all_rights_reserved: All rights reserved
   dashboard:
     index:
-      title: "Dashboard"
+      title: Dashboard
   appointments:
     index:
-      title: "Appointments"
+      title: Appointments
     show:
-      title: "Appointment"
+      title: Appointment
     new:
-      title: "New appointment"
+      title: New appointment
     edit:
-      title: "Edit appointment"
+      title: Edit appointment
   patients:
     index:
-      title: "Patients"
-      new_patient_label: "New patient"
+      title: Patients
+      new_patient_label: New patient
       photo_alt: "Photo of %{name}"
-      search_placeholder: "Search patient..."
-      search_tooltip: "Search patient"
+      search_placeholder: Search patient...
+      search_tooltip: Search patient
+      delete_patient: Delete patient
+      about_to_delete: "You are about to delete the patient %{name}."
     show:
-      title: "Patient"
+      title: Patient
     new:
-      title: "New patient"
+      title: New patient
     edit:
-      title: "Edit patient"
+      title: Edit patient
+    form:
+      nationality_other_label: Which nationality?
+      place_of_birth_other_label: Which place of birth?
     attributes:
-      patient: "patient"
-      name: "Name"
-      user_name: "Doctor"
+      patient: patient
+      name: Name
+      user_name: Doctor
+      date_of_birth: Date of birth
+      gender: Gender
+      marital_status: Marital status
+      occupation: Occupation
+      cpf: CPF
+      rg: RG
+      rg_issuing_agency: Issuing agency
+      nationality: Nationality
+      place_of_birth: Place of birth
+      email: Email
+      landline: Landline
+      cell_phone: Cell phone
+      work_phone: Work phone
+      cep: Zip code
+      state: State
+      city: city
+      neighborhood: Neighborhood
+      address: Address
+      complement: Complement
+      genders:
+        male: Male
+        female: Female
+      marital_statuses:
+        single: Single
+        married: Married
+        divorced: Divorced
+        widow: Widow(er)
+      nationalities:
+        brazilian: Brazilian
+        other: Other
+      places_of_birth:
+        other: Other
   users:
     index:
-      title: "Users"
-      new_user_label: "New user"
+      title: Users
+      new_user_label: New user
       picture_alt: "Photo of %{name}"
-      search_placeholder: "Search user..."
-      search_tooltip: "Search user"
+      search_placeholder: Search user...
+      search_tooltip: Search user
+      delete_user: Delete user
+      about_to_delete: "You are about to delete the user %{name}."
     show:
-      title: "User"
+      title: User
       picture_alt: "Picture of %{name}"
-      empty_picture: "User with no picture"
+      empty_picture: User with no picture
       background_alt: "%{name}'s background"
-      random_background_alt: "Random background"
-      random_background_text: "Random"
+      random_background_alt: Random background
+      random_background_text: Random
     new:
-      title: "New user"
+      title: New user
     edit:
-      title: "Edit user"
+      title: Edit user
+    form:
+      type_of_label: Whose secretary?
     attributes:
-      user: "user"
-      name: "Name"
-      username: "Username"
-      type: "Type"
+      user: user
+      user_capitalized: User
+      name: Name
+      username: Username
+      type: Type
+      email: Email
+      email_confirmation: Email confirmation
+      password: Password
+      password_confirmation: Password confirmation
     types:
-      secretary: "Secretary"
-      doctor: "Doctor"
-      undefined: "Undefined"
+      secretary: Secretary
+      doctor: Doctor
+      undefined: Undefined
   user:
     edit:
-      title: "Edit your account"
+      title: Edit your account
   misc:
-    system: "System"
-    confirm_destruction: "Are you sure?\nYou cannot undo that."
-    asc_full: "ascending"
-    desc_full: "descending"
+    system: System
+    confirm_destruction:  Are you sure? You cannot undo that.
+    asc_full: ascending
+    desc_full: descending
     order: "Order by %{field} %{direction}"
     not_found: "No %{entry} found"
+    edit: Edit
+    back: Back
+    delete: Delete
+    create: Create
+    clear: Clear
+    save: Save
+    restore: Restore
+    cancel: Cancel
+    ok: Ok
+    default_component: Default component

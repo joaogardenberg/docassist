@@ -3,11 +3,20 @@ pt-BR:
   activerecord:
     errors:
       messages:
-        record_invalid: 'A validação falhou: %{errors}'
+        record_invalid: "A validação falhou: %{errors}"
         restrict_dependent_destroy:
-          has_one: Não é possível excluir o registro pois existe um %{record} dependente
-          has_many: Não é possível excluir o registro pois existem %{record} dependentes
+          has_one: "Não é possível excluir o registro pois existe um %{record} dependente"
+          has_many: "Não é possível excluir o registro pois existem %{record} dependentes"
+
   date:
+    single_letter_day_names:
+    - D
+    - S
+    - T
+    - Q
+    - Q
+    - S
+    - S
     abbr_day_names:
     - Dom
     - Seg
@@ -64,26 +73,26 @@ pt-BR:
     distance_in_words:
       about_x_hours:
         one: aproximadamente 1 hora
-        other: aproximadamente %{count} horas
+        other: "aproximadamente %{count} horas"
       about_x_months:
         one: aproximadamente 1 mês
-        other: aproximadamente %{count} meses
+        other: "aproximadamente %{count} meses"
       about_x_years:
         one: aproximadamente 1 ano
-        other: aproximadamente %{count} anos
+        other: "aproximadamente %{count} anos"
       almost_x_years:
         one: quase 1 ano
-        other: quase %{count} anos
+        other: "quase %{count} anos"
       half_a_minute: meio minuto
       less_than_x_minutes:
         one: menos de um minuto
-        other: menos de %{count} minutos
+        other: "menos de %{count} minutos"
       less_than_x_seconds:
         one: menos de 1 segundo
-        other: menos de %{count} segundos
+        other: "menos de %{count} segundos"
       over_x_years:
         one: mais de 1 ano
-        other: mais de %{count} anos
+        other: "mais de %{count} anos"
       x_days:
         one: 1 dia
         other: "%{count} dias"
@@ -112,47 +121,47 @@ pt-BR:
       accepted: deve ser aceito
       blank: não pode ficar em branco
       present: deve ficar em branco
-      confirmation: não é igual a %{attribute}
+      confirmation: "não é igual a %{attribute}"
       empty: não pode ficar vazio
-      equal_to: deve ser igual a %{count}
+      equal_to: "deve ser igual a %{count}"
       even: deve ser par
       exclusion: não está disponível
-      greater_than: deve ser maior que %{count}
-      greater_than_or_equal_to: deve ser maior ou igual a %{count}
+      greater_than: "deve ser maior que %{count}"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
       inclusion: não está incluído na lista
       invalid: não é válido
-      less_than: deve ser menor que %{count}
-      less_than_or_equal_to: deve ser menor ou igual a %{count}
-      model_invalid: 'A validação falhou: %{errors}'
+      less_than: "deve ser menor que %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      model_invalid: "A validação falhou: %{errors}"
       not_a_number: não é um número
       not_an_integer: não é um número inteiro
       odd: deve ser ímpar
       required: é obrigatório(a)
       taken: já está em uso
       too_long:
-        one: 'é muito longo (máximo: 1 caracter)'
-        other: 'é muito longo (máximo: %{count} caracteres)'
+        one: "é muito longo (máximo: 1 caracter)"
+        other: "é muito longo (máximo: %{count} caracteres)"
       too_short:
-        one: 'é muito curto (mínimo: 1 caracter)'
-        other: 'é muito curto (mínimo: %{count} caracteres)'
+        one: "é muito curto (mínimo: 1 caracter)"
+        other: "é muito curto (mínimo: %{count} caracteres)"
       wrong_length:
         one: não possui o tamanho esperado (1 caracter)
-        other: não possui o tamanho esperado (%{count} caracteres)
-      other_than: deve ser diferente de %{count}
-      not_authorized: "não autorizado"
-
+        other: "não possui o tamanho esperado (%{count} caracteres)"
+      other_than: "deve ser diferente de %{count}"
+      not_authorized: não autorizado
+      
     template:
-      body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
+      body: "Por favor, verifique o(s) seguinte(s) campo(s):"
       header:
-        one: 'Não foi possível gravar %{model}: 1 erro'
-        other: 'Não foi possível gravar %{model}: %{count} erros'
+        one: "Não foi possível gravar %{model}: 1 erro"
+        other: "Não foi possível gravar %{model}: %{count} erros"
   helpers:
     select:
       prompt: Por favor selecione
     submit:
-      create: Criar %{model}
-      submit: Salvar %{model}
-      update: Atualizar %{model}
+      create: "Criar %{model}"
+      submit: "Salvar %{model}"
+      update: "Atualizar %{model}"
   number:
     currency:
       format:
@@ -217,25 +226,25 @@ pt-BR:
       two_words_connector: " e "
       words_connector: ", "
   time:
-    am: ''
+    am: ""
     formats:
       default: "%a, %d de %B de %Y, %H:%M:%S %z"
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
-    pm: ''
+    pm: ""
   views:
     pagination:
-      first: "Primeira"
-      last: "Última"
-      previous: "Anterior"
-      next: "Próxima"
+      first: Primeira
+      last: Última
+      previous: Anterior
+      next: Próxima
       truncate: "&hellip;"
   helpers:
     page_entries_info:
       entry:
-        zero: "registros"
-        one: "registro"
-        other: "registros"
+        zero: registros
+        one: registro
+        other: registros
       one_page:
         display_entries:
           zero: "Nenhum %{entry_name} encontrado"
@@ -244,81 +253,137 @@ pt-BR:
       more_pages:
         display_entries: "Mostrando %{first} - %{last} de %{total} %{entry_name}s"
   sidebar:
-    user_picture: "Foto do usuário"
-    edit: "Editar"
-    dashboard: "Dashboard"
-    appointments: "Consultas"
-    patients: "Pacientes"
-    users: "Usuários"
+    user_picture: Foto do usuário
+    edit: Editar
+    dashboard: Dashboard
+    appointments: Consultas
+    patients: Pacientes
+    users: Usuários
   header:
-    sidebar_toggle_tooltip: "Abrir o menu"
-    fullscreen_tooltip: "Tela cheia"
-    logout_tooltip: "Deslogar"
+    sidebar_toggle_tooltip: Abrir o menu
+    fullscreen_tooltip: Tela cheia
+    logout_tooltip: Deslogar
   footer:
-    all_rights_reserved: "Todos os direitos reservados"
+    all_rights_reserved: Todos os direitos reservados
   dashboard:
     index:
-      title: "Dashboard"
+      title: Dashboard
   appointments:
     index:
-      title: "Consultas"
+      title: Consultas
     show:
-      title: "Consulta"
+      title: Consulta
     new:
-      title: "Nova consulta"
+      title: Nova consulta
     edit:
-      title: "Editar consulta"
+      title: Editar consulta
   patients:
     index:
-      title: "Pacientes"
-      new_patient_label: "Novo paciente"
+      title: Pacientes
+      new_patient_label: Novo paciente
       photo_alt: "Foto de %{name}"
-      search_placeholder: "Procurar paciente..."
-      search_tooltip: "Procurar paciente"
+      search_placeholder: Procurar paciente...
+      search_tooltip: Procurar paciente
+      delete_patient: Remover paciente
+      about_to_delete: "Você está prestes a remover o paciente %{name}."
     show:
-      title: "Paciente"
+      title: Paciente
     new:
-      title: "Novo paciente"
+      title: Novo paciente
     edit:
-      title: "Editar paciente"
+      title: Editar paciente
+    form:
+      nationality_other_label: Qual nacionalidade?
+      place_of_birth_other_label: Qual naturalidade?
     attributes:
-      patient: "paciente"
-      name: "Nome"
-      user_name: "Médico"
+      patient: paciente
+      name: Nome
+      user_name: Médico
+      date_of_birth: Data de nascimento
+      gender: Gênero
+      marital_status: Estado civil
+      occupation: Profissão
+      cpf: CPF
+      rg: RG
+      rg_issuing_agency: Órgão emissor
+      nationality: Nacionalidade
+      place_of_birth: Naturalidade
+      email: E-mail
+      landline: Telefone
+      cell_phone: Celular
+      work_phone: Trabalho
+      cep: CEP
+      state: Estado
+      city: Cidade
+      neighborhood: Bairro
+      address: Endereço
+      complement: Complemento
+    genders:
+      male: Masculino
+      female: Feminino
+    marital_statuses:
+      single: Solteiro(a)
+      married: Casado(a)
+      divorced: Divorciado(a)
+      widow: Viúvo(a)
+    nationalities:
+      brazilian: Brasileira
+      other: Outra
+    places_of_birth:
+      other: Outra
   users:
     index:
-      title: "Usuários"
-      new_user_label: "Novo usuário"
+      title: Usuários
+      new_user_label: Novo usuário
       picture_alt: "Foto de %{name}"
-      search_placeholder: "Procurar usuário..."
-      search_tooltip: "Procurar usuário"
+      search_placeholder: Procurar usuário...
+      search_tooltip: Procurar usuário
+      delete_user: Remover usuário
+      about_to_delete: "Você está prestes a remover o usuário %{name}."
     show:
-      title: "Usuário"
+      title: Usuário
       picture_alt: "Foto de %{name}"
-      empty_picture: "Usuário sem foto"
+      empty_picture: Usuário sem foto
       background_alt: "Plano de fundo de %{name}"
-      random_background_alt: "Plano de fundo aleatório"
-      random_background_text: "Aleatório"
+      random_background_alt: Plano de fundo aleatório
+      random_background_text: Aleatório
     new:
-      title: "Novo usuário"
+      title: Novo usuário
     edit:
-      title: "Editar usuário"
+      title: Editar usuário
+    form:
+      type_of_label: Secretário(a) de quem(ns)?
     attributes:
-      user: "usuário"
-      name: "Nome"
-      username: "Usuário"
-      type: "Tipo"
+      user: usuário
+      user_capitalized: Usuário
+      name: Nome
+      username: Usuário
+      type: Tipo
+      email: E-mail
+      email_confirmation: Confirmação de e-mail
+      password: Senha
+      password_confirmation: Confirmação de senha
     types:
-      secretary: "Secretário(a)"
-      doctor: "Médico(a)"
-      undefined: "Não definido"
+      secretary: Secretário(a)
+      doctor: Médico(a)
+      undefined: Não definido
   user:
     edit:
-      title: "Editar sua conta"
+      title: Editar sua conta
   misc:
-    system: "Sistema"
-    confirm_destruction: "Você tem certeza disso?\nEsta ação não pode ser desfeita."
-    asc_full: "crescente"
-    desc_full: "decrescente"
+    system: Sistema
+    confirm_destruction: Tem certeza disso? Esta ação não pode ser desfeita.
+    asc_full: crescente
+    desc_full: decrescente
     order: "Ordenar por %{field} %{direction}"
     not_found: "Nenhum %{entry} encontrado"
+    edit: Editar
+    back: Voltar
+    delete: Remover
+    create: Criar
+    clear: Limpar
+    save: Salvar
+    restore: Restaurar
+    cancel: Cancelar
+    ok: Ok
+    default_component: Componente padrão
