@@ -5,30 +5,36 @@
 
       <%= link_to :system_user_edit, class: 'current-user-info waves-effect waves-light', style: "background-image: #{current_user.background.present? ? "url(#{current_user.background})" : 'url(https://placeimg.com/220/220/any)'}" do %>
         <img src="<%= current_user.picture %>" alt="<%= t('sidebar.user_picture').html_safe %>" onerror="onUserPictureError(event)" />
-        <span class="name"><%= current_user.name || 'Usuário' %></span>
+        <span class="name"><%= current_user.name || t('users.attributes.user_capitalized').html_safe %></span>
         <span class="new badge"><%= t('sidebar.edit').html_safe %></span>
       <% end %>
 
-      <li class="link">
-        <%= link_to :system_dashboard_index, class: "waves-effect#{controller?('system/dashboard') ? ' active' : ''}" do %>
-          <i class="fas fa-chart-line"></i>
-          <span class="name"><%= t('sidebar.dashboard').html_safe %></span>
-        <% end %>
-      </li>
+      <%# if policy(:dashboard).index? -%>
+        <li class="link">
+          <%= link_to :system_dashboard_index, class: "waves-effect#{controller?('system/dashboard') ? ' active' : ''}" do %>
+            <i class="fas fa-chart-line"></i>
+            <span class="name"><%= t('sidebar.dashboard').html_safe %></span>
+          <% end %>
+        </li>
+      <%# end -%>
 
-      <li class="link">
-        <%= link_to :system_appointments, class: "waves-effect#{controller?('system/appointments') ? ' active' : ''}" do %>
-          <i class="fas fa-calendar-alt"></i>
-          <span class="name"><%= t('sidebar.appointments').html_safe %></span>
-        <% end %>
-      </li>
+      <%# if policy(:appointment).index? -%>
+        <li class="link">
+          <%= link_to :system_appointments, class: "waves-effect#{controller?('system/appointments') ? ' active' : ''}" do %>
+            <i class="fas fa-calendar-alt"></i>
+            <span class="name"><%= t('sidebar.appointments').html_safe %></span>
+          <% end %>
+        </li>
+      <%# end -%>
 
-      <li class="link">
-        <%= link_to :system_patients, class: "waves-effect#{controller?('system/patients') ? ' active' : ''}" do %>
-          <i class="fas fa-address-card"></i>
-          <span class="name"><%= t('sidebar.patients').html_safe %></span>
-        <% end %>
-      </li>
+      <% if policy(:patient).index? %>
+        <li class="link">
+          <%= link_to :system_patients, class: "waves-effect#{controller?('system/patients') ? ' active' : ''}" do %>
+            <i class="fas fa-address-card"></i>
+            <span class="name"><%= t('sidebar.patients').html_safe %></span>
+          <% end %>
+        </li>
+      <% end %>
 
       <% if policy(:user).index? %>
         <li class="link">
