@@ -24,6 +24,6 @@ class UserPolicy < SystemPolicy
   end
 
   def destroy?
-    user.main? && user.id == record.main_user_id
+    user.main? && user.id == record.main_user_id && !record.main?
   end
 end
