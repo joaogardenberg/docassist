@@ -12,7 +12,7 @@ module Patients::Fields::PersonalInformation
     field :rg_issuing_agency,    type: String,  default: ''
     field :nationality,          type: Integer, default: 0
     field :nationality_other,    type: String,  default: ''
-    field :place_of_birth,       type: Integer, default: 0
+    field :place_of_birth,       type: Integer, default: 18
     field :place_of_birth_other, type: String,  default: ''
     field :picture,              type: String,  default: ''
   end
