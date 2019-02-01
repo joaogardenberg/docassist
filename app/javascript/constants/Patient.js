@@ -283,20 +283,18 @@ export function validateMaritalStatus(maritalStatus) {
 }
 
 export function validateDateOfBirth(dateOfBirth) {
-  if (!dateOfBirth) {
-    return I18n.t('errors.messages.required_field');
-  }
+  if (dateOfBirth) {
+    if (!dateOfBirth.match(Regex.DateOfBirth)) {
+      return I18n.t('errors.messages.invalid_date_of_birth');
+    }
 
-  if (!dateOfBirth.match(Regex.DateOfBirth)) {
-    return I18n.t('errors.messages.invalid_date_of_birth');
-  }
+    const [ day, month, year ] = dateOfBirth.split('/');
 
-  const [ day, month, year ] = dateOfBirth.split('/');
+    const date = Date.parse(`${month}/${day}/${year}`);
 
-  const date = Date.parse(`${month}/${day}/${year}`);
-
-  if (!date || date > new Date()) {
-    return I18n.t('errors.messages.invalid_date_of_birth');
+    if (!date || date > new Date()) {
+      return I18n.t('errors.messages.invalid_date_of_birth');
+    }
   }
 
   return null;
@@ -365,12 +363,14 @@ export function validateRg(rg) {
 }
 
 export function validateRgIssuingAgency(rg, rgIssuingAgency) {
-  if (rg && !rgIssuingAgency) {
-    return I18n.t('errors.messages.required_field');
-  }
+  if (rg) {
+    if (!rgIssuingAgency) {
+      return I18n.t('errors.messages.required_field');
+    }
 
-  if (rg && rgIssuingAgency && rgIssuingAgency.length > 50) {
-    return I18n.t('errors.messages.maximum_characters', { number: 50 });
+    if (rgIssuingAgency && rgIssuingAgency.length > 50) {
+      return I18n.t('errors.messages.maximum_characters', { number: 50 });
+    }
   }
 
   return null;
@@ -385,12 +385,14 @@ export function validateNationality(nationality) {
 }
 
 export function validateNationalityOther(nationality, nationalityOther) {
-  if (nationality === NATIONALITY_VALUES[NATIONALITY_VALUES.length - 1] && !nationalityOther) {
-    return I18n.t('errors.messages.required_field');
-  }
+  if (nationality === NATIONALITY_VALUES[NATIONALITY_VALUES.length - 1]) {
+    if (!nationalityOther) {
+      return I18n.t('errors.messages.required_field');
+    }
 
-  if (nationality === NATIONALITY_VALUES[NATIONALITY_VALUES.length - 1] && nationalityOther && nationalityOther.length > 50) {
-    return I18n.t('errors.messages.maximum_characters', { number: 50 });
+    if (nationalityOther && nationalityOther.length > 50) {
+      return I18n.t('errors.messages.maximum_characters', { number: 50 });
+    }
   }
 
   return null;
@@ -405,12 +407,14 @@ export function validatePlaceOfBirth(placeOfBirth) {
 }
 
 export function validatePlaceOfBirthOther(placeOfBirth, placeOfBirthOther) {
-  if (placeOfBirth === STATE_VALUES[STATE_VALUES.length - 1] && !placeOfBirthOther) {
-    return I18n.t('errors.messages.required_field');
-  }
+  if (placeOfBirth === STATE_VALUES[STATE_VALUES.length - 1]) {
+    if (!placeOfBirthOther) {
+      return I18n.t('errors.messages.required_field');
+    }
 
-  if (placeOfBirth === STATE_VALUES[STATE_VALUES.length - 1] && placeOfBirthOther && placeOfBirthOther.length > 50) {
-    return I18n.t('errors.messages.maximum_characters', { number: 50 });
+    if (placeOfBirthOther && placeOfBirthOther.length > 50) {
+      return I18n.t('errors.messages.maximum_characters', { number: 50 });
+    }
   }
 
   return null;
@@ -481,6 +485,20 @@ export function validateAddress(address) {
 export function validateComplement(complement) {
   if (complement && complement.length > 100) {
     return I18n.t('errors.messages.maximum_characters', { number: 100 });
+  }
+
+  return null;
+}
+
+export function validateUrl(url) {
+  if (url) {
+    if (url.length > 255) {
+      return I18n.t('errors.messages.maximum_characters', { number: 255 });
+    }
+
+    if (!url.match(Regex.URL)) {
+      return I18n.t('errors.messages.invalid_link');
+    }
   }
 
   return null;

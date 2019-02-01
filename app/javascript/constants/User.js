@@ -113,12 +113,14 @@ export function validatePasswordNew(password) {
 }
 
 export function validatePasswordEdit(password) {
-  if (password && password.length > 50) {
-    return I18n.t('errors.messages.maximum_characters', { number: 50 });
-  }
+  if (password) {
+    if (password.length > 50) {
+      return I18n.t('errors.messages.maximum_characters', { number: 50 });
+    }
 
-  if (password && password.length < 6) {
-    return I18n.t('errors.messages.minimum_characters', { number: 6 });
+    if (password.length < 6) {
+      return I18n.t('errors.messages.minimum_characters', { number: 6 });
+    }
   }
 
   return null;
@@ -137,12 +139,28 @@ export function validatePasswordConfirmationNew(password, passwordConfirmation) 
 }
 
 export function validatePasswordConfirmationEdit(password, passwordConfirmation) {
-  if (password && !passwordConfirmation) {
-    return I18n.t('errors.messages.required_field');
+  if (password) {
+    if (!passwordConfirmation) {
+      return I18n.t('errors.messages.required_field');
+    }
+
+    if (password !== passwordConfirmation) {
+      return I18n.t('errors.messages.passwords_not_match');
+    }
   }
 
-  if (password && password !== passwordConfirmation) {
-    return I18n.t('errors.messages.passwords_not_match');
+  return null;
+}
+
+export function validateUrl(url) {
+  if (url) {
+    if (url.length > 255) {
+      return I18n.t('errors.messages.maximum_characters', { number: 255 });
+    }
+
+    if (!url.match(Regex.URL)) {
+      return I18n.t('errors.messages.invalid_link');
+    }
   }
 
   return null;
