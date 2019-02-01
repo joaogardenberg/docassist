@@ -278,6 +278,11 @@
     > .row > .input-field, > .row > .col > .input-field {
       margin-bottom: 24px;
 
+      &.file input[type="text"] {
+        box-sizing: border-box;
+        padding-right: 40px;
+      }
+
       > label {
         color: $default-color;
         user-select: none;
@@ -309,11 +314,31 @@
 
       .picker {
         height: auto;
-        padding: 8px 10px;
         position: absolute;
         right: .75rem;
         top: 50%;
         transform: translateY(-50%);
+      }
+
+      .file-field {
+        position: absolute;
+        right: .75rem;
+        top: 50%;
+        transform: translateY(-50%);
+
+        .upload {
+          height: 34px;
+          line-height: 18px;
+          padding: 8px;
+
+          i {
+            font-size: 18px;
+          }
+        }
+
+        .file-path-wrapper {
+          display: none;
+        }
       }
 
       .helper-text {
