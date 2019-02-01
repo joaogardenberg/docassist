@@ -120,5 +120,9 @@ module System
     def page
       permitted_params[:page] || 1
     end
+
+    def not_authorized
+      redirect_to(:system_patients)
+    end
   end
 end

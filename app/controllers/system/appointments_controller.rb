@@ -20,5 +20,11 @@ module System
 
     def destroy
     end
+
+    private
+
+    def not_authorized
+      redirect_to(:system_appointments)
+    end
   end
 end
