@@ -162,6 +162,7 @@ pt-BR:
       invalid_cpf: CPF inválido
       invalid_phone_number: Número inválido
       invalid_cep: CEP inválido
+      invalid_link: Link inválido
     template:
       body: "Por favor, verifique o(s) seguinte(s) campo(s):"
       header:
@@ -307,6 +308,7 @@ pt-BR:
     form:
       nationality_other_label: Qual nacionalidade?
       place_of_birth_other_label: Qual naturalidade?
+      picture_label: Foto
     attributes:
       patient: paciente
       name: Nome
@@ -365,6 +367,8 @@ pt-BR:
       title: Editar usuário
     form:
       type_of_label: Secretário(a) de quem(ns)?
+      picture_label: Foto
+      background_label: Plano de fundo
     attributes:
       user: usuário
       user_capitalized: Usuário
@@ -399,3 +403,4 @@ pt-BR:
     cancel: Cancelar
     ok: Ok
     default_component: Componente padrão
+    upload: Carregar

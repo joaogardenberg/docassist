@@ -39,8 +39,20 @@ module System
     end
 
     def destroy
+      ::Image.delete(@user.picture)
+      ::Image.delete(@user.background)
       @user.delete
       redirect_to(:system_users)
+    end
+
+    def upload_picture
+      url = ::Image.upload("users/pictures/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+      render json: { url: url }
+    end
+
+    def upload_background
+      url = ::Image.upload("users/backgrounds/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+      render json: { url: url }
     end
 
     private
@@ -60,7 +72,7 @@ module System
     end
 
     def permitted_params
-      params.permit(:id, :search, :order, :page)
+      params.permit(:id, :search, :order, :page, :file)
     end
 
     def load_params

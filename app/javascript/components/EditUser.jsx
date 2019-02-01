@@ -1,8 +1,8 @@
 import React                          from 'react';
 import { reduxForm, SubmissionError } from 'redux-form';
-import Axios                          from 'axios';
 import Form                           from './FormUser';
 import * as User                      from '../constants/User';
+import * as Users                     from '../services/requests/Users';
 
 let EditUser = props => {
   const { change, untouch, reset, authenticityToken, initialValues } = props;
@@ -30,7 +30,7 @@ let EditUser = props => {
 function onSubmit(values, props) {
   const params = { ...values, authenticity_token: props.authenticityToken }
 
-  return Axios.put(`/system/users/${props.initialValues.id}`, params)
+  return Users.update(params, props.initialValues.id)
               .then(({ status, data: { success, errors } }) => {
                 if (status === 200 && success) {
                   window.location.href = '/system/users';
@@ -48,6 +48,8 @@ function validate(values) {
     username:              User.validateUsername(values['username']),
     email:                 User.validateEmail(values['email']),
     password:              User.validatePasswordEdit(values['password']),
+    picture:               User.validateUrl(values['picture']),
+    background:            User.validateUrl(values['background']),
     type_of_alias:         User.validateTypeOf(
                              values['type'],
                              values['type_of_alias']

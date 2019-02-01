@@ -48,33 +48,7 @@ const Redux = props => {
 
 const sanitize = (attributes, component, doctors) => {
   if (!attributes) {
-    let initialValues;
-
-    switch(component) {
-      case 'NewPatient':
-        initialValues = {
-          gender: '0',
-          marital_status: '0',
-          nationality: '0',
-          place_of_birth: '18',
-          state: '18'
-        }
-
-        if (doctors && doctors.length > 0) {
-          initialValues.user_id = doctors[0].id;
-        }
-
-        break;
-      case 'NewUser':
-        initialValues = {
-          type: '0'
-        }
-        break;
-      default:
-        initialValues = undefined;
-    }
-
-    return initialValues;
+    return undefined;
   }
 
   const sanitized = attributes;

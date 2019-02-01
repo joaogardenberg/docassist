@@ -39,8 +39,14 @@ module System
     end
 
     def destroy
+      ::Image.delete(@patient.picture)
       @patient.delete
       redirect_to(:system_patients)
+    end
+
+    def upload_picture
+      url = ::Image.upload("patients/pictures/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+      render json: { url: url }
     end
 
     private
@@ -51,10 +57,10 @@ module System
         :date_of_birth, :occupation, :cpf,
         :rg, :rg_issuing_agency, :nationality,
         :nationality_other, :place_of_birth, :place_of_birth_other,
-        :landline, :cell_phone, :work_phone,
-        :email, :cep, :state,
-        :city, :neighborhood, :address,
-        :complement
+        :picture, :landline, :cell_phone,
+        :work_phone, :email, :cep,
+        :state, :city, :neighborhood,
+        :address, :complement
       ).merge(
         user_id: current_user.doctor? ? current_user.id : BSON::ObjectId(params[:user_id]),
         current_user: current_user
@@ -62,7 +68,7 @@ module System
     end
 
     def permitted_params
-      params.permit(:id, :search, :order, :page)
+      params.permit(:id, :search, :order, :page, :file)
     end
 
     def load_params

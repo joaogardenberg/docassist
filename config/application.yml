@@ -1,5 +1,8 @@
 default: &default
-  
+  AWS_S3_REGION: sa-east-1
+  AWS_S3_BUCKET: docassist
+  AWS_ACCESS_KEY_ID: AKIAI3D363F6DU3AQTLQ
+  AWS_SECRET_ACCESS_KEY: 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
 
 development:
   <<: *default

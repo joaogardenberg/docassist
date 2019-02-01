@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { Field }            from 'redux-form';
-import * as Datepicker      from '../common/Datepicker';
-import * as Regex           from '../constants/Regex';
-import * as Patient         from '../constants/Patient';
-import { cepSearch }        from '../services/requests/Cep';
-import Inputmask            from 'inputmask';
+import React, { Component }     from 'react';
+import { Field }                from 'redux-form';
+import * as Datepicker          from '../common/Datepicker';
+import * as Regex               from '../constants/Regex';
+import * as Patient             from '../constants/Patient';
+import { cepSearch }            from '../services/requests/Cep';
+import { uploadPatientPicture } from '../services/requests/Upload';
+import Inputmask                from 'inputmask';
 
 const INITIAL_STATE = {
   showRgIssuingAgency: false,
@@ -168,6 +169,17 @@ class FormPatient extends Component {
             reference={ this.placeOfBirthOtherInputRef }
             component={ this.renderField }
             style={{ display: showPlaceOfBirthOther ? 'block' : 'none' }}
+          />
+          <Field
+            id="picture"
+            name="picture"
+            label={ I18n.t('patients.form.picture_label') }
+            className="col s12"
+            autoComplete="off"
+            maxLength="255"
+            reference={ this.pictureInputRef }
+            selectFileCallback={ this.onPictureSelect.bind(this) }
+            component={ this.renderFileField }
           />
         </div>
         <h5 className="section">Contato</h5>
@@ -375,6 +387,50 @@ class FormPatient extends Component {
     );
   }
 
+  renderFileField(field) {
+    const { input, id, label, className, disabled, style } = field;
+    const { reference, fileReference, maxLength }          = field;
+    const { selectFileCallback }                           = field;
+    const { touched, active, error }                       = field.meta;
+
+    const errorMessage = touched && !active ? error : '';
+    const valid        = touched && !active && !errorMessage;
+
+    return (
+      <div
+        className={ `file input-field${className ? ` ${className}` : ''}${errorMessage ? ' invalid' : ''}${valid ? ' valid' : ''}` }
+        style={ style }
+      >
+        <input
+          { ...input }
+          id={ id }
+          type="text"
+          ref={ reference }
+          maxLength={ maxLength }
+          disabled={ disabled }
+        />
+        <div className="file-field">
+          <div className="upload btn-flat waves-effect">
+            <i className="fas fa-upload" />
+            <input
+              id={ `${id}_alias` }
+              name={ `${input.name}_alias` }
+              type="file"
+              disabled={ disabled }
+              ref={ fileReference }
+              onChange={ selectFileCallback }
+            />
+          </div>
+          <div className="file-path-wrapper">
+            <input className="file-path" type="text" disabled={ disabled } />
+          </div>
+        </div>
+        <label htmlFor={ id }>{ label }</label>
+        <span className="helper-text">{ errorMessage }</span>
+      </div>
+    );
+  }
+
   renderSelect(field) {
     const { input, id, label, className, children, reference } = field;
     const { disabled, multiple, style }                        = field;
@@ -478,12 +534,7 @@ class FormPatient extends Component {
     this.nationalityOtherInputRef  = React.createRef();
     this.placeOfBirthSelectRef     = React.createRef();
     this.placeOfBirthOtherInputRef = React.createRef();
-    this.userIdSelectLoaded        = false;
-    this.genderSelectLoaded        = false;
-    this.maritalStatusSelectLoaded = false;
-    this.nationalitySelectLoaded   = false;
-    this.placeOfBirthSelectLoaded  = false;
-    this.datepicker                = null;
+    this.pictureInputRef           = React.createRef();
 
     this.landlineInputRef          = React.createRef();
     this.cellPhoneInputRef         = React.createRef();
@@ -496,9 +547,16 @@ class FormPatient extends Component {
     this.neighborhoodInputRef      = React.createRef();
     this.addressInputRef           = React.createRef();
     this.complementInputRef        = React.createRef();
-    this.stateSelectLoaded         = false;
 
+    this.userIdSelectLoaded        = false;
+    this.genderSelectLoaded        = false;
+    this.maritalStatusSelectLoaded = false;
+    this.nationalitySelectLoaded   = false;
+    this.placeOfBirthSelectLoaded  = false;
+    this.stateSelectLoaded         = false;
     this.countersLoaded            = false;
+
+    this.datepicker                = null;
   }
 
   componentDidMount() {
@@ -608,6 +666,22 @@ class FormPatient extends Component {
   onRestoreButtonClick(callback) {
     callback();
     this.setState({ shouldResetSelects: true, shouldResetCounters: true });
+  }
+
+  onPictureSelect({ target: { files: [file] } }) {
+    if (file) {
+      const { id, authenticityToken } = this.props;
+
+      this.disablePictureField();
+
+      uploadPatientPicture(file, id, authenticityToken)
+        .then(({ status, data: { url } }) => {
+          this.props.change('picture', url);
+        })
+        .then(() => {
+          this.enablePictureField();
+        });
+    }
   }
 
   initFormCounters() {
@@ -799,6 +873,16 @@ class FormPatient extends Component {
     cityInputRef.current.disabled         = false;
     neighborhoodInputRef.current.disabled = false;
     addressInputRef.current.disabled      = false;
+    this.setState({ shouldReinitialize: true });
+  }
+
+  disablePictureField() {
+    this.pictureInputRef.current.disabled = true;
+    this.setState({ shouldReinitialize: true });
+  }
+
+  enablePictureField() {
+    this.pictureInputRef.current.disabled = false;
     this.setState({ shouldReinitialize: true });
   }
 }

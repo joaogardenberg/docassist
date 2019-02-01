@@ -75,6 +75,7 @@ en:
       invalid_cpf: Invalid CPF
       invalid_phone_number: Invalid number
       invalid_cep: Invalid zip code
+      invalid_link: Invalid link
   sidebar:
     user_picture: User picture
     edit: Edit
@@ -118,6 +119,7 @@ en:
     form:
       nationality_other_label: Which nationality?
       place_of_birth_other_label: Which place of birth?
+      picture_label: Foto
     attributes:
       patient: patient
       name: Name
@@ -176,6 +178,8 @@ en:
       title: Edit user
     form:
       type_of_label: Whose secretary?
+      picture_label: Picture
+      background_label: Background
     attributes:
       user: user
       user_capitalized: User
@@ -210,3 +214,4 @@ en:
     cancel: Cancel
     ok: Ok
     default_component: Default component
+    upload: Upload
