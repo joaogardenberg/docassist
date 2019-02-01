@@ -10,9 +10,6 @@ module Patients::Validations
               format: { with: NAME_REGEX },
               length: { maximum: 100 }
 
-    validates :date_of_birth,
-              presence: true
-
     validates :gender,
               presence: true,
               inclusion: { in: self::GENDERS }
@@ -105,15 +102,15 @@ module Patients::Validations
 
     def validate_user_access
       error = false
-
       error = true unless current_user.main_user.id == user.main_user.id
-
       errors.add(:user_id, I18n.t('errors.messages.not_authorized')) if error
     end
 
     def validate_date_of_birth
+      return unless date_of_birth.present?
+
       error = false
-      error = true unless date_of_birth && date_of_birth <= Date.today
+      error = true unless date_of_birth <= Date.today
       errors.add(:date_of_birth, I18n.t('errors.messages.invalid')) if error
     end
 
