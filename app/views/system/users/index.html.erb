@@ -31,16 +31,16 @@
           <th class="photo"></th>
 
           <% next_name_direction = @order && @order[:field] == :name && @order[:direction] == :asc ? 'desc' : 'asc' %>
-          <% next_name_direction_full = next_name_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
-          <th class="tooltiped-delayed <%= @order && @order[:field] == :name ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'name', '<%= next_name_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.name').html_safe, direction: next_name_direction_full) %>" data-position="top"><%= t('users.attributes.name').html_safe %></th>
+          <% next_name_direction_full = next_name_direction == 'asc' ? t('misc.asc_full').html_safe : t('misc.desc_full').html_safe %>
+          <th class="tooltiped-delayed <%= @order && @order[:field] == :name ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'name', '<%= next_name_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.name').html_safe, direction: next_name_direction_full).html_safe %>" data-position="top"><%= t('users.attributes.name').html_safe %></th>
 
           <% next_username_direction = @order && @order[:field] == :username && @order[:direction] == :asc ? 'desc' : 'asc' %>
-          <% next_username_direction_full = next_username_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
-          <th class="tooltiped-delayed <%= @order && @order[:field] == :username ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'username', '<%= next_username_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.username').html_safe, direction: next_username_direction_full) %>" data-position="top"><%= t('users.attributes.username').html_safe %></th>
+          <% next_username_direction_full = next_username_direction == 'asc' ? t('misc.asc_full').html_safe : t('misc.desc_full').html_safe %>
+          <th class="tooltiped-delayed <%= @order && @order[:field] == :username ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'username', '<%= next_username_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.username').html_safe, direction: next_username_direction_full).html_safe %>" data-position="top"><%= t('users.attributes.username').html_safe %></th>
 
           <% next_type_direction = @order && @order[:field] == :type && @order[:direction] == :asc ? 'desc' : 'asc' %>
-          <% next_type_direction_full = next_type_direction == 'asc' ? t('misc.asc_full') : t('misc.desc_full') %>
-          <th class="tooltiped-delayed <%= @order && @order[:field] == :type ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'type', '<%= next_type_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.type').html_safe, direction: next_type_direction_full) %>" data-position="top"><%= t('users.attributes.type').html_safe %></th>
+          <% next_type_direction_full = next_type_direction == 'asc' ? t('misc.asc_full').html_safe : t('misc.desc_full').html_safe %>
+          <th class="tooltiped-delayed <%= @order && @order[:field] == :type ? "sorting_#{@order[:direction].to_s}" : 'sorting' %>" onclick="sort('<%= system_users_path %>', '<%= @search %>', 'type', '<%= next_type_direction %>')" data-tooltip="<%= t('misc.order', field: t('users.attributes.type').html_safe, direction: next_type_direction_full).html_safe %>" data-position="top"><%= t('users.attributes.type').html_safe %></th>
 
           <th class="actions"></th>
 
@@ -115,13 +115,13 @@
               <% if user.picture %>
                 <img class="picture" src="<%= user.picture %>" alt="<%= t('users.show.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)" />
               <% else %>
-                <img class="picture" src="/images/empty_avatar.png" alt="<%= t('users.show.empty_picture') %>">
+                <img class="picture" src="/images/empty_avatar.png" alt="<%= t('users.show.empty_picture').html_safe %>">
               <% end %>
 
               <% if user.background %>
                 <img class="background" src="<%= user.background %>" alt="<%= t('users.show.background_alt', name: user.name).html_safe %>" onerror="onUserBackgroundError(event)" />
               <% else %>
-                <img class="background" src="https://placeimg.com/220/220/any" alt="<%= t('users.show.empty_picture') %>">
+                <img class="background" src="https://placeimg.com/220/220/any" alt="<%= t('users.show.empty_picture').html_safe %>">
               <% end %>
 
               <p class="truncate tooltiped" data-tooltip="<%= user.name %>" data-position="top"><%= user.name %></p>
@@ -133,12 +133,12 @@
             </header>
             <article>
 
-              <p><span><%= t('users.attributes.username') %></span> <span><%= user.username %></span></p>
+              <p><span><%= t('users.attributes.username').html_safe %></span> <span><%= user.username %></span></p>
 
-              <p><span><%= t('users.attributes.email') %></span> <span><%= user.email %></span></p>
+              <p><span><%= t('users.attributes.email').html_safe %></span> <span><%= user.email %></span></p>
 
               <p>
-                <span><%= t('users.attributes.type') %></span>
+                <span><%= t('users.attributes.type').html_safe %></span>
                 <span>
                   <% if user.type == 0 %>
                     <%= user.type_name %>
@@ -148,9 +148,9 @@
                    --><% if index == 0 %><!--
                      --><span class="doctor"><%= doctor.name %></span><!--
                    --><% elsif index > 0 && index < user.doctors.size - 1 %><!--
-                     --><%= t('support.array.words_connector') %><span class="doctor"><%= doctor.name %></span><!--
+                     --><%= t('support.array.words_connector').html_safe %><span class="doctor"><%= doctor.name %></span><!--
                    --><% else %><!--
-                     --><%= t('support.array.last_word_connector') %><span class="doctor"><%= doctor.name %></span><!--
+                     --><%= t('support.array.last_word_connector').html_safe %><span class="doctor"><%= doctor.name %></span><!--
                    --><% end %><!--
                  --><% end %>
                   <% end %>
@@ -163,13 +163,13 @@
               <% if policy(user).edit? %>
                 <a href="<%= edit_system_user_path(user.id) %>" class="btn waves-effect waves-light bg-warning">
                   <i class="fas fa-pencil-alt left"></i>
-                  <%= t('misc.edit') %>
+                  <%= t('misc.edit').html_safe %>
                 </a>
               <% end %><!--
 
            --><button class="btn-flat waves-effect" type="button" onclick="closeUserShow('user-<%= user.id %>')">
                 <i class="fas fa-arrow-left left"></i>
-                <%= t('misc.back') %>
+                <%= t('misc.back').html_safe %>
               </button>
 
             </footer>
@@ -185,11 +185,11 @@
 
             <div class="modal-content">
 
-              <h4><%= t('users.index.delete_user') %></h4>
+              <h4><%= t('users.index.delete_user').html_safe %></h4>
 
-              <p><%= t('users.index.about_to_delete', name: user.name) %></p>
+              <p><%= t('users.index.about_to_delete', name: user.name).html_safe %></p>
 
-              <p><%= t('misc.confirm_destruction') %></p>
+              <p><%= t('misc.confirm_destruction').html_safe %></p>
 
             </div>
 
@@ -197,12 +197,12 @@
 
               <%= link_to system_user_path(id: user.id), class: 'btn bg-error waves-effect waves-light', method: :delete do %>
                 <i class="fa fa-trash-alt left"></i>
-                <%= t('misc.delete') %>
+                <%= t('misc.delete').html_safe %>
               <% end %><!--
 
            --><button class="btn-flat waves-effect" type="button" onclick="closeDeleteModal('delete-<%= user.id %>')">
                 <i class="fas fa-arrow-up left"></i>
-                <%= t('misc.back') %>
+                <%= t('misc.back').html_safe %>
               </button>
 
             </div>
@@ -222,7 +222,7 @@
         </p>
       </div>
       <div class="col s12">
-        <p class="center-align"><%= t('misc.not_found', entry: t('users.attributes.user')) %>.</p>
+        <p class="center-align"><%= t('misc.not_found', entry: t('users.attributes.user').html_safe).html_safe %>.</p>
       </div>
     </div>
 
