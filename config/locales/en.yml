@@ -190,6 +190,7 @@ en:
       email_confirmation: Email confirmation
       password: Password
       password_confirmation: Password confirmation
+      main: Main
     types:
       secretary: Secretary
       doctor: Doctor

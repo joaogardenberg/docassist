@@ -54,7 +54,13 @@
               <img src="<%= user.picture %>" alt="<%= t('users.index.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)">
             </td>
 
-            <td><%= user.name %></td>
+            <td>
+              <%= user.name %>
+
+              <% if user.main? %>
+                <span class="bold">(<%= t('users.attributes.main').html_safe %>)</span>
+              <% end %>
+            </td>
 
             <td><%= user.username %></td>
 

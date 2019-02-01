@@ -379,6 +379,7 @@ pt-BR:
       email_confirmation: Confirmação de e-mail
       password: Senha
       password_confirmation: Confirmação de senha
+      main: Principal
     types:
       secretary: Secretário(a)
       doctor: Médico(a)
