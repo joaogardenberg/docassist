@@ -7,7 +7,7 @@ en:
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
       resend_confirmation_title: "Resend confirmation instructions"
-      email_label: "Email"
+      email_label: "What is your email?"
       submit_label: "Resend confirmation instructions"
     failure:
       already_authenticated: "You are already signed in."
@@ -40,7 +40,7 @@ en:
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
       forgot_password_title: "Forgot your password?"
-      email_label: "Email"
+      email_label: "What is your email?"
       new_submit_label: "Send me reset password instructions"
       change_password_title: "Change your password"
       new_password_label: "New password"
@@ -76,7 +76,7 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
-      log_in_title: "Log in"
+      log_in_title: "Log into the system"
       login_label: "Email or username"
       password_label: "Password"
       remember_me_label: "Remember me for 24 hours"
@@ -93,7 +93,7 @@ en:
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
       resend_unlock_title: "Resend unlock instructions"
-      email_label: "Email"
+      email_label: "What is your email?"
       submit_label: "Resend unlock instructions"
   errors:
     messages:

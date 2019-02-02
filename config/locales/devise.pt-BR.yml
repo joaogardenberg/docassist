@@ -7,7 +7,7 @@ pt-BR:
       send_instructions: "Em alguns minutos você receberá um e-mail com instruções para a confirmação da sua conta."
       send_paranoid_instructions: "Se o seu e-mail estiver cadastrado, em alguns minutos você receberá uma mensagem nele com instruções para a confirmação da sua conta."
       resend_confirmation_title: "Não recebeu as instruções de confirmação?"
-      email_label: "E-mail"
+      email_label: "Qual seu e-mail?"
       submit_label: "Reenviar instruções"
     failure:
       already_authenticated: "Você já está logado."
@@ -40,7 +40,7 @@ pt-BR:
       updated: "Sua senha foi alterada com sucesso. Você está logado."
       updated_not_active: "Sua senha foi alterada com sucesso."
       forgot_password_title: "Esqueceu sua senha?"
-      email_label: "E-mail"
+      email_label: "Qual seu e-mail?"
       new_submit_label: "Enviar instruções de troca de senha"
       change_password_title: "Mude sua senha"
       new_password_label: "Nova senha"
@@ -76,7 +76,7 @@ pt-BR:
       signed_in: "Login efetuado com sucesso."
       signed_out: "Saiu com sucesso."
       already_signed_out: "Saiu com sucesso."
-      log_in_title: "Login"
+      log_in_title: "Faça login para acessar o sistema"
       login_label: "E-mail ou usuário"
       password_label: "Senha"
       remember_me_label: "Lembrar de mim por 24 horas"
@@ -93,7 +93,7 @@ pt-BR:
       send_paranoid_instructions: "Se sua conta existir, em alguns minutos você receberá um e-mail com instruções para desbloqueá-la."
       unlocked: "Sua conta foi desbloqueada com sucesso. Efetue login para continuar."
       resend_unlock_title: "Não recebeu as instruções de desbloqueio?"
-      email_label: "E-mail"
+      email_label: "Qual seu e-mail?"
       submit_label: "Reenviar instruções"
   errors:
     messages:
