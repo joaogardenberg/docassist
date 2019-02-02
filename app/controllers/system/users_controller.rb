@@ -16,7 +16,6 @@ module System
 
     def new
       @user = User.new
-      S3UserCleanerWorker.perform_in(1.day, id: @user.id.to_s)
     end
 
     def create
@@ -47,11 +46,17 @@ module System
 
     def upload_picture
       url = ::Image.upload("users/pictures/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+
+      S3::Users::PictureCleanerWorker.perform_in(1.day, id: permitted_params[:id])
+
       render json: { url: url }
     end
 
     def upload_background
       url = ::Image.upload("users/backgrounds/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+
+      S3::Users::BackgroundCleanerWorker.perform_in(1.day, id: permitted_params[:id])
+
       render json: { url: url }
     end
 
@@ -132,6 +137,7 @@ module System
     def delete_images
       picture_path = "users/pictures/#{@user.id}"
       background_path = "users/backgrounds/#{@user.id}"
+
       ::Image.delete(picture_path) if @user.picture.present? && @user.picture == ::Image.get_url(picture_path)
       ::Image.delete(background_path) if @user.background.present? && @user.background == ::Image.get_url(background_path)
     end

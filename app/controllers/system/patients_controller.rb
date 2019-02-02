@@ -16,7 +16,6 @@ module System
 
     def new
       @patient = Patient.new
-      S3PatientCleanerWorker.perform_in(1.day, id: @patient.id.to_s)
     end
 
     def create
@@ -47,6 +46,9 @@ module System
 
     def upload_picture
       url = ::Image.upload("patients/pictures/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+
+      S3::Patients::PictureCleanerWorker.perform_in(1.day, id: permitted_params[:id])
+
       render json: { url: url }
     end
 

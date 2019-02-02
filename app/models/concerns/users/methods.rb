@@ -7,6 +7,14 @@ module Users::Methods
       type_of = [] if type == 0
     end
 
+    before_update do
+      picture_path = "users/pictures/#{id}"
+      background_path = "users/backgrounds/#{id}"
+
+      Image.delete(picture_path) if picture_changed? && picture_was == Image.get_url(picture_path)
+      Image.delete(background_path) if background_changed? && background_was == Image.get_url(background_path)
+    end
+
     def will_save_change_to_email?
       false
     end
