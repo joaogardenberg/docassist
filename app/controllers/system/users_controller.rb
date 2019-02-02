@@ -58,7 +58,7 @@ module System
     private
 
     def permitted_attributes
-      params.permit(
+      ret = params.permit(
               :username, :name, :type,
               :email, :email_confirmation, :password,
               :password_confirmation, :picture, :background
@@ -69,6 +69,10 @@ module System
                 BSON::ObjectId(id)
               end : []
             )
+
+      ret[:_id] = BSON::ObjectId(params[:oauth_token]) if params[:oauth_token].present?
+
+      ret
     end
 
     def permitted_params

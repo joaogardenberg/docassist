@@ -53,7 +53,7 @@ module System
     private
 
     def permitted_attributes
-      params.permit(
+      ret = params.permit(
         :name, :gender, :marital_status,
         :date_of_birth, :occupation, :cpf,
         :rg, :rg_issuing_agency, :nationality,
@@ -66,6 +66,10 @@ module System
         user_id: current_user.doctor? ? current_user.id : BSON::ObjectId(params[:user_id]),
         current_user: current_user
       )
+
+      ret[:_id] = BSON::ObjectId(params[:oauth_token]) if params[:oauth_token].present?
+
+      ret
     end
 
     def permitted_params

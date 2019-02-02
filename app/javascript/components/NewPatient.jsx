@@ -28,7 +28,11 @@ let NewPatient = props => {
 }
 
 function onSubmit(values, props) {
-  const params = { ...values, authenticity_token: props.authenticityToken }
+  const params = {
+    ...values,
+    authenticity_token: props.authenticityToken,
+    oauth_token: props.initialValues.id
+  }
 
   return Patients.create(params)
                  .then(({ status, data: { success, errors } }) => {
