@@ -9,14 +9,14 @@ class Image
       "https://s3.#{ENV['AWS_S3_REGION']}.amazonaws.com/#{object.bucket_name}/#{object.key}"
     end
 
-    def delete(url)
-      return unless url.include?('.amazonaws.com/')
-
-      _, *path = url.split('.amazonaws.com/').last.split('/')
-      path = path.join('/')
-      AWS_S3_BUCKET.object(path).delete
+    def delete(path)
+      AWS_S3_BUCKET.object(final_path(path)).delete
 
       true
+    end
+
+    def get_url(path)
+      "https://s3.#{ENV['AWS_S3_REGION']}.amazonaws.com/#{ENV['AWS_S3_BUCKET']}/#{final_path(path)}"
     end
 
     private

@@ -40,7 +40,7 @@ module System
     end
 
     def destroy
-      ::Image.delete(@patient.picture)
+      delete_image
       @patient.delete
       redirect_to(:system_patients)
     end
@@ -120,6 +120,11 @@ module System
 
     def page
       permitted_params[:page] || 1
+    end
+
+    def delete_image
+      picture_path = "patients/pictures/#{@patient.id}"
+      ::Image.delete(picture_path) if @patient.picture.present? && @patient.picture == ::Image.get_url(picture_path)
     end
 
     def not_authorized

@@ -40,8 +40,7 @@ module System
     end
 
     def destroy
-      ::Image.delete(@user.picture)
-      ::Image.delete(@user.background)
+      delete_images
       @user.delete
       redirect_to(:system_users)
     end
@@ -124,6 +123,13 @@ module System
 
     def page
       permitted_params[:page] || 1
+    end
+
+    def delete_images
+      picture_path = "users/pictures/#{@user.id}"
+      background_path = "users/backgrounds/#{@user.id}"
+      ::Image.delete(picture_path) if @user.picture.present? && @user.picture == ::Image.get_url(picture_path)
+      ::Image.delete(background_path) if @user.background.present? && @user.background == ::Image.get_url(background_path)
     end
 
     def not_authorized
