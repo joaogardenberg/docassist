@@ -6,9 +6,7 @@ class S3PatientCleanerWorker
 
     return false unless id && Patient.where(id: id).first.blank?
 
-    picture_url = Image.get_url("patients/pictures/#{id}")
-
-    Image.delete(id, picture_url)
+    Image.delete("patients/pictures/#{id}")
 
     true
   end
