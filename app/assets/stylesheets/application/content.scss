@@ -1,0 +1,89 @@
+@import "../common/variables";
+
+body {
+  background-color: $gradient-initial-color;
+  background-image: linear-gradient(to right, $gradient-initial-color, $gradient-end-color);
+}
+
+.flash {
+  border-radius: 5px;
+  margin: 20px 20px 0;
+  padding: 20px;
+
+  &.flash-alert {
+    background-color: $warning-color;
+  }
+
+  &.flash-notice {
+    background-color: $info-color;
+  }
+
+  &.flash-error {
+    background-color: $error-color;
+  }
+
+  p {
+    color: $white;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+.container {
+  background-color: $white;
+  border-radius: 5px;
+  margin-top: 10vh;
+  max-width: 500px;
+  padding: 20px;
+
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: calc(20px + 1rem);
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  #error_explanation {
+    text-align: center;
+    color: $error-color;
+    margin-top: -1rem;
+    margin-bottom: calc(20px + 1rem);
+
+    h2 {
+      display: none;
+    }
+  }
+
+  form {
+    .input-field {
+      input {
+        &:focus {
+          border-color: $gradient-initial-color !important;
+
+          + label {
+            color: $gradient-initial-color !important;
+          }
+        }
+      }
+    }
+
+    .actions {
+      text-align: center;
+    }
+  }
+
+  .links {
+    text-align: center;
+
+    a {
+      color: $gradient-initial-color;
+      display: block;
+      font-weight: normal;
+      margin: 0;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

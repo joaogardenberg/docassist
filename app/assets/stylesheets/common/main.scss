@@ -98,6 +98,12 @@ body {
               -1px 0 5px 0 $sidebar-box-shadow-third-color;
 }
 
+.full-shadow {
+  box-shadow: 0 0 2px 0 $sidebar-box-shadow-first-color,
+              0 0 1px -2px $sidebar-box-shadow-second-color,
+              0 0 5px 0 $sidebar-box-shadow-third-color;
+}
+
 .test {
   &, * {
     background-color: rgba(0, 0, 0, 0.2) !important;
@@ -191,6 +197,25 @@ body {
 .select-dropdown.dropdown-content {
   max-height: 200px;
   z-index: $select-dropdown-z-index;
+}
+
+input, textarea {
+  box-sizing: border-box !important;
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        border-radius: 8px 8px 0 0;
+        border-top: $white 3px solid;
+        color: $info-color;
+        background-color: rgba(46, 137, 237, .1);
+        text-indent: 10px;
+    }
 }
 
 @media only screen and (max-width: 767px) {

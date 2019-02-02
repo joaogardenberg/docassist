@@ -1,4 +1,4 @@
-@import 'variables';
+@import '../common/variables';
 
 .page-content {
   flex: 1;
@@ -277,7 +277,6 @@
       margin-bottom: 24px;
 
       &.file input[type="text"] {
-        box-sizing: border-box;
         padding-right: 40px;
       }
 

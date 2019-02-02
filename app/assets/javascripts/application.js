@@ -14,3 +14,8 @@
 //= require activestorage
 // require turbolinks
 //= require cable
+//= require jquery
+//= require materialize-sprockets
+//= require i18n/translations
+//= require_tree ./common
+//= require_tree ./application
