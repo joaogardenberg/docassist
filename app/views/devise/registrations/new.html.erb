@@ -3,28 +3,29 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
+  <div class="input-field">
     <%= f.label :email, t('devise.registrations.email_label').html_safe %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
+  <div class="input-field">
+    <%= f.password_field :password, autocomplete: "new-password" %>
     <%= f.label :password, t('devise.registrations.password_label').html_safe %>
     <% if @minimum_password_length %>
       <em>(<%= t('devise.registrations.minimum_length', minimum_length: @minimum_password_length).html_safe %>)</em>
     <% end %>
-    <br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, t('devise.registrations.confirm_password_label').html_safe %><br />
+  <div class="input-field">
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation, t('devise.registrations.confirm_password_label').html_safe %><br />
   </div>
 
-  <div class="actions">
-    <%= f.submit t('devise.registrations.new_submit_label').html_safe %>
+  <div class="input-field actions">
+    <%= f.submit t('devise.registrations.new_submit_label').html_safe, class: 'btn bg-info' %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="links">
+  <%= render "devise/shared/links" %>
+</div>
