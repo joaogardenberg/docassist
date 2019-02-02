@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root to: 'application#index'
 
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
 
     get       '/user/edit',   to: 'user#edit'
     put       '/user/update', to: 'user#update'
+
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   devise_for :users,

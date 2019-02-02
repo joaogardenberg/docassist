@@ -25,6 +25,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise', '~> 4.5'
 
 # Misc gems
+gem 'aws-sdk', '~> 3.0.1'
 gem 'figaro', '~> 1.1'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'i18n-js', '~> 3.2.1'
@@ -34,7 +35,7 @@ gem 'kaminari-mongoid', '~> 1.0.1'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'pundit', '~> 2.0.1'
 gem 'react-rails', '~> 2.4'
-gem 'aws-sdk', '~> 3.0.1'
+gem 'sidekiq', '~> 5.2.5'
 gem 'webpacker', '~> 3.5'
 
 # Development environment gems
