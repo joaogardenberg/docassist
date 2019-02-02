@@ -185,6 +185,10 @@ body {
     }
   }
 
+  a:hover {
+    text-decoration: underline;
+  }
+
   .debug_dump {
     overflow: auto;
   }
