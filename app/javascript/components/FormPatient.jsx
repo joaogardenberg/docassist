@@ -478,7 +478,11 @@ class FormPatient extends Component {
   }
 
   renderUserIdOptions() {
-    return this.props.doctors.map(doctor => <option key={ doctor.id } value={ doctor.id }>{ doctor.name }</option>);
+    return this.props.doctors.map(doctor => {
+      return (
+        <option key={ doctor.id } value={ doctor.id }>{ doctor.name }</option>
+      );
+    });
   }
 
   renderGenderOptions() {
