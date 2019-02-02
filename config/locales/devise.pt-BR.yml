@@ -74,7 +74,7 @@ pt-BR:
       back_button_label: "Voltar"
     sessions:
       signed_in: "Login efetuado com sucesso."
-      signed_out: "Saiu com sucesso."
+      signed_out: "Você deslogou com sucesso."
       already_signed_out: "Saiu com sucesso."
       log_in_title: "Faça login para acessar o sistema"
       login_label: "E-mail ou usuário"
