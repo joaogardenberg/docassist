@@ -57,8 +57,8 @@
             <td>
               <%= user.name %>
 
-              <% if user.main? %>
-                <span class="bold">(<%= t('users.attributes.main').html_safe %>)</span>
+              <% if user == current_user %>
+                <sup style="font-weight: lighter">(<%= t('misc.you').html_safe %>)</sup>
               <% end %>
             </td>
 
