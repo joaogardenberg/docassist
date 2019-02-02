@@ -16,6 +16,7 @@ module System
 
     def new
       @user = User.new
+      S3UserCleanerWorker.perform_in(1.day, id: @user.id.to_s)
     end
 
     def create

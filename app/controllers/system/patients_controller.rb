@@ -16,6 +16,7 @@ module System
 
     def new
       @patient = Patient.new
+      S3PatientCleanerWorker.perform_in(1.minute, id: @patient.id.to_s)
     end
 
     def create
