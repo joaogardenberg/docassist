@@ -1,0 +1,20 @@
+<div class="todo" onclick="toggleTodo(event)">
+  <i class="fas fa-times" onclick="closeTodo(event)"></i>
+
+  <h5>SPRINT</h5>
+  <p>Estilizar as páginas do devise</p>
+  <p>Fazer página das consultas</p>
+
+  <h5>BACKLOG</h5>
+  <p>Fazer página do paciente</p>
+  <p>Fazer dashboard</p>
+  <p>Flash message pra quando criar usuário avisando que mandou e-mail pra confirmar</p>
+  <p>Flash messages em geral</p>
+  <p>Terminar campos dos pacientes</p>
+
+  <h5>DEBUG</h5>
+  <% if current_user %>
+    <p>- Current user -<br><%= current_user.id %><br><%= current_user.name %><br><%= current_user.type_name %><br><%= current_user.doctors.pluck(:name) %></p>
+  <% end %>
+  <span><%= debug(params) %></span>
+</div>

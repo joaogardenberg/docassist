@@ -34,27 +34,15 @@
     </div>
 
     <% if Rails.env.development? %>
-      <div class="todo" onclick="toggleTodo(event)">
-        <i class="fas fa-times" onclick="closeTodo(event)"></i>
-
-        <h5>SPRINT</h5>
-        <p>Fazer página das consultas</p>
-
-        <h5>BACKLOG</h5>
-        <p>Fazer página do paciente</p>
-        <p>Fazer dashboard</p>
-        <p>Flash message pra quando criar usuário avisando que mandou e-mail pra confirmar</p>
-        <p>Flash messages em geral</p>
-        <p>Terminar campos dos pacientes</p>
-
-        <h5>DEBUG</h5>
-        <p>- Current user -<br><%= current_user.id %><br><%= current_user.name %><br><%= current_user.type_name %><br><%= current_user.doctors.pluck(:name) %></p>
-        <span><%= debug(params) %></span>
-      </div>
+      <%= render('/layouts/todo') %>
     <% end %>
 
     <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
+      <% if key == 'alert' || key == 'notice' || key == 'error' %>
+        <div class="flash flash-<%= key %> full-shadow">
+          <p><%= value %></p>
+        </div>
+      <% end %>
     <% end %>
 
   </body>
