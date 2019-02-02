@@ -45,6 +45,8 @@ function validate(values) {
     username:              User.validateUsername(values['username']),
     email:                 User.validateEmail(values['email']),
     password:              User.validatePasswordEdit(values['password']),
+    picture:               User.validateUrl(values['picture']),
+    background:            User.validateUrl(values['background']),
     email_confirmation:    User.validateEmailConfirmation(
                              values['email'],
                              values['email_confirmation']

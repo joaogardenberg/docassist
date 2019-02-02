@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Field }            from 'redux-form';
 import * as User            from '../constants/User';
 
+import {
+  uploadUserPicture,
+  uploadUserBackground
+} from '../services/requests/Upload';
+
 const INITIAL_STATE = {
   shouldResetCounters: false
 }
@@ -83,6 +88,28 @@ class FormSelf extends Component {
             reference={ this.passwordConfirmationInputRef }
             component={ this.renderField }
           />
+          <Field
+            id="picture"
+            name="picture"
+            label={ I18n.t('users.form.picture_label') }
+            className="col l6 s12"
+            autoComplete="off"
+            maxLength="255"
+            reference={ this.pictureInputRef }
+            selectFileCallback={ this.onPictureSelect.bind(this) }
+            component={ this.renderFileField }
+          />
+          <Field
+            id="background"
+            name="background"
+            label={ I18n.t('users.form.background_label') }
+            className="col l6 s12"
+            autoComplete="off"
+            maxLength="255"
+            reference={ this.backgroundInputRef }
+            selectFileCallback={ this.onBackgroundSelect.bind(this) }
+            component={ this.renderFileField }
+          />
         </div>
         { formButtons }
       </form>
@@ -144,6 +171,50 @@ class FormSelf extends Component {
     );
   }
 
+  renderFileField(field) {
+    const { input, id, label, className, disabled, style } = field;
+    const { reference, fileReference, maxLength }          = field;
+    const { selectFileCallback }                           = field;
+    const { touched, active, error }                       = field.meta;
+
+    const errorMessage = touched && !active ? error : '';
+    const valid        = touched && !active && !errorMessage;
+
+    return (
+      <div
+        className={ `file input-field${className ? ` ${className}` : ''}${errorMessage ? ' invalid' : ''}${valid ? ' valid' : ''}` }
+        style={ style }
+      >
+        <input
+          { ...input }
+          id={ id }
+          type="text"
+          ref={ reference }
+          maxLength={ maxLength }
+          disabled={ disabled }
+        />
+        <div className="file-field">
+          <div className="upload btn-flat waves-effect">
+            <i className="fas fa-upload" />
+            <input
+              id={ `${id}_alias` }
+              name={ `${input.name}_alias` }
+              type="file"
+              disabled={ disabled }
+              ref={ fileReference }
+              onChange={ selectFileCallback }
+            />
+          </div>
+          <div className="file-path-wrapper">
+            <input className="file-path" type="text" disabled={ disabled } />
+          </div>
+        </div>
+        <label htmlFor={ id }>{ label }</label>
+        <span className="helper-text">{ errorMessage }</span>
+      </div>
+    );
+  }
+
   constructor(props) {
     super(props);
 
@@ -155,6 +226,8 @@ class FormSelf extends Component {
     this.emailConfirmationInputRef    = React.createRef();
     this.passwordInputRef             = React.createRef();
     this.passwordConfirmationInputRef = React.createRef();
+    this.pictureInputRef              = React.createRef();
+    this.backgroundInputRef           = React.createRef();
 
     this.countersLoaded               = false;
   }
@@ -171,6 +244,38 @@ class FormSelf extends Component {
   onRestoreButtonClick() {
     this.props.restoreCallback();
     this.setState({ shouldResetCounters: true });
+  }
+
+  onPictureSelect({ target: { files: [file] } }) {
+    if (file) {
+      const { id, authenticityToken } = this.props;
+
+      this.disablePictureField();
+
+      uploadUserPicture(file, id, authenticityToken)
+        .then(({ status, data: { url } }) => {
+          this.props.change('picture', url);
+        })
+        .then(() => {
+          this.enablePictureField();
+        });
+    }
+  }
+
+  onBackgroundSelect({ target: { files: [file] } }) {
+    if (file) {
+      const { id, authenticityToken } = this.props;
+
+      this.disableBackgroundField();
+
+      uploadUserBackground(file, id, authenticityToken)
+        .then(({ status, data: { url } }) => {
+          this.props.change('background', url);
+        })
+        .then(() => {
+          this.enableBackgroundField();
+        });
+    }
   }
 
   initFormCounters() {
@@ -195,6 +300,26 @@ class FormSelf extends Component {
 
       this.countersLoaded = true;
     }
+  }
+
+  disablePictureField() {
+    this.pictureInputRef.current.disabled = true;
+    this.setState({ shouldReinitialize: true });
+  }
+
+  enablePictureField() {
+    this.pictureInputRef.current.disabled = false;
+    this.setState({ shouldReinitialize: true });
+  }
+
+  disableBackgroundField() {
+    this.backgroundInputRef.current.disabled = true;
+    this.setState({ shouldReinitialize: true });
+  }
+
+  enableBackgroundField() {
+    this.backgroundInputRef.current.disabled = false;
+    this.setState({ shouldReinitialize: true });
   }
 }
 
