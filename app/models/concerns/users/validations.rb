@@ -11,9 +11,10 @@ module Users::Validations
               format: { with: EMAIL_REGEX },
               length: { maximum: 50 }
 
-    validates :email_confirmation,
-              presence: true,
-              inclusion: { in: lambda { |user| [user.email] } }
+    # validates :email_confirmation,
+    #           presence: true,
+    #           inclusion: { in: lambda { |user| [user.email] } },
+    #           if: :email?
 
     validates :type,
               presence: true,
