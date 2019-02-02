@@ -3,11 +3,13 @@ function toggleTodo (event) {
 
   event.stopPropagation();
 
-  if (todo.classList.contains('show')) {
-    todo.scrollTo(0, 0);
-    todo.classList.remove('show');
-  } else {
-    todo.classList.add('show');
+  if (!event || (event && !event.target.closest('a') && !event.target.closest('button'))) {
+    if (todo.classList.contains('show')) {
+      todo.scrollTo(0, 0);
+      todo.classList.remove('show');
+    } else {
+      todo.classList.add('show');
+    }
   }
 }
 
