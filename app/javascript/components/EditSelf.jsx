@@ -3,6 +3,7 @@ import { reduxForm, SubmissionError } from 'redux-form';
 import Axios                          from 'axios';
 import Form                           from './FormSelf';
 import * as User                      from '../constants/User';
+import * as Self                      from '../services/requests/Self';
 
 let EditSelf = props => {
   const { change, untouch, reset, authenticityToken, initialValues } = props;
@@ -28,7 +29,7 @@ let EditSelf = props => {
 function onSubmit(values, props) {
   const params = { ...values, authenticity_token: props.authenticityToken }
 
-  return Axios.put('/system/user/update', params)
+  return Self.update(params, props.initialValues.id)
               .then(({ status, data: { success, errors } }) => {
                 if (status === 200 && success) {
                   window.location.href = '/system/dashboard';
