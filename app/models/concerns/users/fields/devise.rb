@@ -3,10 +3,10 @@ module Users::Fields::Devise
 
   included do
     # Include default devise modules. Others available are:
-    # :registerable, :rememberable, :timeoutable and :omniauthable
+    # :registerable, :rememberable, and :omniauthable
     devise :database_authenticatable, :recoverable,
            :validatable, :trackable, :confirmable,
-           :lockable
+           :lockable, :timeoutable
 
     ## Database authenticatable
     field :email,                  type: String
