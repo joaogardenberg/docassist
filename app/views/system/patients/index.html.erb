@@ -2,7 +2,7 @@
   <h2><%= t('patients.index.title').html_safe %></h2>
   <% if policy(:patient).new? %>
     <aside class="new">
-      <%= link_to :new_system_patient, class: 'btn-floating btn-large waves-effect waves-light tooltiped', 'data-position' => 'left', 'data-tooltip' => t('patients.index.new_patient_label').html_safe do %>
+      <%= link_to :new_system_patient, class: 'btn-floating btn-large waves-effect waves-light tooltiped pulse 2s', 'data-position' => 'left', 'data-tooltip' => t('patients.index.new_patient_label').html_safe do %>
         <i class="fas fa-plus"></i>
       <% end %>
     </aside>

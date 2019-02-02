@@ -10,6 +10,14 @@ $(document).on('ready', () => {
       enterDelay: 500
     });
   }
+
+  setTimeout(() => {
+    $('.pulse.2s').removeClass('pulse 2s');
+  }, 2000);
+
+  setTimeout(() => {
+    $('.pulse.3s').removeClass('pulse 3s');
+  }, 3000);
 });
 
 function hasTouch() {
