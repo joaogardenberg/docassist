@@ -76,6 +76,9 @@ en:
       invalid_phone_number: Invalid number
       invalid_cep: Invalid zip code
       invalid_link: Invalid link
+      invalid_image: Invalid image
+      bigger_than_image: "We only accept images up to %{size}"
+      not_an_image: Please choose an image
   sidebar:
     user_picture: User picture
     edit: Edit

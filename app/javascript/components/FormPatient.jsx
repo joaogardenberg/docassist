@@ -679,8 +679,13 @@ class FormPatient extends Component {
       this.disablePictureField();
 
       uploadPatientPicture(file, id, authenticityToken)
-        .then(({ status, data: { url } }) => {
-          this.props.change('picture', url);
+        .then(({ status, data: { success, url, errors } }) => {
+          if (status === 200 && success) {
+            this.props.change('picture', url);
+          } else {
+            this.props.change('picture', '');
+            alert(errors.picture);
+          }
         })
         .then(() => {
           this.enablePictureField();

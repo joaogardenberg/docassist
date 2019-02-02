@@ -19,6 +19,10 @@ class Image
       "https://s3.#{ENV['AWS_S3_REGION']}.amazonaws.com/#{ENV['AWS_S3_BUCKET']}/#{final_path(path)}"
     end
 
+    def types
+      ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/bmp']
+    end
+
     private
 
     def final_path(path)

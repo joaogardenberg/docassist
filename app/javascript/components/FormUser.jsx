@@ -356,8 +356,13 @@ class FormUser extends Component {
       this.disablePictureField();
 
       uploadUserPicture(file, id, authenticityToken)
-        .then(({ status, data: { url } }) => {
-          this.props.change('picture', url);
+        .then(({ status, data: { success, url, errors } }) => {
+          if (status === 200 && success) {
+            this.props.change('picture', url);
+          } else {
+            this.props.change('picture', '');
+            alert(errors.picture);
+          }
         })
         .then(() => {
           this.enablePictureField();
@@ -372,8 +377,13 @@ class FormUser extends Component {
       this.disableBackgroundField();
 
       uploadUserBackground(file, id, authenticityToken)
-        .then(({ status, data: { url } }) => {
-          this.props.change('background', url);
+        .then(({ status, data: { success, url, errors } }) => {
+          if (status === 200 && success) {
+            this.props.change('background', url);
+          } else {
+            this.props.change('background', '');
+            alert(errors.background);
+          }
         })
         .then(() => {
           this.enableBackgroundField();

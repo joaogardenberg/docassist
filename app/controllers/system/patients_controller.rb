@@ -45,11 +45,7 @@ module System
     end
 
     def upload_picture
-      url = ::Image.upload("patients/pictures/#{permitted_params[:id]}", permitted_params[:file].tempfile)
-
-      S3::Patients::PictureCleanerWorker.perform_in(1.day, id: permitted_params[:id])
-
-      render json: { url: url }
+      picture_upload
     end
 
     private
@@ -126,6 +122,30 @@ module System
 
     def page
       permitted_params[:page] || 1
+    end
+
+    def picture_upload
+      file = permitted_params[:file].tempfile
+
+      if file.present?
+        if file.size <= 5.megabytes
+          type = permitted_params[:file].content_type
+
+          if ::Image.types.include?(type)
+            url = ::Image.upload("patients/pictures/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+
+            S3::Patients::PictureCleanerWorker.perform_in(1.day, id: permitted_params[:id])
+
+            render(status: :ok, json: { success: true, url: url })
+          else
+            render(status: :ok, json: { success: false, errors: { picture: I18n.t('errors.messages.not_an_image') } })
+          end
+        else
+          render(status: :ok, json: { success: false, errors: { picture: I18n.t('errors.messages.bigger_than_image', size: '5MB') } })
+        end
+      else
+        render(status: :ok, json: { success: false, errors: { picture: I18n.t('errors.messages.invalid_image') } })
+      end
     end
 
     def delete_image

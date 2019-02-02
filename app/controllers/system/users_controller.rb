@@ -45,19 +45,11 @@ module System
     end
 
     def upload_picture
-      url = ::Image.upload("users/pictures/#{permitted_params[:id]}", permitted_params[:file].tempfile)
-
-      S3::Users::PictureCleanerWorker.perform_in(1.day, id: permitted_params[:id])
-
-      render json: { url: url }
+      picture_upload
     end
 
     def upload_background
-      url = ::Image.upload("users/backgrounds/#{permitted_params[:id]}", permitted_params[:file].tempfile)
-
-      S3::Users::BackgroundCleanerWorker.perform_in(1.day, id: permitted_params[:id])
-
-      render json: { url: url }
+      background_upload
     end
 
     private
@@ -132,6 +124,54 @@ module System
 
     def page
       permitted_params[:page] || 1
+    end
+
+    def picture_upload
+      file = permitted_params[:file].tempfile
+
+      if file.present?
+        if file.size <= 5.megabytes
+          type = permitted_params[:file].content_type
+
+          if ::Image.types.include?(type)
+            url = ::Image.upload("users/pictures/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+
+            S3::Users::PictureCleanerWorker.perform_in(1.day, id: permitted_params[:id])
+
+            render(status: :ok, json: { success: true, url: url })
+          else
+            render(status: :ok, json: { success: false, errors: { picture: I18n.t('errors.messages.not_an_image') } })
+          end
+        else
+          render(status: :ok, json: { success: false, errors: { picture: I18n.t('errors.messages.bigger_than_image', size: '5MB') } })
+        end
+      else
+        render(status: :ok, json: { success: false, errors: { picture: I18n.t('errors.messages.invalid_image') } })
+      end
+    end
+
+    def background_upload
+      file = permitted_params[:file].tempfile
+
+      if file.present?
+        if file.size <= 5.megabytes
+          type = permitted_params[:file].content_type
+
+          if ::Image.types.include?(type)
+            url = ::Image.upload("users/backgrounds/#{permitted_params[:id]}", permitted_params[:file].tempfile)
+
+            S3::Users::BackgroundCleanerWorker.perform_in(1.day, id: permitted_params[:id])
+
+            render(status: :ok, json: { success: true, url: url })
+          else
+            render(status: :ok, json: { success: false, errors: { background: I18n.t('errors.messages.not_an_image') } })
+          end
+        else
+          render(status: :ok, json: { success: false, errors: { background: I18n.t('errors.messages.bigger_than_image', size: '5MB') } })
+        end
+      else
+        render(status: :ok, json: { success: false, errors: { background: I18n.t('errors.messages.invalid_image') } })
+      end
     end
 
     def delete_images

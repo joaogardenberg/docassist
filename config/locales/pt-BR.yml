@@ -163,6 +163,9 @@ pt-BR:
       invalid_phone_number: Número inválido
       invalid_cep: CEP inválido
       invalid_link: Link inválido
+      invalid_image: Imagem inválida
+      bigger_than_image: "Só aceitamos imagens de até %{size}"
+      not_an_image: Por favor, selecione uma imagem
     template:
       body: "Por favor, verifique o(s) seguinte(s) campo(s):"
       header:
