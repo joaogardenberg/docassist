@@ -17,9 +17,8 @@ module System
     def permitted_attributes
       params.permit(
               :username, :name, :picture,
-              :email, :email_confirmation,
-              :password, :password_confirmation,
-              :background
+              :email, :email_confirmation, :password,
+              :password_confirmation, :background
             )
     end
 
