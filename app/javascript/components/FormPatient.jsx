@@ -179,7 +179,7 @@ class FormPatient extends Component {
             maxLength="255"
             reference={ this.pictureInputRef }
             selectFileCallback={ this.onPictureSelect.bind(this) }
-            component={ this.renderFileField }
+            component={ this.renderPhotoField }
           />
         </div>
         <h5 className="section">Contato</h5>
@@ -387,7 +387,7 @@ class FormPatient extends Component {
     );
   }
 
-  renderFileField(field) {
+  renderPhotoField(field) {
     const { input, id, label, className, disabled, style } = field;
     const { reference, fileReference, maxLength }          = field;
     const { selectFileCallback }                           = field;
@@ -409,20 +409,22 @@ class FormPatient extends Component {
           maxLength={ maxLength }
           disabled={ disabled }
         />
-        <div className="file-field">
-          <div className="upload btn-flat waves-effect">
-            <i className="fas fa-upload" />
-            <input
-              id={ `${id}_alias` }
-              name={ `${input.name}_alias` }
-              type="file"
-              disabled={ disabled }
-              ref={ fileReference }
-              onChange={ selectFileCallback }
-            />
-          </div>
-          <div className="file-path-wrapper">
-            <input className="file-path" type="text" disabled={ disabled } />
+        <div className="field-buttons">
+          <div className="file-field">
+            <div className="upload btn-flat waves-effect">
+              <i className="fas fa-upload" />
+              <input
+                id={ `${id}_alias` }
+                name={ `${input.name}_alias` }
+                type="file"
+                disabled={ disabled }
+                ref={ fileReference }
+                onChange={ selectFileCallback }
+              />
+            </div>
+            <div className="file-path-wrapper">
+              <input className="file-path" type="text" disabled={ disabled } />
+            </div>
           </div>
         </div>
         <label htmlFor={ id }>{ label }</label>

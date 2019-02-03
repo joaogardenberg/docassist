@@ -97,7 +97,7 @@ class FormSelf extends Component {
             maxLength="255"
             reference={ this.pictureInputRef }
             selectFileCallback={ this.onPictureSelect.bind(this) }
-            component={ this.renderFileField }
+            component={ this.renderPhotoField }
           />
           <Field
             id="background"
@@ -108,7 +108,7 @@ class FormSelf extends Component {
             maxLength="255"
             reference={ this.backgroundInputRef }
             selectFileCallback={ this.onBackgroundSelect.bind(this) }
-            component={ this.renderFileField }
+            component={ this.renderPhotoField }
           />
         </div>
         { formButtons }
@@ -171,7 +171,7 @@ class FormSelf extends Component {
     );
   }
 
-  renderFileField(field) {
+  renderPhotoField(field) {
     const { input, id, label, className, disabled, style } = field;
     const { reference, fileReference, maxLength }          = field;
     const { selectFileCallback }                           = field;
