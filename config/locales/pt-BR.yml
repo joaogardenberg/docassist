@@ -306,12 +306,15 @@ pt-BR:
       title: Paciente
     new:
       title: Novo paciente
+      picture_alt: Foto do paciente
     edit:
       title: Editar paciente
     form:
       nationality_other_label: Qual nacionalidade?
       place_of_birth_other_label: Qual naturalidade?
       picture_label: Foto
+      pick_image: Escolher imagem
+      webcam: Tirar foto com a webcam
     attributes:
       patient: paciente
       name: Nome

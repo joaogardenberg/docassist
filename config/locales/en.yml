@@ -117,12 +117,15 @@ en:
       title: Patient
     new:
       title: New patient
+      picture_alt: Patient picture
     edit:
       title: Edit patient
     form:
       nationality_other_label: Which nationality?
       place_of_birth_other_label: Which place of birth?
       picture_label: Foto
+      pick_image: Pick image
+      webcam: Take picture with webcam
     attributes:
       patient: patient
       name: Name
