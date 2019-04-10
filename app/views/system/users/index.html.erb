@@ -115,7 +115,7 @@
               <% if user.picture %>
                 <img class="picture" src="<%= user.picture %>" alt="<%= t('users.show.picture_alt', name: user.name).html_safe %>" onerror="onUserPictureError(event)" />
               <% else %>
-                <img class="picture" src="/images/empty_avatar.png" alt="<%= t('users.show.empty_picture').html_safe %>">
+                <img class="picture" src="/images/empty_picture.png" alt="<%= t('users.show.empty_picture').html_safe %>">
               <% end %>
 
               <% if user.background %>
