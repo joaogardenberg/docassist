@@ -317,13 +317,21 @@
         transform: translateY(-50%);
       }
 
-      .file-field {
+      .field-buttons {
         position: absolute;
         right: .75rem;
         top: 50%;
         transform: translateY(-50%);
 
-        .upload {
+        .webcam-button, .file-field {
+          display: inline-block;
+
+          &:not(:first-child) {
+            margin-left: 5px;
+          }
+        }
+
+        .webcam-button, .file-field .upload {
           height: 34px;
           line-height: 18px;
           padding: 8px;
@@ -333,7 +341,7 @@
           }
         }
 
-        .file-path-wrapper {
+        .file-field .file-path-wrapper {
           display: none;
         }
       }
