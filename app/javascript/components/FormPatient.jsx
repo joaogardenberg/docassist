@@ -6,13 +6,17 @@ import * as Patient             from '../constants/Patient';
 import { cepSearch }            from '../services/requests/Cep';
 import { uploadPatientPicture } from '../services/requests/Upload';
 import Inputmask                from 'inputmask';
+import Webcam                   from 'react-webcam';
 
 const INITIAL_STATE = {
   showRgIssuingAgency: false,
   showNationalityOther: false,
   showPlaceOfBirthOther: false,
+  showWebcam: false,
   shouldResetSelects: false,
-  shouldResetCounters: false
+  shouldResetCounters: false,
+  shouldResetTooltips: false,
+  shouldResetModals: false
 }
 
 class FormPatient extends Component {
@@ -35,6 +39,27 @@ class FormPatient extends Component {
       >
         { renderDoctorField }
         <h5 className="section">Informações pessoais</h5>
+        <div className="row">
+          <Field
+            id="picture"
+            name="picture"
+            label={ I18n.t('patients.form.picture_label') }
+            className="col s6 m4 l2 offset-s3 offset-m4 offset-l5"
+            autoComplete="off"
+            reference={ this.pictureInputRef }
+            fileInputRef={ this.pictureFileRef }
+            uploadBtnRef={ this.pictureUploadButtonRef }
+            webcamBtnRef={ this.pictureWebcamButtonRef }
+            webcamModalRef={ this.pictureWebcamModalRef }
+            onChange={ this.onPictureSelect.bind(this) }
+            imageAlt={ I18n.t('patients.new.picture_alt') }
+            onImageError={ this.onPictureError }
+            onUploadClick={ this.onUploadButtonClick.bind(this) }
+            onWebcamClick={ this.onWebcamButtonClick.bind(this) }
+            webcamModalId="pictureWebcamModal"
+            component={ this.renderImageField.bind(this) }
+          />
+        </div>
         <div className="row">
           <Field
             id="name"
@@ -169,17 +194,6 @@ class FormPatient extends Component {
             reference={ this.placeOfBirthOtherInputRef }
             component={ this.renderField }
             style={{ display: showPlaceOfBirthOther ? 'block' : 'none' }}
-          />
-          <Field
-            id="picture"
-            name="picture"
-            label={ I18n.t('patients.form.picture_label') }
-            className="col s12"
-            autoComplete="off"
-            maxLength="255"
-            reference={ this.pictureInputRef }
-            selectFileCallback={ this.onPictureSelect.bind(this) }
-            component={ this.renderPhotoField }
           />
         </div>
         <h5 className="section">Contato</h5>
@@ -387,48 +401,70 @@ class FormPatient extends Component {
     );
   }
 
-  renderPhotoField(field) {
-    const { input, id, label, className, disabled, style } = field;
-    const { reference, fileReference, maxLength }          = field;
-    const { selectFileCallback }                           = field;
-    const { touched, active, error }                       = field.meta;
+  renderImageField(field) {
+    const { input, id, label, className, disabled, imageAlt }    = field;
+    const { reference, fileInputRef, onChange, onImageError }    = field;
+    const { onUploadClick, onWebcamClick, uploadBtnRef }         = field;
+    const { webcamBtnRef, webcamModalId, webcamModalRef }        = field;
+    const { touched, active, error }                             = field.meta;
 
     const errorMessage = touched && !active ? error : '';
     const valid        = touched && !active && !errorMessage;
 
+    const webcam = this.state.showWebcam ? <Webcam /> : null;
+
     return (
-      <div
-        className={ `file input-field${className ? ` ${className}` : ''}${errorMessage ? ' invalid' : ''}${valid ? ' valid' : ''}` }
-        style={ style }
-      >
+      <div className={ `image-field ${className}${errorMessage ? ' invalid' : ''}${valid ? ' valid' : ''}` }>
         <input
           { ...input }
           id={ id }
-          type="text"
+          type="hidden"
           ref={ reference }
-          maxLength={ maxLength }
-          disabled={ disabled }
         />
-        <div className="field-buttons">
-          <div className="file-field">
-            <div className="upload btn-flat waves-effect">
+        <input
+          type="file"
+          className="hidden"
+          ref={ fileInputRef }
+          onChange={ onChange }
+        />
+        <label>{ label }</label>
+        <div className="image-container">
+          <img
+            src={ `${input.value}?t=${new Date().getTime()}` }
+            alt={ imageAlt }
+            onError={ onImageError }
+          />
+          <div className="image-buttons">
+            <button
+              type="button"
+              onClick={ onUploadClick }
+              className="btn bg-info waves-effect waves-light"
+              data-tooltip={ I18n.t('patients.form.pick_image') }
+              data-position="top"
+              ref={ uploadBtnRef }
+            >
               <i className="fas fa-upload" />
-              <input
-                id={ `${id}_alias` }
-                name={ `${input.name}_alias` }
-                type="file"
-                disabled={ disabled }
-                ref={ fileReference }
-                onChange={ selectFileCallback }
-              />
-            </div>
-            <div className="file-path-wrapper">
-              <input className="file-path" type="text" disabled={ disabled } />
-            </div>
+            </button>
+            <button
+              type="button"
+              onClick={ onWebcamClick }
+              className="btn bg-info waves-effect waves-light"
+              data-tooltip={ I18n.t('patients.form.webcam') }
+              data-position="top"
+              ref={ webcamBtnRef }
+            >
+              <i className="fas fa-camera" />
+            </button>
           </div>
         </div>
-        <label htmlFor={ id }>{ label }</label>
         <span className="helper-text">{ errorMessage }</span>
+        <div
+          id={ webcamModalId }
+          className="modal"
+          ref={ webcamModalRef }
+        >
+          { webcam }
+        </div>
       </div>
     );
   }
@@ -527,42 +563,49 @@ class FormPatient extends Component {
 
     this.state = INITIAL_STATE;
 
-    this.userIdSelectRef           = React.createRef();
-    this.nameInputRef              = React.createRef();
-    this.genderSelectRef           = React.createRef();
-    this.maritalStatusSelectRef    = React.createRef();
-    this.dateOfBirthInputRef       = React.createRef();
-    this.occupationInputRef        = React.createRef();
-    this.cpfInputRef               = React.createRef();
-    this.rgInputRef                = React.createRef();
-    this.rgIssuingAgencyInputRef   = React.createRef();
-    this.nationalitySelectRef      = React.createRef();
-    this.nationalityOtherInputRef  = React.createRef();
-    this.placeOfBirthSelectRef     = React.createRef();
-    this.placeOfBirthOtherInputRef = React.createRef();
-    this.pictureInputRef           = React.createRef();
+    this.userIdSelectRef            = React.createRef();
+    this.pictureInputRef            = React.createRef();
+    this.pictureFileRef             = React.createRef();
+    this.pictureUploadButtonRef     = React.createRef();
+    this.pictureWebcamButtonRef     = React.createRef();
+    this.pictureWebcamModalRef      = React.createRef();
+    this.nameInputRef               = React.createRef();
+    this.genderSelectRef            = React.createRef();
+    this.maritalStatusSelectRef     = React.createRef();
+    this.dateOfBirthInputRef        = React.createRef();
+    this.occupationInputRef         = React.createRef();
+    this.cpfInputRef                = React.createRef();
+    this.rgInputRef                 = React.createRef();
+    this.rgIssuingAgencyInputRef    = React.createRef();
+    this.nationalitySelectRef       = React.createRef();
+    this.nationalityOtherInputRef   = React.createRef();
+    this.placeOfBirthSelectRef      = React.createRef();
+    this.placeOfBirthOtherInputRef  = React.createRef();
 
-    this.landlineInputRef          = React.createRef();
-    this.cellPhoneInputRef         = React.createRef();
-    this.workPhoneInputRef         = React.createRef();
-    this.emailInputRef             = React.createRef();
+    this.landlineInputRef           = React.createRef();
+    this.cellPhoneInputRef          = React.createRef();
+    this.workPhoneInputRef          = React.createRef();
+    this.emailInputRef              = React.createRef();
 
-    this.cepInputRef               = React.createRef();
-    this.stateSelectRef            = React.createRef();
-    this.cityInputRef              = React.createRef();
-    this.neighborhoodInputRef      = React.createRef();
-    this.addressInputRef           = React.createRef();
-    this.complementInputRef        = React.createRef();
+    this.cepInputRef                = React.createRef();
+    this.stateSelectRef             = React.createRef();
+    this.cityInputRef               = React.createRef();
+    this.neighborhoodInputRef       = React.createRef();
+    this.addressInputRef            = React.createRef();
+    this.complementInputRef         = React.createRef();
 
-    this.userIdSelectLoaded        = false;
-    this.genderSelectLoaded        = false;
-    this.maritalStatusSelectLoaded = false;
-    this.nationalitySelectLoaded   = false;
-    this.placeOfBirthSelectLoaded  = false;
-    this.stateSelectLoaded         = false;
-    this.countersLoaded            = false;
+    this.userIdSelectLoaded         = false;
+    this.pictureUploadTooltipLoaded = false;
+    this.pictureWebcamTooltipLoaded = false;
+    this.pictureWebcamModalLoaded   = false;
+    this.genderSelectLoaded         = false;
+    this.maritalStatusSelectLoaded  = false;
+    this.nationalitySelectLoaded    = false;
+    this.placeOfBirthSelectLoaded   = false;
+    this.stateSelectLoaded          = false;
+    this.countersLoaded             = false;
 
-    this.datepicker                = null;
+    this.datepicker                 = null;
   }
 
   componentDidMount() {
@@ -572,11 +615,21 @@ class FormPatient extends Component {
   componentDidUpdate() {
     this.initFormCounters();
     this.initFormSelects();
+    this.initTooltips();
+    this.initModals();
     M.updateTextFields();
     this.updateFields();
 
-    if (this.state.shouldResetSelects || this.state.shouldResetCounters) {
-      this.setState({ shouldResetSelects: false, shouldResetCounters: false });
+    if (
+      this.state.shouldResetSelects ||
+      this.state.shouldResetCounters ||
+      this.state.shouldResetTooltips
+    ) {
+      this.setState({
+        shouldResetSelects: false,
+        shouldResetCounters: false,
+        shouldResetTooltips: false
+      });
     }
   }
 
@@ -674,6 +727,18 @@ class FormPatient extends Component {
     this.setState({ shouldResetSelects: true, shouldResetCounters: true });
   }
 
+  onUploadButtonClick() {
+    this.pictureFileRef.current.click();
+  }
+
+  onWebcamButtonClick() {
+    this.openWebcamModal();
+  }
+
+  onPictureError({ target }) {
+    target.src = '/images/empty_picture.png';
+  }
+
   onPictureSelect({ target: { files: [file] } }) {
     if (file) {
       const { id, authenticityToken } = this.props;
@@ -691,6 +756,7 @@ class FormPatient extends Component {
         })
         .then(() => {
           this.enablePictureField();
+          this.setState({ shouldReinitialize: true });
         });
     }
   }
@@ -824,6 +890,33 @@ class FormPatient extends Component {
     }
   }
 
+  initTooltips() {
+    const { pictureUploadButtonRef, pictureWebcamButtonRef }         = this;
+    const { pictureUploadTooltipLoaded, pictureWebcamTooltipLoaded } = this;
+    const { shouldResetTooltips } = this.state;
+
+    if ((shouldResetTooltips || !pictureUploadTooltipLoaded) && pictureUploadButtonRef.current) {
+      M.Tooltip.init(pictureUploadButtonRef.current);
+      this.pictureUploadTooltipLoaded = true;
+    }
+
+    if ((shouldResetTooltips || !pictureWebcamTooltipLoaded) && pictureWebcamButtonRef.current) {
+      M.Tooltip.init(pictureWebcamButtonRef.current);
+      this.pictureWebcamTooltipLoaded = true;
+    }
+  }
+
+  initModals() {
+    const { pictureWebcamModalRef, pictureWebcamModalLoaded } = this;
+    const { shouldResetModals }                               = this.state;
+
+    if ((shouldResetModals || !pictureWebcamModalLoaded) && pictureWebcamModalRef.current) {
+
+      M.Modal.init(pictureWebcamModalRef.current);
+      this.pictureWebcamModalLoaded = true;
+    }
+  }
+
   updateFields() {
     this.onRgChange({ target: { value: this.rgInputRef.current.value } });
     this.onNationalityChange({ target: { options: this.nationalitySelectRef.current.options } });
@@ -884,17 +977,36 @@ class FormPatient extends Component {
     cityInputRef.current.disabled         = false;
     neighborhoodInputRef.current.disabled = false;
     addressInputRef.current.disabled      = false;
+
     this.setState({ shouldReinitialize: true });
   }
 
   disablePictureField() {
     this.pictureInputRef.current.disabled = true;
-    this.setState({ shouldReinitialize: true });
+    this.pictureFileRef.current.disabled  = true;
   }
 
   enablePictureField() {
     this.pictureInputRef.current.disabled = false;
-    this.setState({ shouldReinitialize: true });
+    this.pictureFileRef.current.disabled  = false;
+  }
+
+  openWebcamModal() {
+    const { pictureWebcamModalRef } = this;
+
+    if (pictureWebcamModalRef.current) {
+      this.setState({ showWebcam: true });
+      // setTimeout(M.Modal.getInstance(pictureWebcamModalRef.current).open(), 10000);
+    }
+  }
+
+  closeWebcamModal() {
+    const { pictureWebcamModalRef } = this;
+
+    if (pictureWebcamModalRef.current) {
+      this.setState({ showWebcam: false });
+      M.Modal.getInstance(pictureWebcamModalRef.current).close();
+    }
   }
 }
 
