@@ -27,7 +27,7 @@ function hasTouch() {
 }
 
 function onUserPictureError({ target }) {
-  target.src = '/images/empty_avatar.png';
+  target.src = '/images/empty_picture.png';
 }
 
 function onUserBackgroundError({ target }) {
